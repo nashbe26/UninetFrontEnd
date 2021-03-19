@@ -1,0 +1,79 @@
+#notification-id{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    margin:0;
+    }
+    #notification-size{
+        width: 38px;
+        height: 38px;
+        float: left;
+        border-radius: 60%;
+        background-size:contain;
+    }
+    .notification-area{
+        display: block  ;
+        padding-top: 5rem;
+        height: 100vh;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+}
+#notification-text{
+margin-top: 15px;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+text-transform: capitalize;
+color: #323232;
+}
+#notification-style{
+font-weight: 300;
+font-size: 12px;
+line-height: 14px;
+text-transform: lowercase;
+color: #666666;
+}
+
+/*user-container */
+#user-id{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    margin:0;
+    }
+    #user-size{
+        width: 38px;
+        height: 38px;
+        float: left;
+        border-radius: 60%;
+        background-size:contain;
+    }
+    .view-user{
+        display: block  ;
+        padding-top: 5rem;
+        height: 100vh;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+}
+#user-text{
+margin-top: 15px;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+text-transform: capitalize;
+color: #323232;
+}
+#user-style{
+font-weight: 300;
+font-size: 12px;
+line-height: 14px;
+text-transform: lowercase;
+color: #666666;
+}
+

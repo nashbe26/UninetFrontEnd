@@ -1,0 +1,48 @@
+#img-size{
+    height: 300px;
+    width:100%;
+    border-radius: 6px;
+    background-size:contain;
+}
+.post-container{
+    margin-top:5rem;
+}
+#hours-spent{
+    margin-top:10px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 12px;
+    color: #666666;
+}
+#user-posts{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    text-transform: capitalize;
+    color: #323232;
+}
+.reaction-container{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+    color: #323232;
+}
+#user-size{
+    width: 34px;
+    height: 34px;
+    border-radius: 60%;
+    background-size:contain;
+}
+#user-id{
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+margin-top: 5px;
+text-transform: capitalize;
+color: #323232;
+}
