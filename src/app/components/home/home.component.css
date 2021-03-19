@@ -18,35 +18,7 @@ text-transform: capitalize;
 
 color: #323232;
 }
-#emailLabel{
-position: absolute;
-width: 67px;
-height: 16px;
-left: 800px;
-top: 220px;
-background-color: #fff;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 16px;
-text-transform: capitalize;
-color: #323232;
-}
 
-#passwordLabel{
-position: absolute;
-width: 67px;
-height: 16px;
-left: 800px;
-top: 280px;
-background-color: #fff;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 16px;
-text-transform: capitalize;
-color: #323232;
-}
 #SignIn{
     font-size: 31px;
     font-style: normal;
@@ -74,7 +46,7 @@ letter-spacing: 0em;
     box-sizing: border-box;
     padding: 5px 0;
     border-radius: 60px;
-    
+    position: relative;
 }
 .btn-purple{
     
@@ -86,3 +58,34 @@ letter-spacing: 0em;
     background: linear-gradient(99.93deg, #392DD1 -12.77%, rgba(255, 255, 255, 0) 150.57%), #8E2995;
     border-radius: 60px;
 }
+#emailLabel{
+    position: absolute;
+    width: 67px;
+    height: 16px;
+    z-index: 1;
+    margin-top:-7px ;
+    margin-left:20px;
+    background-color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    }
+    
+    #passwordLabel{
+    position: absolute;
+    width: 67px;
+    height: 16px;
+    z-index: 1;
+    background-color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    margin-top:-7px ;
+    margin-left:20px ;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    }
