@@ -14,20 +14,27 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     
   }
-public showNotification(){
+ showNotification(){
   let notification = document.getElementById('notification-area');
   if(notification){
     if ( notification.scrollHeight != 0) {
-      
       notification.style.display="none";
-      console.log('twitter')
     }else if (notification && notification.style.display == "none") {
         notification.style.display="block";
-        console.log('twitter')
-
       }
     }
     console.log('nashbe')
   }
+//   showProfile(){
+//     let userProfile = document.getElementById('user-area');
+//     if(userProfile){
+//       if ( userProfile.style.display= "block") {
+//         userProfile.style.display="none";
+//       }else if (userProfile && userProfile.style.display == "none") {
+//         userProfile.style.display="block";
+//         }
+//       }
+//       console.log('nashbe')
+//     }
 }
 

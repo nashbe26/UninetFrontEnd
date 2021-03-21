@@ -4,12 +4,72 @@
             <a class="navbar-brand">BrandName Logo</a>
         </div>
         <div class="icons-bar">
-            <i class="fas fa-search mx-4 pointer-curse"></i>
+            <i class="fas fa-search mx-4 pointer-curse" ></i>
             <i class="fas fa-home mx-4 pointer-curse"></i>
             <i class="fas fa-plus-circle mx-4 pointer-curse"></i>
             <i class="far fa-envelope mx-4 pointer-curse"></i>
-            <i class="far fa-bell mx-4 pointer-curse" (click)="showNotification()"></i>
-            <i class="fas fa-bars mx-4 pointer-curse"></i>
+            <i class="far fa-bell mx-4 pointer-curse" (click)="showNotification()" ></i>
+            <i class="fas fa-bars mx-4 pointer-curse" ></i>
         </div>
     </div>
 </nav>
+<div class="notification-area" id="notification-area" >
+    <div class="text-left">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+    <div class="notification-name">
+        <p id="notification-text">Notification</p>
+        <div class="notification-user">
+            <div class="user-notification">
+                <img src="../../../assets/img/user.png" alt="Image" id="notification-size">
+                <p id="notification-id">Users Name</p>
+                <p id="notification-style">started following you</p>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="user-area" >
+    <div class="user-name">
+        <div class="text-left mb-5">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+            <div class="text-center my-5">
+                <img src="../../../assets/img/user.png" alt="Image" id="user-size">
+                <p id="user-name">Users Name</p>
+                <p id="text-follower">135 followers  |   24 following</p>
+            </div>
+            <div class="user-list mt-5">
+                <ul class="list-name">
+                    <li class="my-4"><p class="listed-item"><i class="fas fa-user-circle fa-lg me-4"></i>View profile</p></li>
+                    <li class="my-4"><p class="listed-item"><i class="fas fa-globe fa-lg me-4"></i>Online Status</p></li>
+                    <li class="my-4"><p class="listed-item"><i class="fas fa-unlock fa-lg me-4"></i>Private account</p></li>
+                    <li class="my-4"><p class="listed-item"><i class="fas fa-bell fa-lg me-4"></i>Notification</p></li>
+                    <li class="my-4"><p class="listed-item"><i class="fas fa-envelope fa-lg me-4"></i>Messages</p></li>
+                    <li class="my-4"><p class="listed-item"><i class="fas fa-cog fa-lg me-4"></i>Settings</p></li>
+                </ul>
+            </div>
+    </div>
+</div>
+<div class="user-area" >
+    <div class="user-name">
+        <div class="text-left mb-5">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+    </div>
+    <div class="input-area mx-4">
+        <input type="text" name="searchUser" id="searchUser" class="inputFiled">
+    </div>
+    <div class="user-find mt-4">
+        <div class="user-search">
+            <img src="../../../assets/img/user.png" alt="Image" id="notification-size">
+            <p id="notification-id">Users Name</p>
+            <p id="notification-style">Matiére a etudier</p>
+        </div>
+        <div class="user-search">
+            <img src="../../../assets/img/user.png" alt="Image" id="notification-size">
+            <p id="notification-id">Users Name</p>
+            <p id="notification-style">Matiére a etudier</p>
+        </div>
+    </div>
+
+</div>

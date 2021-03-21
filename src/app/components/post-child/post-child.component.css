@@ -5,7 +5,7 @@
     background-size:contain;
 }
 .post-container{
-    margin-top:5rem;
+    margin-top:4rem;
 }
 #hours-spent{
     margin-top:10px;
@@ -45,4 +45,24 @@ line-height: 16px;
 margin-top: 5px;
 text-transform: capitalize;
 color: #323232;
+}
+.modal-dialog {
+    max-width: 800px;
+    margin: 1.75rem auto;
+}
+
+.comments-container a{
+    text-decoration: none;
+    color: #323232;
+}
+hr{
+    margin: 0 auto;
+    width: 90%;
+}
+#user-comment{
+    margin-top: 1.5rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 60%;
+    background-size:contain;
 }

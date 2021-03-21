@@ -1,0 +1,126 @@
+
+body,html {
+    font-family: 'Roboto', sans-serif;
+    color:#323232;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;}
+* {
+    box-sizing: border-box;
+}
+p{
+    font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+text-transform: capitalize;
+
+color: #323232;
+}
+#home-page{
+    margin-top:8rem;
+}
+#title-text{
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 46px;
+    letter-spacing: 0;
+    text-align: left;
+}
+.text-sec{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+}
+#SignIn{
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+}
+
+#text-purple{
+    font-weight: 700;
+    color:#8E2995;
+}
+#account-text{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+
+}
+.inputFiled{
+    width: 100%;
+    border: 1px solid #CDD1D4;
+    box-sizing: border-box;
+    padding: 5px 0;
+    border-radius: 60px;
+    position: relative;
+}
+.btn-purple{
+    
+    padding: 5px 0;
+    border:none;
+    outline: none;
+    width: 60%;
+    color:#fff;
+    background: linear-gradient(99.93deg, #392DD1 -12.77%, rgba(255, 255, 255, 0) 150.57%), #8E2995;
+    border-radius: 60px;
+}
+#emailLabel{
+    position: absolute;
+    width: 67px;
+    height: 16px;
+    z-index: 1;
+    margin-top:-7px ;
+    margin-left:20px;
+    background-color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    }
+    
+    #passwordLabel{
+    position: absolute;
+    width: 67px;
+    height: 16px;
+    z-index: 1;
+    background-color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    margin-top:-7px ;
+    margin-left:20px ;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    }
+#agree-text{
+    margin-left:15px ;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 14px;
+    color: #323232;
+}
+#text-sec{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+}
+.mt-6{
+    margin-top: 8rem;
+}

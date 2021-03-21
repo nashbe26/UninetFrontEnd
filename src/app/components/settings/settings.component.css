@@ -1,0 +1,22 @@
+#user-nameSettings{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 15px;
+    color: #323232;
+    margin-top: 2.25rem;
+}
+#user-size{
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background-size:contain;
+}
+.inputFiled-setting{
+    width: 100%;
+    border: 1px solid #CDD1D4;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border-radius: 10px;
+    position: relative;
+}

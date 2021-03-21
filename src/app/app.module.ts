@@ -8,6 +8,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { PostChildComponent } from './components/post-child/post-child.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { UserComponent } from './components/user/user.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import { AccueilComponent } from './components/accueil/accueil.component';
     HeaderComponent,
     PostChildComponent,
     PostsComponent,
-    AccueilComponent
+    AccueilComponent,
+    SignUpComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
+    UserComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

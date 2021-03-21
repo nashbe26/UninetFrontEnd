@@ -1,0 +1,45 @@
+#user-size{
+    margin:15px 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 60%;
+    background-size:contain;
+}
+#text-follower{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 14px;
+    color: #666666;
+
+}
+#user-name{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 23px;
+    color: #323232;
+}
+#user-description{
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    text-transform: capitalize;
+
+}
+.posts-text{
+    font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 15px;
+text-transform: capitalize;
+
+color: #323232;
+}
+.posts-text span{
+    font-weight: 700;
+    font-size: 15px;
+}
+.post-container{
+    margin-top:2rem;
+}

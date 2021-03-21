@@ -8,3 +8,125 @@
 .pointer-curser{
     cursor: pointer;
 }
+#notification-id{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    margin:0;
+    }
+    #notification-size{
+        width: 38px;
+        height: 38px;
+        float: left;
+        border-radius: 60%;
+        background-size:contain;
+    }
+    .notification-area{
+        z-index: 1;
+        position: absolute;
+        right: 0;
+        width: 20%;
+        display: none  ;
+        padding-top: 5rem;
+        padding-left: 1rem;
+        height: 100vh;
+        background: #FFFFFF;
+        border: 1px solid #EEEEEE;
+      
+}
+#notification-text{
+margin-top: 15px;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+text-transform: capitalize;
+color: #323232;
+}
+#notification-style{
+font-weight: 300;
+font-size: 12px;
+line-height: 14px;
+text-transform: lowercase;
+color: #666666;
+}
+
+/*user-container */
+#user-id{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    margin:0;
+    }
+
+
+#user-text{
+margin-top: 15px;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+text-transform: capitalize;
+color: #323232;
+}
+#user-style{
+font-weight: 300;
+font-size: 12px;
+line-height: 14px;
+text-transform: lowercase;
+color: #666666;
+}
+.user-area{
+    display: none;
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    width: 20%;
+    padding-top: 5rem;
+    padding-left: 0.5rem;
+    height: 100vh;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+  
+}
+#user-size{
+    margin:15px 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 60%;
+    background-size:contain;
+}
+#text-follower{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 14px;
+    color: #666666;
+
+}
+#user-name{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 23px;
+    color: #323232;
+}
+.listed-item{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    color: #323232;
+    }
+.list-name{
+    list-style: none;
+
+}
+.fa-lg{
+    color: #848484;
+}
+.user-search{
+margin: 30px 0;
+}
