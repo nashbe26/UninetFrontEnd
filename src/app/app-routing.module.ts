@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component';
+import { MessengerComponent } from './components/messenger/messenger.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path:'forgotPassword',component:ForgotPasswordComponent},
   { path:'user',component:UserComponent},
   { path:'settings',component:SettingsComponent},
+  { path:'messenger',component:MessengerComponent},
 ];
 
 @NgModule({

@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  showNotification : boolean =false;
+  showUser : boolean =false;
+  showSearch : boolean =false;
   constructor() { 
     
   }
@@ -14,17 +17,22 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     
   }
- showNotification(){
-  let notification = document.getElementById('notification-area');
-  if(notification){
-    if ( notification.scrollHeight != 0) {
-      notification.style.display="none";
-    }else if (notification && notification.style.display == "none") {
-        notification.style.display="block";
-      }
+ showToggleNotification(){
+    this.showNotification = !this.showNotification
+    this.showUser = false;
+    this.showSearch = false;
     }
-    console.log('nashbe')
-  }
+    showToggleSearch(){
+      this.showSearch = !this.showSearch
+      this.showUser = false;
+      this.showNotification = false;
+      }
+      showToggleUser(){
+        this.showUser = !this.showUser
+        this.showNotification = false;
+        this.showSearch = false;
+        }
+  
 //   showProfile(){
 //     let userProfile = document.getElementById('user-area');
 //     if(userProfile){

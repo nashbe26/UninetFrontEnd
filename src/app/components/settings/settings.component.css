@@ -7,8 +7,8 @@
     margin-top: 2.25rem;
 }
 #user-size{
-    width: 84px;
-    height: 84px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     background-size:contain;
 }
@@ -19,4 +19,13 @@
     padding: 10px 15px;
     border-radius: 10px;
     position: relative;
+}
+.btn-purple-settings{
+    padding: 5px 25px;
+    border:none;
+    outline: none;
+    float: right;
+    color:#fff;
+    background: linear-gradient(99.93deg, #392DD1 -12.77%, rgba(255, 255, 255, 0) 150.57%), #8E2995;
+    border-radius: 6px;
 }

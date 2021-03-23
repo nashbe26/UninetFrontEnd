@@ -5,9 +5,12 @@ body,html {
     outline: none;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;}
+    overflow-x: hidden;
+}
 * {
     box-sizing: border-box;
+    outline: none;
+
 }
 p{
     font-style: normal;
@@ -15,7 +18,7 @@ font-weight: 500;
 font-size: 14px;
 line-height: 16px;
 text-transform: capitalize;
-
+margin: 0;
 color: #323232;
 }
 #home-page{
@@ -44,7 +47,6 @@ color: #323232;
     line-height: 36px;
     letter-spacing: 0em;
 }
-
 #text-purple{
     font-weight: 700;
     color:#8E2995;
@@ -55,13 +57,12 @@ color: #323232;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: 0em;
-
 }
 .inputFiled{
     width: 100%;
     border: 1px solid #CDD1D4;
     box-sizing: border-box;
-    padding: 5px 0;
+    padding: 10px 15px;
     border-radius: 60px;
     position: relative;
 }
@@ -122,5 +123,5 @@ color: #323232;
     text-transform: capitalize;
 }
 .mt-6{
-    margin-top: 8rem;
+    margin-top: 6rem;
 }

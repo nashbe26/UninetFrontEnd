@@ -4,16 +4,16 @@
             <a class="navbar-brand">BrandName Logo</a>
         </div>
         <div class="icons-bar">
-            <i class="fas fa-search mx-4 pointer-curse" ></i>
-            <i class="fas fa-home mx-4 pointer-curse"></i>
-            <i class="fas fa-plus-circle mx-4 pointer-curse"></i>
-            <i class="far fa-envelope mx-4 pointer-curse"></i>
-            <i class="far fa-bell mx-4 pointer-curse" (click)="showNotification()" ></i>
-            <i class="fas fa-bars mx-4 pointer-curse" ></i>
+            <a (click)="showToggleSearch()"><i class="fas fa-search mx-4 pointer-curse"  ></i></a>
+            <a routerLink="/accueil" ><i class="fas fa-home mx-4 pointer-curse"></i></a>
+            <a><i class="fas fa-plus-circle mx-4 pointer-curse"></i></a>
+            <a><i class="far fa-envelope mx-4 pointer-curse"></i></a>
+            <a (click)="showToggleNotification()"><i class="far fa-bell mx-4 pointer-curse"   ></i></a>
+            <a  (click)="showToggleUser()"> <i class="fas fa-bars mx-4 pointer-curse"></i></a>
         </div>
     </div>
 </nav>
-<div class="notification-area" id="notification-area" >
+<div class="notification-area" id="notification-area sticky-top" *ngIf="showNotification">
     <div class="text-left">
         <i class="fas fa-arrow-left"></i>
     </div>
@@ -21,20 +21,20 @@
         <p id="notification-text">Notification</p>
         <div class="notification-user">
             <div class="user-notification">
-                <img src="../../../assets/img/user.png" alt="Image" id="notification-size">
+                <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
                 <p id="notification-id">Users Name</p>
                 <p id="notification-style">started following you</p>
             </div>
         </div>
     </div>
 </div> 
-<div class="user-area" >
+<div class="user-area" *ngIf="showUser">
     <div class="user-name">
         <div class="text-left mb-5">
             <i class="fas fa-arrow-left"></i>
         </div>
             <div class="text-center my-5">
-                <img src="../../../assets/img/user.png" alt="Image" id="user-size">
+                <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
                 <p id="user-name">Users Name</p>
                 <p id="text-follower">135 followers  |   24 following</p>
             </div>
@@ -49,8 +49,8 @@
                 </ul>
             </div>
     </div>
-</div>
-<div class="user-area" >
+</div> 
+ <div class="user-area" *ngIf="showSearch">
     <div class="user-name">
         <div class="text-left mb-5">
             <i class="fas fa-arrow-left"></i>
@@ -59,17 +59,17 @@
     <div class="input-area mx-4">
         <input type="text" name="searchUser" id="searchUser" class="inputFiled">
     </div>
-    <div class="user-find mt-4">
+    <div class="user-find mt-4" >
         <div class="user-search">
-            <img src="../../../assets/img/user.png" alt="Image" id="notification-size">
+            <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
             <p id="notification-id">Users Name</p>
             <p id="notification-style">Matiére a etudier</p>
         </div>
         <div class="user-search">
-            <img src="../../../assets/img/user.png" alt="Image" id="notification-size">
+            <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
             <p id="notification-id">Users Name</p>
             <p id="notification-style">Matiére a etudier</p>
         </div>
     </div>
 
-</div>
+</div> 

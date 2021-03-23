@@ -13,6 +13,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { UserComponent } from './components/user/user.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { MessengerComponent } from './components/messenger/messenger.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     ResetPasswordComponent,
     ForgotPasswordComponent,
     UserComponent,
-    SettingsComponent
+    SettingsComponent,
+    MessengerComponent
   ],
   imports: [
     BrowserModule,
