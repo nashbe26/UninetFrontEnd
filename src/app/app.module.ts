@@ -14,6 +14,11 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { UserComponent } from './components/user/user.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
+import { UserOnlineComponent } from './components/user-online/user-online.component';
+import { ShortcutsComponent } from './components/shortcuts/shortcuts.component';
+import { UserService } from '../services/userService/user.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -28,13 +33,18 @@ import { MessengerComponent } from './components/messenger/messenger.component';
     ForgotPasswordComponent,
     UserComponent,
     SettingsComponent,
-    MessengerComponent
+    MessengerComponent,
+    UserOnlineComponent,
+    ShortcutsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

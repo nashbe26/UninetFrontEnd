@@ -1,0 +1,22 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  url:String="http://localhost:3000/";
+
+  constructor(private httpClient:HttpClient) { }
+  
+  createUser(user:any){
+    return this.httpClient.post(`${this.url}`,user)
+  }
+  findAll(){
+    return this.httpClient.get(`${this.url}`)
+  }
+  findOne(userId:any){
+    return this.httpClient.get(`${this.url}/${userId}`)
+  }
+  
+}

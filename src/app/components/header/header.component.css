@@ -115,20 +115,21 @@ color: #666666;
 }
 .listed-item{
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
     line-height: 16px;
     color: #323232;
     }
-.list-name{
+ul {
     list-style: none;
+    padding:0;
 
 }
 
 .user-search{
 margin: 30px 0;
 }
-.icons-bar i{
+i{
     color: #848484;
     cursor: pointer;
 }

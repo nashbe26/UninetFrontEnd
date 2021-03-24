@@ -1,3 +1,7 @@
+.row{
+    padding:0;
+    
+}
 .text-message{
     padding: 15px 25px;
     font-style: normal;
@@ -29,11 +33,23 @@
     line-height: 19px;
     color: #323232;
 }
-.Messages{
+.Messages-box{
     position: relative;
-    margin: 0 2rem;
     height: 80vh;
+    overflow-y: scroll;
+    padding: 0 4rem 20px 4rem;
 }
+.Messages-box::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    background-color: #EEEEEE; /* or add it to the track */
+  }
+  
+  /* Add a thumb */
+  .Messages-box::-webkit-scrollbar-thumb {
+      background:linear-gradient(99.93deg, #392DD1 -12.77%, rgba(255, 255, 255, 0) 150.57%), #8E2995;
+      border-radius: 15px;
+  }
 #img-message{
     position: absolute;
     bottom: -5px;
@@ -75,7 +91,56 @@
     height: 70vh;
 }
 .message-filed{
-    position:absolute;
-    bottom: 15px;
-    width: 100%;
+    position: absolute;
+    bottom: 0;
+    overflow-y: hidden;
+    width: 50%; 
+    background:#EEEEEE;
+    z-index: 1;
+    margin: 0 50px;
+    
+}
+#notification-id{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    margin:0;
+    }
+    #notification-size{
+        width: 38px;
+        height: 38px;
+        float: left;
+        border-radius: 60%;
+        margin-right: 10px;
+        background-size:contain;
+    }
+    .notification-area{
+       
+        z-index: 1;
+        position: absolute;
+        right: 0;
+        width: 20%;
+        padding-top: 5rem;
+        padding-left: 1rem;
+        height: 100vh;
+        background: #FFFFFF;
+        border: 1px solid #EEEEEE;
+      
+}
+#notification-text{
+margin-top: 15px;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+text-transform: capitalize;
+color: #323232;
+}
+#notification-style{
+font-weight: 300;
+font-size: 12px;
+line-height: 14px;
+text-transform: lowercase;
+color: #666666;
 }

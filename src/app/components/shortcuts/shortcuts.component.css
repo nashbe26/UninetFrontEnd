@@ -1,0 +1,63 @@
+.shortcuts-container{
+    border-right:1px solid #EEEEEE ;
+    height: 85vh;
+    margin-top: 5rem;
+    margin-left: 15px;
+}
+a {
+    margin: 15px 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    margin-top: 5px;
+    color: #323232;
+    text-decoration: none;
+}
+i{
+    color: #848484;
+}
+#notification-id{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #323232;
+    padding: 15px;
+    }
+    #notification-size{
+        width: 48px;
+        height: 48px;
+        float: left;
+        border-radius: 50%;
+        background-size:contain;
+        margin-right: 10px;
+
+    }
+    .notification-area{
+       
+        z-index: 1;
+        position: absolute;
+        right: 0;
+        width: 20%;
+        padding-top: 5rem;
+        padding-left: 1rem;
+        height: 100vh;
+        background: #FFFFFF;
+        border: 1px solid #EEEEEE;
+      
+}
+#notification-text{
+margin-top: 15px;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+text-transform: capitalize;
+color: #323232;
+}
+#notification-style{
+font-weight: 300;
+font-size: 12px;
+line-height: 14px;
+text-transform: lowercase;
+color: #666666;
+}
