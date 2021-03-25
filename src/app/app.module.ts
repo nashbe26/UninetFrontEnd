@@ -17,7 +17,9 @@ import { MessengerComponent } from './components/messenger/messenger.component';
 import { UserOnlineComponent } from './components/user-online/user-online.component';
 import { ShortcutsComponent } from './components/shortcuts/shortcuts.component';
 import { UserService } from '../services/userService/user.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 
 @NgModule({
@@ -35,12 +37,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SettingsComponent,
     MessengerComponent,
     UserOnlineComponent,
-    ShortcutsComponent
+    ShortcutsComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserService

@@ -17,9 +17,10 @@ export class PostsService {
     return this.httpClient.get(`${this.url}`);
   }
   deletePost(postId:any){
-    return this.http.delete(`${this.url}/${postsId}`)
+    return this.httpClient.delete(`${this.url}/${postId}`)
   }
-  updatePost(postsId:any){
-    return this.http.update(`${this.url}/${postId}`)
+  updatePost(postId:any,posts:any){
+    return this.httpClient.put(`${this.url}/${postId}`,posts)
   }
+  
 }

@@ -5,12 +5,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-  url:String="http://localhost:3000/";
+  url:String="http://localhost:3000";
 
   constructor(private httpClient:HttpClient) { }
   
   createUser(user:any){
-    return this.httpClient.post(`${this.url}`,user)
+    console.log(user)
+    return this.httpClient.post(`${this.url}/login`,user)
   }
   findAll(){
     return this.httpClient.get(`${this.url}`)
@@ -18,5 +19,10 @@ export class UserService {
   findOne(userId:any){
     return this.httpClient.get(`${this.url}/${userId}`)
   }
-  
+  delete(userId:any){
+    return this.httpClient.get(`${this.url}/delete/${userId}`)
+  }
+  update(userId:any,user:any){
+    return this.httpClient.get(`${this.url}/update/${userId}`)
+  }
 }
