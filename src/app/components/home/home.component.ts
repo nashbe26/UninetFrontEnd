@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from 'src/services/userService/user.service';
+import { WebsocketService } from 'src/services/websocket.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { UserService } from 'src/services/userService/user.service';
 export class HomeComponent implements OnInit {
    userForm!:FormGroup;
    user:any ={};
-  constructor(private formBuilder:FormBuilder, private userService:UserService) { }
+  constructor(private formBuilder:FormBuilder, private userService:UserService,private websockets:WebsocketService) { }
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
@@ -18,9 +19,14 @@ export class HomeComponent implements OnInit {
       passowrd:['']
     })
   }
+
   onFormSubmit(){
       this.userService.createUser(this.userForm.value).subscribe((data:any) =>{
-      JSON.stringify(localStorage.setItem('token',JSON.stringify(data.jwtToken)));
+        localStorage.setItem('token',data.jwtToken);
+        this.websockets.connect(data.jwtToken)
+      console.log(data)
+    },error =>{
+      console.log('error',error)
     })
   }
 }

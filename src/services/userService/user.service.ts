@@ -10,7 +10,6 @@ export class UserService {
   constructor(private httpClient:HttpClient) { }
   
   createUser(user:any){
-    console.log(user)
     return this.httpClient.post(`${this.url}/login`,user)
   }
   findAll(){
@@ -20,9 +19,9 @@ export class UserService {
     return this.httpClient.get(`${this.url}/${userId}`)
   }
   delete(userId:any){
-    return this.httpClient.get(`${this.url}/delete/${userId}`)
+    return this.httpClient.post(`${this.url}/delete/${userId}`,userId)
   }
-  update(userId:any,user:any){
-    return this.httpClient.get(`${this.url}/update/${userId}`)
+  update(userId:any){
+    return this.httpClient.put(`${this.url}/update/${userId}`,userId)
   }
 }
