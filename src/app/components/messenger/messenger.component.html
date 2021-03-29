@@ -45,6 +45,7 @@
 </div>
 <div class="row justify-content-center">
     <div class="message-filed ">
-        <input class="inputFiled my-3" id="send" type="input">
+        <input [(ngModel)]="message" class="inputFiled my-3" id="send" type="text"/>
+        <button (click)="onSubmit()"class="btn-purple">Send </button>
     </div>
 </div>

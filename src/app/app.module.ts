@@ -18,7 +18,7 @@ import { UserOnlineComponent } from './components/user-online/user-online.compon
 import { ShortcutsComponent } from './components/shortcuts/shortcuts.component';
 import { UserService } from '../services/userService/user.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 
@@ -44,7 +44,8 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     UserService
