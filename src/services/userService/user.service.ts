@@ -13,7 +13,7 @@ export class UserService {
     return this.httpClient.post(`${this.url}/login`,user)
   }
   findAll(){
-    return this.httpClient.get(`${this.url}`)
+    return this.httpClient.get<any[]>(`${this.url}/getAllUser`)
   }
   findOne(userId:any){
     return this.httpClient.get(`${this.url}/${userId}`)

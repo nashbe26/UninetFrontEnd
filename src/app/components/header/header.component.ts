@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebsocketService } from 'src/services/websocket.service';
 
 @Component({
   selector: 'app-header',
@@ -6,16 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  users:any;
   showNotification : boolean =false;
   showUser : boolean =false;
   showSearch : boolean =false;
-  constructor() { 
-    
+  constructor(private websocket:WebsocketService) { 
   }
 
   ngOnInit(): void {
-    
+
   }
  showToggleNotification(){
     this.showNotification = !this.showNotification

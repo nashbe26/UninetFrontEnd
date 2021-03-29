@@ -4,22 +4,15 @@
         <div class="user-online-text">
             <p id="online-text">Online User</p>
         </div>
-        <div class="online-user">
-            <div class="notification-user">
-                <div class="user-notification">
-                    <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
-                    <div class="mx-5">
-                        <p id="user-id">Users Name</p>
-                        <p id="user-style">Online status</p>
-                    </div>
-                </div>
-            </div>
-            <div class="notification-user">
-                <div class="user-notification">
-                    <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
-                    <div class="mx-5">
-                        <p id="user-id">Users Name</p>
-                        <p id="user-style">Online status</p>
+            <div *ngIf="users">
+                <div class="online-user">
+                    <div *ngFor="let user of users | keyvalue " class="notification-user">
+                         <div class="user-notification">
+                            <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
+                            <div class="mx-5">
+                            <p id="user-id">{{user}}</p>
+                            <p id="user-style">Online status</p>
+                        </div>
                     </div>
                 </div>
             </div>
