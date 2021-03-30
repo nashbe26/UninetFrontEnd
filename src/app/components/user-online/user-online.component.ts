@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventEmitter } from 'events';
+import { ConversationService } from 'src/services/conversation/conversation.service';
 import { UserService } from 'src/services/userService/user.service';
 import { WebsocketService } from 'src/services/websocket.service';
 @Component({
@@ -14,7 +15,7 @@ export class UserOnlineComponent implements OnInit {
     checkOnline:any;
     events:any = new EventEmitter()
     
-    constructor(private websocket:WebsocketService,private userServices:UserService) { 
+    constructor(private websocket:WebsocketService,private conversationServices:ConversationService,private userServices:UserService) { 
      
     }
 
@@ -24,7 +25,12 @@ export class UserOnlineComponent implements OnInit {
       console.log(this.users);
       
     })
+    //this.conversationServices.getOneConversation(){}
   }
-        
+  // startConversation(idOnwer:any,idReceiver:any){
+  //   this.conversationServices.createConversation(idOnwer,idReceiver).subscribe(response =>{
+  //     console.log("start conversation");
+  //   })
+  //}
   
 }

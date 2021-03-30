@@ -37,7 +37,7 @@ export class WebsocketService {
     }
     sendMessage(message:any){
       console.log('this from socket', message)
-      this.socket.emit('newDisscu',{
+      this.socket.emit('newDisscu',{  
         message
       })
     }

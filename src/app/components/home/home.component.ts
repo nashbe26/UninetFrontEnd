@@ -12,18 +12,17 @@ export class HomeComponent implements OnInit {
    userForm!:FormGroup;
    user:any ={};
   constructor(private formBuilder:FormBuilder, private userService:UserService,private websockets:WebsocketService) { }
-
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
       email:[''],
       passowrd:['']
     })
   }
-
   onFormSubmit(){
       this.userService.createUser(this.userForm.value).subscribe((data:any) =>{
         localStorage.setItem('token',data.jwtToken);
         this.websockets.connect(data.jwtToken)
+        
       console.log(data)
     },error =>{
       console.log('error',error)

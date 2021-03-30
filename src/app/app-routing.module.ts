@@ -19,7 +19,7 @@ const routes: Routes = [
   { path:'forgotPassword',component:ForgotPasswordComponent},
   { path:'user',component:UserComponent,canActivate:[AuthGuardsGuard]},
   { path:'settings',component:SettingsComponent},
-  { path:'messenger',component:MessengerComponent},
+  { path:'messenger/:id',component:MessengerComponent},
   { path:'forbidden',component:ForbiddenComponent},
 ];
 
