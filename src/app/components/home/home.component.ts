@@ -20,10 +20,10 @@ export class HomeComponent implements OnInit {
   }
   onFormSubmit(){
       this.userService.createUser(this.userForm.value).subscribe((data:any) =>{
-        localStorage.setItem('token',data.jwtToken);
-        this.websockets.connect(data.jwtToken)
-        
-      console.log(data)
+      localStorage.setItem('token',data.jwtToken);
+      localStorage.setItem('user',JSON.stringify(data.user));
+      this.websockets.connect(data.jwtToken);
+      console.log(data);
     },error =>{
       console.log('error',error)
     })

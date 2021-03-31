@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { EventEmitter } from 'events';
 import { io } from 'socket.io-client'
@@ -9,7 +8,7 @@ export class WebsocketService {
 
   socket:any
   users:any = []
-  data:any
+  onlineUser:any = []
   messageRec:any =[]
   event = new EventEmitter()
   constructor() {
@@ -26,13 +25,15 @@ export class WebsocketService {
     this.socket.on('connect', () => console.log(jwtToken))
     this.getOnlineUser()
     this.receiveMessage()
+    
   }
 
-
+ 
     getOnlineUser() { 
         this.socket.on('userOnline', (data:any) => { 
-          this.users = data; 
-          this.event.emit('ConnectionChanges')
+          this.onlineUser = data.onlineUser; 
+          this.users = data.users; 
+          this.event.emit('ConnectionChanges',this.users)
          });
     }
     sendMessage(message:any){

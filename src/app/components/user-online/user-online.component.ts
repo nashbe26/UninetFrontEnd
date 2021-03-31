@@ -11,6 +11,7 @@ import { WebsocketService } from 'src/services/websocket.service';
 export class UserOnlineComponent implements OnInit {
   
     users:any=[];
+    onlineUser:any=[];
     tabUser:any=[];
     checkOnline:any;
     events:any = new EventEmitter()
@@ -20,17 +21,20 @@ export class UserOnlineComponent implements OnInit {
     }
 
     ngOnInit():void{
-    this.websocket.event.on('ConnectionChanges',() => {
+      this.websocket.event.on('ConnectionChanges',() => {
       this.users = this.websocket.users
-      console.log(this.users);
+      this.onlineUser = JSON.parse(localStorage.getItem('user')!)
+      console.log( this.onlineUser);
+      
       
     })
-    //this.conversationServices.getOneConversation(){}
+  //this.conversationServices.getOneConversation(idOnwer:any)
   }
-  // startConversation(idOnwer:any,idReceiver:any){
-  //   this.conversationServices.createConversation(idOnwer,idReceiver).subscribe(response =>{
-  //     console.log("start conversation");
-  //   })
-  //}
+   startConversation(idOnwer:any,idReceiver:any){
+      console.log(idOnwer,idReceiver)
+      this.conversationServices.createConversation(idOnwer,idReceiver).subscribe(response =>{
+      console.log("start conversation");
+    })
+  }
   
 }

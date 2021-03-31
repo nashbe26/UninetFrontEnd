@@ -6,11 +6,11 @@
         </div>
             <div *ngIf="users">
                 <div class="online-user">
-                    <div *ngFor="let user of users | keyvalue " class="notification-user">
+                    <div *ngFor="let onlineUsers of users ;let i = index" (click)="startConversation(onlineUsers,onlineUser._id)"class="notification-user">
                          <div class="user-notification" >
-                            <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
+                            <img src="../../../assets/img/user.jpg" alt="Image" id="user-size" >
                             <div class="mx-5">
-                            <p id="user-id">{{user}}</p>
+                            <p id="user-id">{{onlineUsers}}</p>
                             <p id="user-style">Online status</p>
                         </div>
                     </div>
