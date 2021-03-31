@@ -50,6 +50,9 @@ body,html {
     line-height: 17px;
     letter-spacing: 0em;
 }
+.curser-pointer{
+    cursor: pointer;
+}
 .inputFiled{
     width: 100%;
     border: 1px solid #CDD1D4;

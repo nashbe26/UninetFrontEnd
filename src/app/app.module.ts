@@ -20,6 +20,7 @@ import { UserService } from '../services/userService/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { PopUpComponent } from './components/pop-up/pop-up.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
     MessengerComponent,
     UserOnlineComponent,
     ShortcutsComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,

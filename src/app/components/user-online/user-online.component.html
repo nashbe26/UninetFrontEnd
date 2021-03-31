@@ -5,7 +5,7 @@
             <p id="online-text">Online User</p>
         </div>
             <div *ngIf="users">
-                <div class="online-user">
+                <div class="online-user" (click)="startPopUp()">
                     <div *ngFor="let onlineUsers of users ;let i = index" (click)="startConversation(onlineUsers,onlineUser._id)"class="notification-user">
                          <div class="user-notification" >
                             <img src="../../../assets/img/user.jpg" alt="Image" id="user-size" >
@@ -17,6 +17,9 @@
                 </div>
             </div>
         </div>
+      
     </div>
 </div>
 </div>
+   
+    

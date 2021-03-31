@@ -33,7 +33,6 @@ export class MessengerComponent implements OnInit {
   onSubmit(){
     console.log(this.message)
     this.websocket.sendMessage(this.message)
-
   }
-
+  
 }
