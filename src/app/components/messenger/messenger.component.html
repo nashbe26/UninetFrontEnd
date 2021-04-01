@@ -44,8 +44,10 @@
     <div class="col-md-3"></div>
 </div>
 <div class="row justify-content-center">
-    <div class="message-filed ">
-        <input [(ngModel)]="message" class="inputFiled my-3" id="send" type="text"/>
-        <button (click)="onSubmit()"class="btn-purple">Send </button>
-    </div>
+    <form class="form" [formGroup]="messageForm" (ngSubmit)="onFormSubmit()"> 
+        <div class="message-filed ">
+            <input [(ngModel)]="message" class="inputFiled my-3" id="send" type="text" formControlName="message"/>
+            <button (click)="onSubmit()"class="btn-purple">Send </button>
+        </div>
+    </form>
 </div>

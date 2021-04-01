@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PublicEntitiesService {
-  showPopUp : boolean =false;
+  showPopUp : boolean =true;
   constructor() { }
   
 }

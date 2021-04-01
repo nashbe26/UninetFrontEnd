@@ -10,6 +10,9 @@ export class ConversationService {
   createConversation(idOwner:any,idReceiver:any){
     return this.httpClient.post(`${this.url}createConversation`,{idOwner,idReceiver})
   }
+  sendConversation(message:any){
+    return this.httpClient.post(`${this.url}createConversation`,message)
+  }
   deleteConversation(conversationId:any){
     return this.httpClient.post(`${this.url}deleteConversation/:id`,conversationId)
   }

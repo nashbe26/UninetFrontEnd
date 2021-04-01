@@ -9,16 +9,13 @@ import { PublicEntitiesService } from '../public-entities.service';
 export class PopUpComponent implements OnInit {
   showPopUp:any;
   constructor(private publicEntity:PublicEntitiesService) { }
-
   ngOnInit(): void {
-    
     this.showPopUp = this.publicEntity.showPopUp
-
+    console.log(this.showPopUp);
+    
   }
   exitPopUp(){
     this.showPopUp = !this.publicEntity.showPopUp
+    console.log(this.showPopUp);
   }
-  
-
-  
 }

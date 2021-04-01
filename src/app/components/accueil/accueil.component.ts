@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PublicEntitiesService } from '../public-entities.service';
 
 @Component({
   selector: 'app-accueil',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
-
-  constructor() { }
+  showPopUp:any;
+  constructor(private publicEntity:PublicEntitiesService) { }
 
   ngOnInit(): void {
+    this.showPopUp = this.publicEntity.showPopUp
+
   }
  
 }
