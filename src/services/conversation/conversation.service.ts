@@ -7,12 +7,10 @@ import { Injectable } from '@angular/core';
 export class ConversationService {
   url:String="http://localhost:3000/";
   constructor(private httpClient:HttpClient) { }
-  createConversation(idOwner:any,idReceiver:any){
-    return this.httpClient.post(`${this.url}createConversation`,{idOwner,idReceiver})
+  createConversation(conversation:any){
+    return this.httpClient.post(`${this.url}createConversation`,conversation)
   }
-  sendConversation(message:any){
-    return this.httpClient.post(`${this.url}createConversation`,message)
-  }
+ 
   deleteConversation(conversationId:any){
     return this.httpClient.post(`${this.url}deleteConversation/:id`,conversationId)
   }

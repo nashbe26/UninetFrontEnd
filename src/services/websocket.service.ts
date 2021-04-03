@@ -27,8 +27,6 @@ export class WebsocketService {
     this.receiveMessage()
     
   }
-
- 
     getOnlineUser() { 
         this.socket.on('userOnline', (data:any) => { 
           this.onlineUser = data.onlineUser; 
@@ -38,6 +36,7 @@ export class WebsocketService {
     }
     sendMessage(message:any){
       console.log('this from socket', message)
+      //console.log('this from id', id)
       this.socket.emit('newDisscu',{  
         message
       })

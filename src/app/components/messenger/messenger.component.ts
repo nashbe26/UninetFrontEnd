@@ -14,21 +14,24 @@ export class MessengerComponent implements OnInit {
   message:any=[];
   events:any = new EventEmitter()
   conversation:any;
+  conversationId:any;
   oneConversation:any
   id:any;
+  idOnline:any;
   messageForm!:FormGroup;
   constructor(private websocket:WebsocketService,private conversationServices:ConversationService,private  activatedRoutes :ActivatedRoute,private formBuilder:FormBuilder) { }
   ngOnInit(): void {
     this.messageForm = this.formBuilder.group({
-      message:[''],
+      message:['']
     })
+    this.id=this.activatedRoutes.snapshot.params['id']
+    this.idOnline =JSON.parse(localStorage.getItem('user')!);
     this.websocket.event.on('receiveMessage',() => {
       this.message = this.websocket.messageRec
       console.log(this.message);
       this.conversationServices.getAllConversation().subscribe(response=>{
         this.conversation = response
       })
-    this.id=this.activatedRoutes.snapshot.params['id']
     this.conversationServices.getOneConversation(this.id).subscribe(response =>{
       this.oneConversation=response
     })
@@ -36,8 +39,19 @@ export class MessengerComponent implements OnInit {
 
   }
   onSubmit(){
-    console.log(this.message)
-    this.websocket.sendMessage(this.message)
+    console.log(this.idOnline)
+    this.conversationId = {
+
+      idOnwer:this.idOnline._id,
+      idReceiver:this.id,
+      message:[{
+        content:this.message,
+        id:this.id
+      }]
+    }
+    console.log(this.conversationId);
+    
+    this.websocket.sendMessage(this.conversationId)
   }
   onFormSubmit(){}
 }

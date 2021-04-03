@@ -16,18 +16,18 @@ export class UserOnlineComponent implements OnInit {
     checkOnline:any;
     onlineUser:any;
     events:any = new EventEmitter()
-    
+    conversationId:any;
     constructor(private websocket:WebsocketService,private conversationServices:ConversationService,private userServices:UserService,private publicEntities:PublicEntitiesService) { 
      
     }
 
-    ngOnInit():void{
+    ngOnInit():void{  
     this.websocket.event.on('ConnectionChanges',() => {
       this.users = this.websocket.users
       this.onlineUser = JSON.parse(localStorage.getItem('user')!)
       console.log(this.users);
       console.log(this.onlineUser);
-      
+   
     })
     console.log(this.publicEntities.showPopUp);
     
@@ -35,7 +35,9 @@ export class UserOnlineComponent implements OnInit {
   }
 
    startConversation(idOnwer:any,idReceiver:any){
-    this.conversationServices.createConversation(idOnwer,idReceiver).subscribe(response =>{
+  
+    console.log(this.conversationId)
+    this.conversationServices.createConversation(this.conversationId).subscribe(response =>{
     console.log("start conversation");
      })
 }
