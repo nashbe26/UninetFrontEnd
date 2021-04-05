@@ -1,6 +1,5 @@
 <div *ngIf="showPopUp">
     <div class="card">
-        
         <div class="card-body">
                 <div class="card-title">
                     <div class="online-id">
@@ -33,9 +32,14 @@
                     </div>
                 </div>
                 <div class="bg-light px-4">
-                    <input class="inputFiled my-2" id="send" type="text"/>
+                    <form [formGroup]="messageForm"> 
+                        <input  class="inputFiled my-2" id="send" type="text" formControlName="message"/>
+                        <button (click)="onSubmit()"class="btn-purple">Send </button>
+
+                    </form>
                 </div>
                     </div>
                 
                 </div>
             </div>                
+      

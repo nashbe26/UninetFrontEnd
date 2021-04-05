@@ -5,9 +5,9 @@
             <p id="online-text">Online User</p>
         </div>
             <div *ngIf="users">
-                <div class="online-user" (click)="startPopUp()">
-                    <div *ngFor="let onlineUsers of users ;let i = index" (click)="startConversation(onlineUsers,onlineUser._id)"class="notification-user">
-                         <div class="user-notification" >
+                <div class="online-user" >
+                    <div *ngFor="let onlineUsers of users ;let i = index" class="notification-user"(click)="startConversation(onlineUser._id,onlineUsers)" >
+                         <div class="onlineUser" (click)="startPopUp(i)">
                             <img src="../../../assets/img/user.jpg" alt="Image" id="user-size" >
                             <div class="mx-5">
                             <p id="user-id">{{onlineUsers}}</p>
@@ -20,6 +20,16 @@
 
     </div>
 </div>
+<div class="row">
+    <div class="fixed-bottom">
+        <div class="row">
+            <div class="col-md-3 notification-user" *ngFor="let onlineUsers of users ;let i = index">
+                    <app-pop-up [showPopUp]="showPopUp"> </app-pop-up>
+            </div>
+        </div>
+    </div>
 </div>
-   
+</div>  
     
+
+

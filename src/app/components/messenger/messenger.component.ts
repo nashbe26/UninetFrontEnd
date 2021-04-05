@@ -33,25 +33,27 @@ export class MessengerComponent implements OnInit {
         this.conversation = response
       })
     this.conversationServices.getOneConversation(this.id).subscribe(response =>{
-      this.oneConversation=response
+      console.log(response);
+      
     })
+ 
     })  
-
+    this.conversationServices.getOneConversation("6069b312dfb9be2bb4e87b4d").subscribe( results =>{
+      console.log(results)
+    })
   }
   onSubmit(){
-    console.log(this.idOnline)
     this.conversationId = {
-
       idOnwer:this.idOnline._id,
       idReceiver:this.id,
-      message:[{
-        content:this.message,
-        id:this.id
-      }]
+      message:{content:this.message}
     }
-    console.log(this.conversationId);
-    
-    this.websocket.sendMessage(this.conversationId)
+   
+    this.conversationServices.sendConversation(this.conversationId).subscribe( results =>{
+      console.log(results)
+      this.websocket.sendMessage(this.conversationId)
+    })
+   
   }
   onFormSubmit(){}
 }

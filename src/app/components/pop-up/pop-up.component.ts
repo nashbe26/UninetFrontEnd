@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PublicEntitiesService } from '../public-entities.service';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ConversationService } from 'src/services/conversation/conversation.service';
 
 @Component({
   selector: 'app-pop-up',
@@ -7,15 +8,30 @@ import { PublicEntitiesService } from '../public-entities.service';
   styleUrls: ['./pop-up.component.css']
 })
 export class PopUpComponent implements OnInit {
-  showPopUp:any;
-  constructor(private publicEntity:PublicEntitiesService) { }
+  @Input() showPopUp:any;
+  @Output() message:any;
+  conversationId:any;
+  messageForm!:FormGroup;
+  constructor(private conversationServices:ConversationService,private formBuilder:FormBuilder) { }
   ngOnInit(): void {
-    this.showPopUp = this.publicEntity.showPopUp
-    console.log(this.showPopUp);
     
+    this.conversationServices.getOneConversation("6069b312dfb9be2bb4e87b4d").subscribe((reponse:any) =>{
+      console.log(reponse)
+    })
+    this.messageForm = this.formBuilder.group({
+      message:['']
+      
+    })
   }
   exitPopUp(){
-    this.showPopUp = !this.publicEntity.showPopUp
-    console.log(this.showPopUp);
+    this.showPopUp = !this.showPopUp
+  }
+  onSubmit(){
+    this.conversationId = {
+      idOnwer:this.idOnline._id,
+      idReceiver:this.id,
+      message:{content:this.message}
+    }
+    this.message =this.messageForm.value
   }
 }

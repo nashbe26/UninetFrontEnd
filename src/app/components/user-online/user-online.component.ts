@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { EventEmitter } from 'events';
 import { ConversationService } from 'src/services/conversation/conversation.service';
 import { UserService } from 'src/services/userService/user.service';
@@ -10,38 +11,48 @@ import { PublicEntitiesService } from '../public-entities.service';
   styleUrls: ['./user-online.component.css']
 })
 export class UserOnlineComponent implements OnInit {
-  
+    message:any=[];
+    //messageForm!:FormGroup;
     users:any=[];
     tabUser:any=[];
     checkOnline:any;
     onlineUser:any;
     events:any = new EventEmitter()
     conversationId:any;
-    constructor(private websocket:WebsocketService,private conversationServices:ConversationService,private userServices:UserService,private publicEntities:PublicEntitiesService) { 
+    showPopUp:any;
+    
+    constructor(private websocket:WebsocketService,private formBuilder:FormBuilder,private conversationServices:ConversationService,private userServices:UserService,private publicEntities:PublicEntitiesService) { 
      
     }
 
     ngOnInit():void{  
-    this.websocket.event.on('ConnectionChanges',() => {
+      // this.messageForm = this.formBuilder.group({
+      //   message:['']
+      // })
+      this.websocket.event.on('ConnectionChanges',() => {
       this.users = this.websocket.users
       this.onlineUser = JSON.parse(localStorage.getItem('user')!)
-      console.log(this.users);
-      console.log(this.onlineUser);
+      this.showPopUp = this.publicEntities.showPopUp
    
     })
-    console.log(this.publicEntities.showPopUp);
+    this.showPopUp=this.showPopUp;
+
     
     //this.conversationServices.getOneConversation(){}
   }
-
+ 
    startConversation(idOnwer:any,idReceiver:any){
-  
-    console.log(this.conversationId)
-    this.conversationServices.createConversation(this.conversationId).subscribe(response =>{
+     
+ 
     console.log("start conversation");
+    this.conversationServices.createConversation(idOnwer,idReceiver).subscribe(response =>{
+    console.log(response);
      })
 }
-  startPopUp(){
-    this.publicEntities.showPopUp = true
+  startPopUp(index:any){
+
+    document.querySelectorAll('.onlineUser')[index]!
+    this.showPopUp  = true
+    
   }
 }
