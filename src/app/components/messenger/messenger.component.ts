@@ -44,8 +44,7 @@ export class MessengerComponent implements OnInit {
   }
   onSubmit(){
     this.conversationId = {
-      idOnwer:this.idOnline._id,
-      idReceiver:this.id,
+      users:[this.idOnline._id,this.id],
       message:{content:this.message}
     }
    

@@ -10,8 +10,8 @@ export class ConversationService {
   sendConversation(conversation:any){
     return this.httpClient.post(`${this.url}sendConversation`,conversation)
   }
-  createConversation(idOwner:any,idReceiver:any){
-    return this.httpClient.post(`${this.url}createConversation`,{idOwner,idReceiver})
+  createConversation(users:any){
+    return this.httpClient.post(`${this.url}createConversation`,users)
   }
  
   deleteConversation(conversationId:any){

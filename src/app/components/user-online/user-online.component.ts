@@ -20,7 +20,8 @@ export class UserOnlineComponent implements OnInit {
     events:any = new EventEmitter()
     conversationId:any;
     showPopUp:any;
-    
+    showTab:any;
+    checkedId:any=[];
     constructor(private websocket:WebsocketService,private formBuilder:FormBuilder,private conversationServices:ConversationService,private userServices:UserService,private publicEntities:PublicEntitiesService) { 
      
     }
@@ -32,7 +33,7 @@ export class UserOnlineComponent implements OnInit {
       this.websocket.event.on('ConnectionChanges',() => {
       this.users = this.websocket.users
       this.onlineUser = JSON.parse(localStorage.getItem('user')!)
-      this.showPopUp = this.publicEntities.showPopUp
+    
    
     })
     this.showPopUp=this.showPopUp;
@@ -45,14 +46,15 @@ export class UserOnlineComponent implements OnInit {
      
  
     console.log("start conversation");
-    this.conversationServices.createConversation(idOnwer,idReceiver).subscribe(response =>{
+    this.conversationServices.createConversation({idOnwer,idReceiver}).subscribe(response =>{
     console.log(response);
      })
 }
   startPopUp(index:any){
+    //this.checkedId.push(index)
+    //console.log(this.checkedId);
 
-    document.querySelectorAll('.onlineUser')[index]!
-    this.showPopUp  = true
+    this.showTab =index;
     
   }
 }
