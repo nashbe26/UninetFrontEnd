@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventEmitter } from 'events';
+import { observable, Observable } from 'rxjs';
 import { io } from 'socket.io-client'
 @Injectable({
   providedIn: 'root'
@@ -21,33 +22,41 @@ export class WebsocketService {
         Authorization:`Bearer ${jwtToken}`
       }
     })
+    this.socket.on('connect', () => {
+      this.receiveMessage()
+      this.getOnlineUser()
+    })
     
-    this.socket.on('connect', () => console.log(jwtToken))
-    this.getOnlineUser()
-    this.receiveMessage()
     
   }
-    getOnlineUser() { 
+    getOnlineUser(){ 
+      let observable = new Observable (observe =>{
         this.socket.on('userOnline', (data:any) => { 
-          this.onlineUser = data.onlineUser; 
+          this.onlineUser.push(data.onlineUser) ; 
+         
           this.users = data.users; 
-          this.event.emit('ConnectionChanges',this.users)
+          console.log("nashbe");
+          
+          observe.next(data.users)
          });
+      })
+     return observable
     }
     sendMessage(message:any){
-      console.log('this from socket', message)
-      //console.log('this from id', id)
+      console.log('this from socket',  message)
       this.socket.emit('newDisscu',{  
         message
       })
     }
     receiveMessage(){
-      this.socket.on('receiveMessage',(data:any)=>{
-        this.messageRec = data
-        console.log(this.messageRec)
+      let observable = new Observable(observe =>{
+          this.socket.on('receiveMessage',(data:any)=>{
+            console.log("from socket",data);
+            observe.next(data.messages)
       })
-    }
- 
+    })
+    return observable
   }
+}
 
 

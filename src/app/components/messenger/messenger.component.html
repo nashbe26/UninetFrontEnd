@@ -12,55 +12,19 @@
             </div>
         </div>
     <div class="col-md-6 mt-5 px-0">
-        <div class="Messages-box">
-            <div class="sender-box">
+        <div class="Messages-box" >
+            <div class="sender-box" *ngFor="let message of newMessage">
                 <div class="box-message-sender mt-4">
-                    <p class="text-message">Dwayne Douglas Johnson (born May 2, 1972), also known by his ring name The Rock, is an American-Canadian[1] actor </p>
+                    <p class="text-message">{{message}} </p>
                     <div class="d-flex justify-content-start">
                         <img src="../../../assets/img/user.jpg" alt="image" id="img-message">
                     </div>
-                   
                 </div>
                 <div class="time-message">
                     <p class="time-text">2 jun 2020     7.51 PM</p>
                 </div>
             </div>
-            <div class="sender-box">
-                <div class="box-message-sender mt-4">
-                    <p class="text-message">Dwayne Douglas Johnson (born May 2, 1972), also known by his ring name The Rock, is an American-Canadian[1] actor </p>
-                    <div class="d-flex justify-content-start">
-                        <img src="../../../assets/img/user.jpg" alt="image" id="img-message">
-                    </div>
-                   
-                </div>
-                <div class="time-message">
-                    <p class="time-text">2 jun 2020     7.51 PM</p>
-                </div>
-            </div>
-            <div class="sender-box">
-                <div class="box-message-sender mt-4">
-                    <p class="text-message">Dwayne Douglas Johnson (born May 2, 1972), also known by his ring name The Rock, is an American-Canadian[1] actor </p>
-                    <div class="d-flex justify-content-start">
-                        <img src="../../../assets/img/user.jpg" alt="image" id="img-message">
-                    </div>
-                   
-                </div>
-                <div class="time-message">
-                    <p class="time-text">2 jun 2020     7.51 PM</p>
-                </div>
-            </div>
-            <div class="sender-box">
-                <div class="box-message-sender mt-4">
-                    <p class="text-message">Dwayne Douglas Johnson (born May 2, 1972), also known by his ring name The Rock, is an American-Canadian[1] actor </p>
-                    <div class="d-flex justify-content-start">
-                        <img src="../../../assets/img/user.jpg" alt="image" id="img-message">
-                    </div>
-                   
-                </div>
-                <div class="time-message">
-                    <p class="time-text">2 jun 2020     7.51 PM</p>
-                </div>
-            </div>
+    
             <div class="receiver-box">
                 <div class="box-message-receiver mt-4">
                     <p class="text-message-receiver">Dwayne Douglas Johnson (born May 2, 1972), also known by his ring name The Rock, is an American-Canadian[1] actor 

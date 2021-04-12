@@ -19,6 +19,7 @@ export class MessengerComponent implements OnInit {
   id:any;
   idOnline:any;
   messageForm!:FormGroup;
+  newMessage:any=[];
   constructor(private websocket:WebsocketService,private conversationServices:ConversationService,private  activatedRoutes :ActivatedRoute,private formBuilder:FormBuilder) { }
   ngOnInit(): void {
     this.messageForm = this.formBuilder.group({
@@ -26,33 +27,57 @@ export class MessengerComponent implements OnInit {
     })
     this.id=this.activatedRoutes.snapshot.params['id']
     this.idOnline =JSON.parse(localStorage.getItem('user')!);
-    this.websocket.event.on('receiveMessage',() => {
-      this.message = this.websocket.messageRec
-      console.log(this.message);
-      this.conversationServices.getAllConversation().subscribe(response=>{
-        this.conversation = response
-      })
-    this.conversationServices.getOneConversation(this.id).subscribe(response =>{
-      console.log(response);
-      
-    })
- 
-    })  
-    this.conversationServices.getOneConversation("6069b312dfb9be2bb4e87b4d").subscribe( results =>{
+
+    this.conversationServices.getOneConversation("606bae3b1685fa4b249e50c7").subscribe( results =>{
       console.log(results)
+    })
+    this.websocket.event.on('MessageChanges',() => {      
+      
+      console.log("sqdsq",this.newMessage);
+    })
+    this.websocket.receiveMessage().subscribe(data =>{
+      console.log(data);
+      this.newMessage= data;
+      console.log(this.newMessage);
     })
   }
   onSubmit(){
     this.conversationId = {
+      _id:"606bb3751685fa4b249e50e1",
       users:[this.idOnline._id,this.id],
       message:{content:this.message}
     }
-   
-    this.conversationServices.sendConversation(this.conversationId).subscribe( results =>{
-      console.log(results)
-      this.websocket.sendMessage(this.conversationId)
-    })
-   
+    this.websocket.sendMessage(this.conversationId)
   }
-  onFormSubmit(){}
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // this.websocket.event.on('receiveMessage',() => {
+    //   this.message = this.websocket.messageRec
+    
+    //   this.conversationServices.getAllConversation().subscribe(response=>{
+    //     this.conversation = response
+    //   })
+    // this.conversationServices.getOneConversation(this.id).subscribe(response =>{
+    //   console.log(response);
+      
+    // })
+   
+    // })  

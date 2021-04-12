@@ -20,9 +20,10 @@ export class ConversationService {
   getAllConversation(){
     return this.httpClient.get(`${this.url}getAllConversation`,)
   }
-  getOneConversation(conversationId:any){
-    console.log(conversationId);
-    
+  getOneConversation(conversationId:any){    
     return this.httpClient.get(`${this.url}getOneConversation/${conversationId}`,)
+  }
+  getOneSpecConversation(conversationId:any){    
+    return this.httpClient.get(`${this.url}getOneConversationPopUp/${conversationId}`,)
   }
 }

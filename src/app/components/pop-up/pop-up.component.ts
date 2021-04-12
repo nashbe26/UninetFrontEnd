@@ -8,20 +8,28 @@ import { ConversationService } from 'src/services/conversation/conversation.serv
   styleUrls: ['./pop-up.component.css']
 })
 export class PopUpComponent implements OnInit {
-  showPopUp:any;
+  @Input() showPopUp:any;
   @Input() idReceiver:any;
   @Output() message:any;
   conversationId:any;
+  allConversation:any;
+  allConversationOnInit:any;
   messageForm!:FormGroup;
   onlineUser:any;
+  messages:any;
   constructor(private conversationServices:ConversationService,private formBuilder:FormBuilder) { }
   ngOnInit(): void {
+    console.log(this.showPopUp);
     
-    // this.conversationServices.getOneConversation("6069b312dfb9be2bb4e87b4d").subscribe((reponse:any) =>{
-    //   console.log(reponse)
-    // })
+    this.conversationServices.getAllConversation().subscribe( results =>{
+      this.allConversationOnInit= results
+      console.log( this.allConversationOnInit);
+      
+    })
+    
     this.onlineUser = JSON.parse(localStorage.getItem('user')!)
-
+    console.log(this.idReceiver);
+    
     this.messageForm = this.formBuilder.group({
       message:['']
       
@@ -29,13 +37,29 @@ export class PopUpComponent implements OnInit {
   }
   exitPopUp(){
     this.showPopUp = !this.showPopUp
+    console.log(this.showPopUp);
   }
-  onSubmit(){
+ 
+  startConversation(idReceiver:any){
+    this.allConversationOnInit.map((x:any)=>{
+      if(x.users.indexOf(idReceiver)>-1 && x.users.indexOf(idReceiver)>-1){
+        console.log(x);
+      }
+    })
     this.conversationId = {
-      users:[this.onlineUser._id,this.idReceiver],
-
-      message:{content:this.message}
+      users:[this.onlineUser._id,idReceiver],
+      message:{content:this.messages}
     }
-    this.message =this.messageForm.value
-  }
+    console.log("start conversation",this.conversationId);
+    this.conversationServices.createConversation(this.conversationId).subscribe((response:any) =>{
+    console.log('from createConversation',response);
+      console.log(this.allConversation    );
+      this.conversationServices.getAllConversation().subscribe( results =>{
+        
+        this.allConversation= results
+
+    
+      })
+
+    })}
 }

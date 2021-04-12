@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { EventEmitter } from 'events';
 import { ConversationService } from 'src/services/conversation/conversation.service';
@@ -13,48 +13,62 @@ import { PublicEntitiesService } from '../public-entities.service';
 export class UserOnlineComponent implements OnInit {
     message:any=[];
     //messageForm!:FormGroup;
-    users:any=[];
+    @Input() users:any=[];
     tabUser:any=[];
     checkOnline:any;
     onlineUser:any;
-    events:any = new EventEmitter()
     conversationId:any;
     showPopUp:any;
     showTab:any;
     checkedId:any=[];
+    getConversations:any;
+    allConversation:any;
     constructor(private websocket:WebsocketService,private formBuilder:FormBuilder,private conversationServices:ConversationService,private userServices:UserService,private publicEntities:PublicEntitiesService) { 
-     
     }
 
     ngOnInit():void{  
       // this.messageForm = this.formBuilder.group({
       //   message:['']
       // })
-      this.websocket.event.on('ConnectionChanges',() => {
-      this.users = this.websocket.users
       this.onlineUser = JSON.parse(localStorage.getItem('user')!)
-    
-   
-    })
-    this.showPopUp=this.showPopUp;
-
-    
-    //this.conversationServices.getOneConversation(){}
-  }
+  
+        this.websocket.getOnlineUser().subscribe((data:any) =>{
+          this.users= data;
+          this.users.map((x:any,index:any)=>{
+            console.log(x);
+            if(x==this.onlineUser._id ){
+              this.users.splice(index, 1);
+            }
+          })
+        })
+      
+        console.log(this.onlineUser);
+        
+    }
+  
  
-   startConversation(idOnwer:any,idReceiver:any){
-     
- 
-    console.log("start conversation");
-    this.conversationServices.createConversation({idOnwer,idReceiver}).subscribe(response =>{
-    console.log(response);
-     })
-}
   startPopUp(index:any){
-    //this.checkedId.push(index)
-    //console.log(this.checkedId);
-
-    this.showTab =index;
+    this.checkedId.push(index)
+    for (const check of this.checkedId){
+      this.showTab =check;
+      this.showPopUp = true;
+    }
+    }
+  // getConversation(receiver:any,sender:any){
+  //   this.getConversations =[sender,receiver]
+  //   console.log(this.getConversations);
     
-  }
+  //   this.allConversation.map((x:any)=>{
+      
+  //     console.log(x.users.every((val:any, index:any) => val === this.getConversations[index]));
+      
+  //   });
+    
+    // console.log(  this.allConversation.users.include(this.getConversations.users));
+  
+    // this.conversationServices.getOneConversation(this.getConversations).subscribe(data =>{
+    //   console.log("this is" ,data);
+      
+    // })
+  
 }
