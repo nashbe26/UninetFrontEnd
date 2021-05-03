@@ -4,24 +4,28 @@
             <div class="card-title">
                     <div class="online-id">
                         <p>Online user</p>
-                        <a routerLink="/messenger/60651c9beacb9b357c2ba657">Afficher toutes la conversation</a>
+                        {{conversations._id}}
+                        <div *ngIf="conversations._id">
+                            <a [routerLink]="['/messenger', conversations._id]">Afficher toutes la conversation</a>
+                        </div>
                         <i class="far fa-times-circle curser-pointer" (click)="exitPopUp()"></i>
-                     
                     </div>
                 </div>
-                    <div class="box-chat px-4">
-                        <div class="box-message-sender mt-4">
-                            <p class="text-message"></p>
+                    <div class="box px-4">
+                        <div  class="box-chat"*ngFor="let conv of conversations.message ;let i = index">
+                        
+                        <div [ngClass]="{'box-message-sender mt-4 ': (onlineUser._id == conv.id ), 'box-message-receiver mt-4':(onlineUser._id != conv.id )}">
+                            <p [ngClass]="{'text-message ': (onlineUser._id == conv.id ), 'text-message-receiver mt-4':(onlineUser._id != conv.id )}">{{conv.content}}</p>
                             <div class="d-flex justify-content-start">
                                 <img src="../../../assets/img/user.jpg" alt="image" id="img-message">
                             </div>
+                        </div>    
                             <div class="time-message">
                                 <p class="time-text">2 jun 2020     7.51 PM</p>
                             </div>
-                        </div>
-                        <div class="receiver-box">
-                            <div class="box-message-receiver mt-4">
-                                <p class="text-message"></p>
+                        <!-- <div class="receiver-box">
+                            <div class="">
+                                <p class="text-message">{{conv.content}}</p>
                                 <div class="image-message ">
                                     <img src="../../../assets/img/user.jpg" alt="image" id="img-message">
                                 </div>
@@ -29,12 +33,13 @@
                             <div class="time-message">
                                 <p class="time-text">2 jun 2020     7.51 PM</p>
                             </div>
-                        </div>
+                        </div>  -->
+                    </div>
                     </div>
                 <div class="bg-light px-4">
-                    <form > 
+                    <form (submit)="startConversation(idReceiver,conversations._id)"> 
                         <input  class="inputFiled my-2" id="send" type="text" [(ngModel)]="messages" name="messages"/>
-                        <button (click)="startConversation(idReceiver)"class="btn-purple">Send </button>
+                        <button type='submit 'class="btn-purple">Send </button>
                     </form>
              </div>
         </div>

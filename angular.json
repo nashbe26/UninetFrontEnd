@@ -33,7 +33,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/broadcast.js",
+              "src/assets/js/watch.js"
+            ]
           },
           "configurations": {
             "production": {

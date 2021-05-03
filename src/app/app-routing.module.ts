@@ -2,14 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardsGuard } from 'src/guards/auth-guards.guard';
 import { AccueilComponent } from './components/accueil/accueil.component';
+import { BroadcastComponent } from './components/broadcast/broadcast.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { GroupComponent } from './components/group/group.component';
 import { HomeComponent } from './components/home/home.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { UserComponent } from './components/user/user.component';
+import { ViewerComponent } from './components/viewer/viewer.component';
 
 const routes: Routes = [
   { path:'',component:HomeComponent},
@@ -17,10 +20,13 @@ const routes: Routes = [
   { path:'signUp',component:SignUpComponent},
   { path:'resetPassword',component:ResetPasswordComponent},
   { path:'forgotPassword',component:ForgotPasswordComponent},
-  { path:'user',component:UserComponent,canActivate:[AuthGuardsGuard]},
+  { path:'user',component:UserComponent},
   { path:'settings',component:SettingsComponent},
   { path:'messenger/:id',component:MessengerComponent},
+  { path:'broadcast/:id',component:BroadcastComponent},
+  { path:'viewer/:id',component:ViewerComponent},
   { path:'forbidden',component:ForbiddenComponent},
+  { path:'group/:id',component:GroupComponent},
 ];
 
 @NgModule({

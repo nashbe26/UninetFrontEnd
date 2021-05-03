@@ -21,6 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
+import { BroadcastComponent } from './components/broadcast/broadcast.component';
+import { ViewerComponent } from './components/viewer/viewer.component';
+import { GroupComponent } from './components/group/group.component';
+import { PostsGroupComponent } from './components/posts-group/posts-group.component';
 
 
 @NgModule({
@@ -40,7 +44,11 @@ import { PopUpComponent } from './components/pop-up/pop-up.component';
     UserOnlineComponent,
     ShortcutsComponent,
     ForbiddenComponent,
-    PopUpComponent
+    PopUpComponent,
+    BroadcastComponent,
+    ViewerComponent,
+    GroupComponent,
+    PostsGroupComponent
   ],
   imports: [
     BrowserModule,

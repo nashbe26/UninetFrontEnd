@@ -2,7 +2,7 @@
     padding: 15px 25px;
     font-style: normal;
     font-weight: 300;
-    font-size: 10px;
+    font-size: 14px;
     line-height: 15px;
     color: #323232;
 }
@@ -38,14 +38,14 @@
 .Messages-box::-webkit-scrollbar {
     width: 10px;
     height: 8px;
-    background-color: #EEEEEE; /* or add it to the track */
+    background-color: #EEEEEE; 
   }
   
-  /* Add a thumb */
-  .Messages-box::-webkit-scrollbar-thumb {
-      background:linear-gradient(99.93deg, #392DD1 -12.77%, rgba(255, 255, 255, 0) 150.57%), #8E2995;
-      border-radius: 15px;
-  }
+
+.Messages-box::-webkit-scrollbar-thumb {
+    background:linear-gradient(99.93deg, #392DD1 -12.77%, rgba(255, 255, 255, 0) 150.57%), #8E2995;
+    border-radius: 15px;
+}
 #img-message{
     position: absolute;
     bottom: -5px;
@@ -126,4 +126,8 @@
     padding: 5px 15px;
     border-radius: 60px;
     position: relative;
+}
+.box{
+    height: 350px;
+    overflow-y: scroll;
 }

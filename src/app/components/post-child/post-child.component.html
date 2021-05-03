@@ -1,26 +1,34 @@
+<div class="mt-6">
+    <form (ngSubmit)="onSubmit1()" [formGroup]="postForm">
+        <textarea type="text" class="form-control" id="userPost" formControlName="userPost"  ></textarea>
+        <input type="file" class="form-control" id="userFile" formControlName="userFile" >
+        <button type="submit"class="btn btn-danger">Post</button>
+    </form>
+</div>
+
+<div *ngFor="let post of allPost;let i = index ">
 <div class="post-container">
     <div class="d-flex mb-2">
         <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
-        <p id="user-id">Users Name</p>
+        <p id="user-id">{{post.user.firstName}}</p>
     </div>
     <div class="image-container">
         <img src="../../../assets/img/image.jpg" id="img-size"alt="Post name">
     </div>
-        <p id="hours-spent">10 hours agos</p>
-        <p id="user-posts">Daniel Hernandez (born May 8, 1996), known professionally as Tekashi69 or 6ix9ine 
-        (pronounced "six nine"), is an American rapper.</p>
+        <p id="hours-spent">{{post.date}}</p>
+        <p id="user-posts">{{post.content}}</p>
         <div class="d-flex reaction-container">
             <div class="like-container mr-2">
                 <p>5K <i class="far fa-heart"></i></p>
             </div>
             <div class="comments-container mx-2">
-                <a href="#"  data-bs-toggle="modal" data-bs-target="#exampleModal" >15 <i class="far fa-comment-alt"></i></a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onSend(post._id)">15<i class="far fa-comment-alt"></i></a>
             </div>
             <div class="save-container">
                 <p>3<i class="fas fa-share-alt mx-2"></i></p>
             </div>
             <div class="dots-container mx-2">
-                <i class="fas fa-ellipsis-h"></i>
+                <i class="curser-pointer fas fa-trash-alt  "*ngIf="post.user._id == onlineUser._id"  (click)="deletePost(post._id)"></i>
             </div>
         </div>
 </div>
@@ -28,81 +36,41 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
+          <h5 class="modal-title"  id="exampleModalLabel">Comments</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="row">
-                <div class="col-1">
-                    <img src="../../../assets/img/user.jpg" alt="Image" id="user-comment">
-                   
-                </div>
-                <div class="col-11">
-                    <p id="hours-spent">10 hours agos</p>
-                    <p id="user-posts">Daniel Hernandez (born May 8, 1996), known professionally as Tekashi69 or 6ix9ine 
-                    (pronounced "six nine"), is an American rapper.</p>
-                </div>
-                <div class="d-flex reaction-container">
-                    <div class="like-container mr-2">
-                        <p>5K <i class="far fa-heart"></i></p>
-                    </div>
-                    <div class="comments-container mx-2">
-                        <p href="#" >15 <i class="far fa-comment-alt"></i></p>
-                    </div>
-                    <div class="save-container">
-                        <p>3<i class="fas fa-share-alt mx-2"></i></p>
-                    </div>
-                </div>
-            </div>
-                <hr>
-                <div class="row">
-                <div class="col-1 ">
-                    <img src="../../../assets/img/user.jpg" alt="Image" id="user-comment">
-                   
-                </div>
-                <div class="col-11">
-                    <p id="hours-spent">10 hours agos</p>
-                    <p id="user-posts">Daniel Hernandez (born May 8, 1996), known professionally as Tekashi69 or 6ix9ine 
-                    (pronounced "six nine"), is an American rapper.</p>
-                </div>
-                <div class="d-flex reaction-container">
-                    <div class="like-container mr-2">
-                        <p>5K <i class="far fa-heart"></i></p>
-                    </div>
-                    <div class="comments-container mx-2">
-                        <p href="#" >15 <i class="far fa-comment-alt"></i></p>
-                    </div>
-                    <div class="save-container">
-                        <p>3<i class="fas fa-share-alt mx-2"></i></p>
-                    </div>
-                </div>
-            </div>
-                <hr>
-                <div class="row">
-                <div class="col-1">
-                    <img src="../../../assets/img/user.jpg" alt="Image" id="user-comment">
-                   
-                </div>
-                <div class="col-11">
-                    <p id="hours-spent">10 hours agos</p>
-                    <p id="user-posts">Daniel Hernandez (born May 8, 1996), known professionally as Tekashi69 or 6ix9ine 
-                    (pronounced "six nine"), is an American rapper.</p>
-                </div>
-                <div class="d-flex reaction-container">
-                    <div class="like-container mr-2">
-                        <p>5K <i class="far fa-heart"></i></p>
-                    </div>
-                    <div class="comments-container mx-2">
-                        <p href="#" >15 <i class="far fa-comment-alt"></i></p>
-                    </div>
-                    <div class="save-container">
-                        <p>3<i class="fas fa-share-alt mx-2"></i></p>
-                    </div>
-                </div>
-            </div>
+            
+            <div class="row" *ngFor='let comment of allComments'>
                
-             
+                    <div class="col-2">
+                       
+                        <img src="../../../assets/img/user.jpg" alt="Image" id="user-comment">
+                       
+                    </div>
+                    <div class="col-10">
+                        <div class="d-flex justify-content-between">
+                            <div class="comments">
+                                <p>{{comment.userId.email}}</p>
+                                <p id="user-posts">{{comment.commentContent}}</p>
+                                <p id="hours-spent">{{comment.dateComment}}</p>
+                            </div>
+                            <div class="deletePost">
+                                <i class="fas fa-trash-alt" (click)="onDelete(comment._id)"></i>
+                            </div>
+                        </div>
+                       
+                        
+                    </div>
+           
+            
+            </div>
+            <form (ngSubmit)="onSubmit(post._id)" [formGroup]="commentForm">
+                <textarea type="text" class="form-control" id="commentPost" formControlName="commentUser"  ></textarea>
+                <button type="submit"class="btn btn-danger">Post</button>
+            </form>
         </div>
-      </div>
     </div>
   </div>
+</div>  
+</div>

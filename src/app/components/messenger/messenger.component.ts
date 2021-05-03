@@ -28,26 +28,29 @@ export class MessengerComponent implements OnInit {
     this.id=this.activatedRoutes.snapshot.params['id']
     this.idOnline =JSON.parse(localStorage.getItem('user')!);
 
-    this.conversationServices.getOneConversation("606bae3b1685fa4b249e50c7").subscribe( results =>{
-      console.log(results)
+    this.conversationServices.getOneConversation(this.id).subscribe( results =>{
+      this.newMessage= results;
+      console.log(this.newMessage);
+      
     })
     this.websocket.event.on('MessageChanges',() => {      
       
       console.log("sqdsq",this.newMessage);
     })
-    this.websocket.receiveMessage().subscribe(data =>{
-      console.log(data);
-      this.newMessage= data;
-      console.log(this.newMessage);
-    })
+
   }
   onSubmit(){
     this.conversationId = {
-      _id:"606bb3751685fa4b249e50e1",
+      _id:this.id,
       users:[this.idOnline._id,this.id],
       message:{content:this.message}
     }
     this.websocket.sendMessage(this.conversationId)
+    this.websocket.receiveMessage().subscribe((data:any) =>{
+      
+      this.newMessage= data;
+ 
+    })
   }
   
 }

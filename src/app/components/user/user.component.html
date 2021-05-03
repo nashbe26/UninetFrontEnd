@@ -1,16 +1,46 @@
-<div class="profile-area">
+
+    <div class="row ">
+        <div class="col-md-3">
+            <app-shortcuts></app-shortcuts>
+        </div>
+        <div class="col-sm-12 col-lg-6 mb-4">
+    <div class="profile-area">
     <div class="text-center my-5">
         <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
         <p id="user-name">Users Name</p>
         <p id="text-follower">Professeur & matiére ou Etudiant & class</p>
     </div>
     <div class="my-5">
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-lg-6 mb-4">
-                <div class="text-description">
-                    <p id="user-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent convallis suscipit leo, non sodales sapien suscipit ornare.
-                        Morbi hendrerit est sed nibh bibendum, eu bibendum nibh rhoncus. Integer a ex semper, </p>
+        <div class="text-description">
+            <p id="user-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent convallis suscipit leo, non sodales sapien suscipit ornare.
+                Morbi hendrerit est sed nibh bibendum, eu bibendum nibh rhoncus. Integer a ex semper, </p>
+                 <div class="text-center"><button (click)="goToStream()"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                    Start live </button>
+                    <button (click)="createLive()" id="video-btn" class="btn btn-success my-2" > Create live </button>   
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div *ngFor='let link of links'>
+                                  <a href={{link.url}} (click)="joinLive(link.gid)">{{link.id}}</a>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button  class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
                 </div>
                 <div class="saved-posts">
                     <div class="d-flex">
@@ -32,7 +62,11 @@
                     <app-post-child></app-post-child>
 
             </div>
+         
+            </div>
         </div>
-       
-    </div>
+        <div class="col-md-3" >
+            <app-user-online></app-user-online>
+        </div>
 </div>
+

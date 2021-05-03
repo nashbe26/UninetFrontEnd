@@ -17,12 +17,15 @@ export class UserOnlineComponent implements OnInit {
     tabUser:any=[];
     checkOnline:any;
     onlineUser:any;
+    allOnlineUser:any=[];
     conversationId:any;
     showPopUp:any;
     showTab:any;
     checkedId:any=[];
     getConversations:any;
     allConversation:any;
+    popUser:any=[];
+    oneId:any;
     constructor(private websocket:WebsocketService,private formBuilder:FormBuilder,private conversationServices:ConversationService,private userServices:UserService,private publicEntities:PublicEntitiesService) { 
     }
 
@@ -35,18 +38,21 @@ export class UserOnlineComponent implements OnInit {
         this.websocket.getOnlineUser().subscribe((data:any) =>{
           this.users= data;
           this.users.map((x:any,index:any)=>{
-            console.log(x);
-            if(x==this.onlineUser._id ){
-              this.users.splice(index, 1);
+            if (x == this.onlineUser._id ){
+              this.users.splice(index, 1); 
             }
           })
         })
-      
-        console.log(this.onlineUser);
+        setTimeout(() => {
+          this.users.map((x:any,index:any)=>{
+            this.userServices.findOne(x).subscribe((data:any)=>{
+              this.popUser.push(data)
+              console.log(this.popUser);
+            })
+          })
+        }, 1000);
         
-    }
-  
- 
+  }
   startPopUp(index:any){
     this.checkedId.push(index)
     for (const check of this.checkedId){
@@ -54,21 +60,6 @@ export class UserOnlineComponent implements OnInit {
       this.showPopUp = true;
     }
     }
-  // getConversation(receiver:any,sender:any){
-  //   this.getConversations =[sender,receiver]
-  //   console.log(this.getConversations);
-    
-  //   this.allConversation.map((x:any)=>{
-      
-  //     console.log(x.users.every((val:any, index:any) => val === this.getConversations[index]));
-      
-  //   });
-    
-    // console.log(  this.allConversation.users.include(this.getConversations.users));
-  
-    // this.conversationServices.getOneConversation(this.getConversations).subscribe(data =>{
-    //   console.log("this is" ,data);
-      
-    // })
+
   
 }

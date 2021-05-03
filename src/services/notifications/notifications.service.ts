@@ -10,13 +10,11 @@ export class NotificationsService {
 
   constructor(private httpClient:HttpClient) { }
   
-  createNotification(notif:any){
-    return this.httpClient.post(`${this.url}`,notif)
-  }
-  findAll(){
-    return this.httpClient.get(`${this.url}`)
+ 
+  findAll(notifId:any){
+    return this.httpClient.get(`${this.url}notification/${notifId}`)
   }
   deleteNotification(notifId:any){
-    return this.httpClient.post(`${this.url}/notificaiton/${notifId}`,notifId)
+    return this.httpClient.delete(`${this.url}deleteNotification/${notifId}`,notifId)
   }
 }
