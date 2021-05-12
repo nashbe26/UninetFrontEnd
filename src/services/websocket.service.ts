@@ -63,8 +63,7 @@ export class WebsocketService {
     getNotification(){
       let observable = new Observable( observe =>{
         this.socket.on('notificationDetected',(data:any)=>{
-          console.log(data);
-          
+          console.log("dsdsd",data);
           observe.next(data);
         })
       }) 

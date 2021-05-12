@@ -4,7 +4,7 @@
             <div class="notification-user">
                 <div class="user-notification">
                     <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
-                    <p id="notification-id">{{onlineUser.firstName}} {{onlineUser.lastName}}</p>
+                    <a id="notification-id" [routerLink]="['/user', onlineUser._id]">{{onlineUser.firstName}} {{onlineUser.lastName}}</a>
                 </div>
             </div>
         </div>

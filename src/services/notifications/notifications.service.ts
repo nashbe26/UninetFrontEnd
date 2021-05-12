@@ -14,6 +14,9 @@ export class NotificationsService {
   findAll(notifId:any){
     return this.httpClient.get(`${this.url}notification/${notifId}`)
   }
+  findAllByUser(userId:any){
+    return this.httpClient.get(`${this.url}notification/user/${userId}`)
+  }
   deleteNotification(notifId:any){
     return this.httpClient.delete(`${this.url}deleteNotification/${notifId}`,notifId)
   }

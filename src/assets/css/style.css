@@ -73,9 +73,10 @@ body,html {
 }
 #emailLabel{
     position: absolute;
-    width: 67px;
+    width: auto;
     height: 16px;
     z-index: 1;
+    padding: 0 15px;
     margin-top:-7px ;
     margin-left:20px;
     background-color: #fff;
@@ -86,12 +87,12 @@ body,html {
     text-transform: capitalize;
     color: #323232;
     }
-    
     #passwordLabel{
     position: absolute;
-    width: 67px;
+    width: auto;
     height: 16px;
     z-index: 1;
+    padding: 0 15px;
     background-color: #fff;
     font-style: normal;
     font-weight: normal;

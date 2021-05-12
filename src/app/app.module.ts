@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +19,7 @@ import { MessengerComponent } from './components/messenger/messenger.component';
 import { UserOnlineComponent } from './components/user-online/user-online.component';
 import { ShortcutsComponent } from './components/shortcuts/shortcuts.component';
 import { UserService } from '../services/userService/user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
@@ -25,6 +27,9 @@ import { BroadcastComponent } from './components/broadcast/broadcast.component';
 import { ViewerComponent } from './components/viewer/viewer.component';
 import { GroupComponent } from './components/group/group.component';
 import { PostsGroupComponent } from './components/posts-group/posts-group.component';
+import { SignoutComponent } from './components/signout/signout.component';
+import { TokenInterceptor } from 'src/guards/token.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -48,17 +53,25 @@ import { PostsGroupComponent } from './components/posts-group/posts-group.compon
     BroadcastComponent,
     ViewerComponent,
     GroupComponent,
-    PostsGroupComponent
+    PostsGroupComponent,
+    SignoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatBadgeModule
   ],
   providers: [
-    UserService
+    UserService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

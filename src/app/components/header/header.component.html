@@ -7,18 +7,44 @@
             <a (click)="showToggleSearch()"><i class="fas fa-search mx-4 pointer-curse"  ></i></a>
             <a [routerLink]="['accueil']" ><i class="fas fa-home mx-4 pointer-curse"></i></a>
             <a><i class="fas fa-plus-circle mx-4 pointer-curse"></i></a>
-            <a><i class="far fa-envelope mx-4 pointer-curse" (click)="showToggleNotification()"></i></a>
-            <a (click)="showToggleNotification()"><i class="far fa-bell mx-4 pointer-curse"   ></i></a>
+            <a><i class="far fa-envelope mx-4 pointer-curse" (click)="showToggleMessage()"></i></a>
+            <a (click)="showToggleNotification()" ><i class="far fa-bell mx-4 pointer-curse"    matBadge={{counter}} matBadgeColor="warn"></i></a>
+
             <a  (click)="showToggleUser()"> <i class="fas fa-bars mx-4 pointer-curse"></i></a>
         </div>
     </div>
 </nav>
-<div class="mt-5">
-    <div *ngFor="let message of messages.message">
+<!-- <div class="mt-5">
+    <div *ngFor="let message of conv">
+        <div *ngFor="let sss of message">
         <div class="message-box">
             <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
-            <p id="notification-id">{{message}}</p>
+            <p id="notification-id">{{sss.content}}</p>
         </div>
+    
+
+    </div>
+</div>  -->
+<div class="message-area" id="message-area sticky-top" *ngIf="showMessage">
+    <div class="text-left">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+    <div class="notification-name">
+        <p id="notification-text">message</p>
+        <div *ngFor="let conv of messages"class="eeeeeeee">
+            <div *ngFor="let check of conv.message;let last = last" class="dsddsd">
+            <div class="notification-user" *ngIf="last == true">
+                <div class="user-notification" >
+                    <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
+                    <!-- <div *ngFor="let user of conv.users ">
+                        <p *ngIf="user._id != onlineUser._id" id="notification-id">{{user.firstName}}</p>
+                    </div> -->
+                    <p id="notification-style" *ngIf="last == true">{{check.content}}</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div> 
     </div>
 </div> 
 <div class="notification-area" id="notification-area sticky-top" *ngIf="showNotification">
@@ -27,13 +53,14 @@
     </div>
     <div class="notification-name">
         <p id="notification-text">Notification</p>
-        <div class="notification-user" *ngFor='let noti of notifications'> 
-            <div class="user-notification">
-                <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
-                <p id="notification-id">{{noti.user}}</p><br>
-                <p id="notification-style">{{noti.notification[0].context}}</p>
+      
+            <div  class="notification-user" *ngFor="let check of notifications">
+                <div class="user-notification" >
+                    <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
+                    <p id="notification-style">{{check?.idUser.firstName}} {{check?.notification[0].context}}</p>
+                    <p id="notification-style">{{check?.updatedAt}}</p>
             </div>
-        </div>
+        </div> 
     </div>
 </div> 
 <div class="user-area" *ngIf="showUser">
@@ -43,17 +70,16 @@
         </div>
             <div class="text-center my-2">
                 <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
-                <p id="user-name">Users Name</p>
+                <p id="user-name">{{onlineUser.firstName}} {{onlineUser.lastName}}</p>
                 <p id="text-follower">135 followers  |   24 following</p>
             </div>
             <div class="user-list">
                 <ul class="list-name">
-                    <li class="my-4"><p class="listed-item"><i class="fas fa-user-circle fa-lg me-4"></i>View profile</p></li>
-                    <li class="my-4"><p class="listed-item"><i class="fas fa-globe fa-lg me-4"></i>Online Status</p></li>
-                    <li class="my-4"><p class="listed-item"><i class="fas fa-unlock fa-lg me-4"></i>Private account</p></li>
-                    <li class="my-4"><p class="listed-item"><i class="fas fa-bell fa-lg me-4"></i>Notification</p></li>
-                    <li class="my-4"><p class="listed-item"><i class="fas fa-envelope fa-lg me-4"></i>Messages</p></li>
-                    <li class="my-4"><p class="listed-item"><i class="fas fa-cog fa-lg me-4"></i>Settings</p></li>
+                    <li class="my-4"><a [routerLink]="['/user',onlineUser._id]"  class="listed-item"><i class="fas fa-user-circle fa-lg me-4"></i>View profile</a></li>
+                    <li class="my-4"><a [routerLink]="['/notification',onlineUser._id]"class="listed-item"><i class="fas fa-bell fa-lg me-4"></i>Notification</a></li>
+                    <li class="my-4"><a [routerLink]="['/message',onlineUser._id]"class="listed-item"><i class="fas fa-envelope fa-lg me-4"></i>Messages</a></li>
+                    <li class="my-4"><a class="listed-item"[routerLink]="['logout']" ><i class="fas fa-sign-in-alt fa-lg me-4 pointer-curse"></i>Logout</a></li>
+                    <li class="my-4"><a [routerLink]="['/settings']"class="listed-item"><i class="fas fa-cog fa-lg me-4"></i>Settings</a></li>
                 </ul>
             </div>
     </div>
@@ -63,21 +89,24 @@
         <div class="text-left mb-5">
             <i class="fas fa-arrow-left"></i>
         </div>
+        <p id="notification-text">Search for users</p>
     </div>
     <div class="input-area mx-4">
-        <input type="text" name="searchUser" id="searchUser" class="inputFiled">
+        <input #yourInput type="text" (keyup)="sendit(yourInput.value)" class="inputFiled"  id="searchUser" />
+
     </div>
     <div class="user-find mt-4" >
-        <div class="user-search">
-            <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
-            <p id="notification-id">Users Name</p>
-            <p id="notification-style">Matiére a etudier</p>
+        <div *ngFor="let search of searchs">
+            <div class="text-center" *ngIf="searchs.length === 0">
+                <p>we can't find users</p>
+            </div>
+            <div class="user-search">
+                <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
+                <a href="/user/{{search._id}}" id="notification-id">{{search.firstName}} {{search.lastName}}</a>
+            </div>
         </div>
-        <div class="user-search">
-            <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
-            <p id="notification-id">Users Name</p>
-            <p id="notification-style">Matiére a etudier</p>
-        </div>
+  
+      
     </div>
 
 </div> 

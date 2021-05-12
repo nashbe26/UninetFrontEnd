@@ -43,14 +43,7 @@ export class UserOnlineComponent implements OnInit {
             }
           })
         })
-        setTimeout(() => {
-          this.users.map((x:any,index:any)=>{
-            this.userServices.findOne(x).subscribe((data:any)=>{
-              this.popUser.push(data)
-              console.log(this.popUser);
-            })
-          })
-        }, 1000);
+
         
   }
   startPopUp(index:any){

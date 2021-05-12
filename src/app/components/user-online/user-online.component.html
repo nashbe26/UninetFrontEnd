@@ -6,11 +6,11 @@
         </div>
             <div *ngIf="users">
                 <div class="online-user" >
-                    <div *ngFor="let onlineUsers of popUser ;let i = index" class="notification-user" >
+                    <div *ngFor="let onlineUsers of users ;let i = index" class="notification-user" >
                          <div class="onlineUser" (click)="startPopUp(i)"> 
                             <img src="../../../assets/img/user.jpg" alt="Image" id="user-size" >
                             <div class="mx-5">
-                            <p id="user-id">{{onlineUsers.firstName}} {{onlineUsers.lastName}}</p>
+                            <p id="user-id">{{onlineUsers}}</p>
                             <p id="user-style">Online status</p>
                         </div>
                     </div>

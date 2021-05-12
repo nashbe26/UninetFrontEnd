@@ -10,26 +10,30 @@ export class UserService {
   url:String="http://localhost:3000";
 
   constructor(private httpClient:HttpClient) { }
-  private _refreshNeeded = new Subject <void>();
-  get refreshNeeded$(){
-    return this._refreshNeeded
+  getToken(){
+    return localStorage.getItem('token')
   }
   createUser(user:any){
-    return this.httpClient.post(`${this.url}/login`,user).pipe(tap(()=>{
-        this._refreshNeeded.next()
-      })
-    )
+    console.log(user);
+    return this.httpClient.post(`${this.url}/signup`,user);
+   
+  }
+  loginUser(user:any){
+    return this.httpClient.post(`${this.url}/login`,user);
   }
   findAll(){
-    return this.httpClient.get<any[]>(`${this.url}/getAllUser`)
+    return this.httpClient.get<any[]>(`${this.url}/getAllUser`);
   }
   findOne(userId:any){
-    return this.httpClient.get<any[]>(`${this.url}/dashboard/${userId}`)
+    return this.httpClient.get<any[]>(`${this.url}/dashboard/${userId}`);
   }
   delete(userId:any){
-    return this.httpClient.post(`${this.url}/delete/${userId}`,userId)
+    return this.httpClient.post(`${this.url}/delete/${userId}`,userId);
   }
   update(userId:any){
-    return this.httpClient.put(`${this.url}/update/${userId}`,userId)
+    return this.httpClient.put(`${this.url}/update/${userId}`,userId);
+  }
+  fidnOneSerach(userId:any){
+    return this.httpClient.get(`${this.url}/searchbyname/${userId}`);
   }
 }

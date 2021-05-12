@@ -5,31 +5,89 @@
                 <p id="title-text">Start Your Own Socail Page <br>With Brandname</p>
                 <p class="text-sec">This theme was design for fast load and privacy protection</p>
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-4 text-center" >
-                <div class="text-field mb-4">
+            <div class="col-sm-12 col-md-4 col-lg-4" >
+                <div class="text-field text-center mb-4">
                     <p id="SignIn">Sign In</p>
                     <p id="text-sec">have an a account?   <span id="text-purple">Sign In</span></p>
                 </div>
-                <form class="form">
+                <form class="form" [formGroup]='signupForm' (ngSubmit)='PostData(signupForm)'>
                     <div class="form-group mt-4 ">
-                        <label id="emailLabel">Username</label>
-                        <input type="text" name="email" class="inputFiled" id="email">
+                        <label id="emailLabel">First name</label>
+                        <input type="text" name="email" class="inputFiled" id="email" formControlName='firstName'  pattern="[a-zA-Z]*">
+                        <span *ngIf="f.firstName.errors?.required && f.firstName.touched">First name is required</span>
+                        <span *ngIf="f.firstName.errors?.pattern && f.firstName.touched">First name must have only letter</span>
+                    </div>
+                    <div class="form-group mt-4 ">
+                        <label id="emailLabel">Last name</label>
+                        <input type="text" name="email" class="inputFiled" id="email" formControlName='lastName' pattern="[a-zA-Z]*">
+                        <span *ngIf="f.lastName.errors?.required && f.lastName.touched">Last name is required</span>
+                        <span *ngIf="f.lastName.errors?.pattern && f.lastName.touched">Last name must have only letter</span>
                     </div>
                     <div class="form-group mt-4">
                         <label id="passwordLabel">Email</label>
-                        <input type="password" name="password" class="inputFiled" id="password">
+                        <input type="email" name="email" class="inputFiled" id="password" formControlName='email'>
+                        <span *ngIf="f.email.errors?.email && f.email.touched">Email is invalid</span>
+                        <span *ngIf="f.email.errors?.required && f.email.touched">Email is required</span>
                     </div>
                     <div class="form-group mt-4">
                         <label id="passwordLabel">Password</label>
-                        <input type="password" name="password" class="inputFiled" id="password">
+                        <input type="password" name="password" class="inputFiled" id="password" formControlName='password'pattern="[a-zA-Z]*">
+                         <span *ngIf="f.password.errors?.required && f.password.touched" >Password name is required</span>
+                         <span *ngIf="f.password.errors?.pattern && f.password.touched" >Password must have only letter</span> 
+                         <span *ngIf="f.password.errors?.length && f.password.touched" >Password must have be greater then 6</span> 
+                    </div>
+                   
+                    <div class="form-group mt-4">
+                        <label id="passwordLabel">Confirm password</label>
+                        <input type="password" name="confirmPassowrd" class="inputFiled" id="confirmPassowrd" formControlName='confirmPassword'>
+                        <span *ngIf="f.confirmPassword.errors?.required && f.confirmPassword.touched" >Password name is required</span>
+                        <span *ngIf="f.confirmPassword.errors?.pattern && f.confirmPassword.touched" >Password must have only letter</span> 
+                        <span *ngIf="f.confirmPassword.errors?.length && f.confirmPassword.touched" >Password must be greater then 6</span> 
+                    </div>
+                    <div class="form-group mt-2">
+                        <p  id="agree-text" class="m-0 my-2">Account Type</p>
+                        <div class="d-flex">
+                            <div class=" me-3 my-2">
+                            <input type="radio" id="huey" name="accountStatus" value="huey" checked formControlName='accountStatus'>
+                            <label for="huey" id="agree-text">Student</label>
+                          </div>
+                          
+                          <div class=" me-3 my-2">
+                            <input type="radio" id="dewey" name="accountStatus" value="dewey"  formControlName='accountStatus'>
+                            <label for="dewey" id="agree-text">Teacher</label>
+                          </div>
+                          </div>
+                    </div>
+                    <div class="form-group mt-2">
+                    <label for="pet-select" id="agree-text">Choose Your class:</label>
+                        <select name="pets" formControlName='classRoom' id="classRoom" class="form-control" >
+                            <option value="">--Please choose an option--</option>
+                            <option value="dog">Dog</option>
+                            <option value="cat">Cat</option>
+                            <option value="hamster">Hamster</option>
+                            <option value="parrot">Parrot</option>
+                            <option value="spider">Spider</option>
+                            <option value="goldfish">Goldfish</option>
+                        </select>
+                        <span *ngIf="f.classRoom.touched && f.classRoom.errors?.required">Please chose your class Room</span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label id="passwordLabel">Phone Number</label>
+                        <input type="text" name="phoneNumber" class="inputFiled" id="phoneNumber" formControlName='phoneNumber'>
+                        <span *ngIf="f.phoneNumber.touched && f.phoneNumber.errors?.required">Your phone number is required</span>
+                        <span *ngIf="f.phoneNumber.touched && f.phoneNumber.errors?.minlength">Your phone number is invalid</span>
+
                     </div>
                     <div class="form-group mt-4 d-flex  w-100">
                         <input type="radio" id="check" name="check" value="check">
                         <p id="agree-text">I agree to the Terms of Service</p>
                     </div>
-                    <button class="btn-purple mt-4">Sign In</button>
+                    <button class="btn-purple mt-4" [disabled]="signupForm.invalid" >Sign In</button>
                 </form><br>
-                <a id="text-sec" href="#">forgot my password ?</a>
+                <div class="text-center">
+                    <a id="text-sec"  href="#">forgot my password ?</a>
+                </div>
+               
             </div>
         </div>
     </div>

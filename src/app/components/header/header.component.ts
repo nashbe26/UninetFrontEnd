@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConversationService } from 'src/services/conversation/conversation.service';
 import { NotificationsService } from 'src/services/notifications/notifications.service';
 import { UserService } from 'src/services/userService/user.service';
@@ -19,56 +21,86 @@ export class HeaderComponent implements OnInit {
   conversation:any;
   oneUser:any;
   messages:any;
-  constructor(private websocket:WebsocketService,private notification:NotificationsService,private conversationServices:ConversationService,private userServices:UserService) { 
+  conv:any=[];
+  err:any;
+  showMessage:any;
+  results:any;
+  counter:any=0;
+  searchs:any;
+  checkSearch:boolean = false;
+  constructor(private websocket:WebsocketService,private notification:NotificationsService,private conversationServices:ConversationService,private userServices:UserService,private router:Router) { 
   }
 
   ngOnInit(): void {
-    this.onlineUser =JSON.parse(localStorage.getItem('user')!);
 
-    this.notification.findAll(this.onlineUser._id).subscribe(
-      (notification:any)=>{
-        this.notifications = notification
-        console.log(this.notifications);
-        
-      })
+
+ 
+    if(JSON.parse(localStorage.getItem('user')!)){
+      this.onlineUser =JSON.parse(localStorage.getItem('user')!);
+    }
+
     this.userServices.findOne(this.onlineUser._id).subscribe((data:any)=>{
       this.messages = data.conversation
-      console.log( this.messages);
       
+      this.messages.map((x:any)=>{
+       this.conv.push(x.message);
     })
-  
+  })
     this.websocket.getNotification().subscribe((notifcations:any)=>{
-      console.log("notifcation",notifcations);
-      this.notifications.push(notifcations)
-      console.log("dsqdsqd",this.notification);
+        this.counter++;
+        console.log(notifcations,"notifcationsnotifcationsnotifcationsnotifcations");
+        
+        this.notifications.unshift(notifcations)
     })
+      
+    this.notification.findAllByUser(this.onlineUser._id).subscribe(
+      (notification:any)=>{
+        this.notifications = notification.slice(0,5)
+        console.log("notficaiton",notification);
+        
+      })
   }
+
  showToggleNotification(){
     this.showNotification = !this.showNotification
     this.showUser = false;
     this.showSearch = false;
+    this.showMessage = false;
     }
     showToggleSearch(){
       this.showSearch = !this.showSearch
       this.showUser = false;
       this.showNotification = false;
+      this.showMessage = false;
       }
       showToggleUser(){
         this.showUser = !this.showUser
         this.showNotification = false;
         this.showSearch = false;
+        this.showMessage = false;
+      }
+      showToggleMessage(){
+        this.showMessage = !this.showMessage
+        this.showUser = false;
+        this.showNotification = false;
+        this.showSearch = false;
         }
+        sendit(id:any){
+          console.log(id.length);
+          
+          if(id.length>0)
+          {
+            this.userServices.fidnOneSerach(id).subscribe((data:any)=>{
+              this.searchs =data;
+              this.checkSearch = false;
+             })
+          }else{
+            this.checkSearch = true;
+            this.searchs =[];
         
-//   showProfile(){
-//     let userProfile = document.getElementById('user-area');
-//     if(userProfile){
-//       if ( userProfile.style.display= "block") {
-//         userProfile.style.display="none";
-//       }else if (userProfile && userProfile.style.display == "none") {
-//         userProfile.style.display="block";
-//         }
-//       }
-//       console.log('nashbe')
-//     }
+          }
+       
+        }
+
 }
 

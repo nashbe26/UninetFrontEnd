@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,23 +20,23 @@ export class AccueilComponent implements OnInit {
   newFile:any = null;
   allPost:any;
   showDeletePost:any;
-  constructor(private publicEntity:PublicEntitiesService, private websocket:WebsocketService,private postsService:PostsService) { 
+  err:any;
+  constructor(private publicEntity:PublicEntitiesService, private websocket:WebsocketService,private postsService:PostsService,private router:Router) { 
 
 
   }
 
-  ngOnInit():void {
-    console.log('salem');
-    
-     
+ngOnInit():void {
+
     this.websocket.getOnlineUser().subscribe((data:any) =>{
       this.users= data;
-    
+    },(err:any)=>{
+      if (this.err instanceof HttpErrorResponse){
+        if (this.err.status===401){
+          this.router.navigate(['/'])
+        }
+      }
     })
     this.showPopUp = this.publicEntity.showPopUp
   }
-
- 
-
-
 }

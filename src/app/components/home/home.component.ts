@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/services/userService/user.service';
 import { WebsocketService } from 'src/services/websocket.service';
@@ -12,23 +12,27 @@ import { WebsocketService } from 'src/services/websocket.service';
 export class HomeComponent implements OnInit {
    userForm!:FormGroup;
    user:any ={};
+   errors:any;
   constructor(private formBuilder:FormBuilder, private userService:UserService,private websockets:WebsocketService,private router:Router) { }
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
-      email:[''],
-      passowrd:['']
+      email:['',[Validators.required,Validators.email]],
+      passowrd:['',[Validators.required,Validators.minLength(6)]]
     })
-  }
+  } 
   onFormSubmit(){
-      this.userService.createUser(this.userForm.value).subscribe((data:any) =>{
-      localStorage.setItem('token',data.jwtToken);
-      localStorage.setItem('user',JSON.stringify(data.user));
-      this.websockets.connect(data.jwtToken);
-      this.router.navigate(['./accueil']);
-
-      console.log(data);
-    },error =>{
-      console.log('error',error)
-    })
-  }
+      this.userService.loginUser(this.userForm.value).subscribe(
+        (data:any)=> {
+            localStorage.setItem('token',data.jwtToken);
+            localStorage.setItem('user',JSON.stringify(data.user));
+            this.websockets.connect(data.jwtToken);
+            this.router.navigate(['./accueil']);
+             
+        },
+        (error:any) =>{
+          this.errors = error.error
+          console.log(this.errors);
+        }
+      )
+    }
 }

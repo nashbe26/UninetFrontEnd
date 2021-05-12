@@ -4,6 +4,7 @@ import { EventEmitter } from 'events';
 import { ConversationService } from 'src/services/conversation/conversation.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from 'src/services/userService/user.service';
 
 @Component({
   selector: 'app-messenger',
@@ -20,7 +21,10 @@ export class MessengerComponent implements OnInit {
   idOnline:any;
   messageForm!:FormGroup;
   newMessage:any=[];
-  constructor(private websocket:WebsocketService,private conversationServices:ConversationService,private  activatedRoutes :ActivatedRoute,private formBuilder:FormBuilder) { }
+  messages:any;
+  conv:any;
+  results:any=[];
+  constructor(private websocket:WebsocketService,private conversationServices:ConversationService,private userServices:UserService,private  activatedRoutes :ActivatedRoute,private formBuilder:FormBuilder) { }
   ngOnInit(): void {
     this.messageForm = this.formBuilder.group({
       message:['']
@@ -30,14 +34,24 @@ export class MessengerComponent implements OnInit {
 
     this.conversationServices.getOneConversation(this.id).subscribe( results =>{
       this.newMessage= results;
-      console.log(this.newMessage);
-      
+
+      console.log(results);
     })
     this.websocket.event.on('MessageChanges',() => {      
       
       console.log("sqdsq",this.newMessage);
     })
-
+    this.userServices.findOne(this.idOnline._id).subscribe((data:any)=>{
+      this.results = data.conversation
+      
+      
+      // data.conversation.map((x:any)=>{
+      //   this.results.push(x)
+      //   console.log(this.results);
+      // })
+  
+    })
+  
   }
   onSubmit(){
     this.conversationId = {
@@ -47,8 +61,10 @@ export class MessengerComponent implements OnInit {
     }
     this.websocket.sendMessage(this.conversationId)
     this.websocket.receiveMessage().subscribe((data:any) =>{
-      
       this.newMessage= data;
+      this.userServices.findOne(this.idOnline._id).subscribe((data:any)=>{
+        this.results = data.conversation    
+      })
  
     })
   }

@@ -23,6 +23,10 @@
         border-radius: 60%;
         background-size:contain;
     }
+    .notification-user{
+        height: 70px;
+        width: auto;
+    }
     .notification-area{
        
         z-index: 1;
@@ -39,14 +43,13 @@
 #notification-text{
 margin-top: 15px;
 font-weight: 500;
-font-size: 14px;
-line-height: 16px;
+
 text-transform: capitalize;
 color: #323232;
 }
 #notification-style{
 font-weight: 300;
-font-size: 12px;
+
 line-height: 14px;
 text-transform: lowercase;
 color: #666666;
@@ -145,4 +148,17 @@ i{
 #user-size{
     width: 48px;
     height: 48px;
+}
+.message-area{
+       
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    width: 25%;
+    padding-top: 5rem;
+    padding-left: 1rem;
+    height: auto;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+  
 }

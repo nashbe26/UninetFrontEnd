@@ -1,3 +1,87 @@
+#img-size{
+    height: 300px;
+    width:100%;
+    border-radius: 6px;
+    background-size:contain;
+}
+.post-container{
+    margin-top:5rem;
+}
+#hours-spent{
+    margin-top:10px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 12px;
+    color: #666666;
+}
+#user-posts{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    text-transform: capitalize;
+    color: #323232;
+}
+.reaction-container{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+    color: #323232;
+}
+#user-size{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-size:cover;
+}
+#user-id{
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+margin-top: 5px;
+text-transform: capitalize;
+color: #323232;
+}
+.modal-dialog {
+    max-width: 800px;
+    margin: 1.75rem auto;
+}
+
+.comments-container a{
+    text-decoration: none;
+    color: #323232;
+}
+hr{
+    margin: 0 auto;
+    width: 90%;
+}
+#user-comment{
+    margin-top: 1.5rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 60%;
+    background-size:contain;
+}
+.sideBox{
+    position: absolute;
+}
+.box{
+    padding: 15px;
+    border: 1px solid #fff;
+    -webkit-box-shadow: 0px 2px 15px 5px rgba(0,0,0,0.15); 
+    box-shadow: 0px 2px 15px 5px rgba(0,0,0,0.15);
+}
+.sidebox-box{
+    list-style: none;
+    padding: 0;
+}
+.sidebox-box li{
+    margin: 25px 0;
+}
 #user-size{
     margin:15px 0;
     width: 64px;

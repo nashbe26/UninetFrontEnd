@@ -3,16 +3,24 @@
         <div class="card-body">
             <div class="card-title">
                     <div class="online-id">
-                        <p>Online user</p>
-                        {{conversations._id}}
-                        <div *ngIf="conversations._id">
-                            <a [routerLink]="['/messenger', conversations._id]">Afficher toutes la conversation</a>
+                  
+                    
+                        <div class="my-2">
+                            <a class="userConv"*ngIf="conversations._id" [routerLink]="['/messenger', conversations._id]">{{onlineUser.firstName}} {{onlineUser.lastName}}</a>
                         </div>
                         <i class="far fa-times-circle curser-pointer" (click)="exitPopUp()"></i>
                     </div>
                 </div>
                     <div class="box px-4">
-                        <div  class="box-chat"*ngFor="let conv of conversations.message ;let i = index">
+                        <div class="text-center mt-3 spinner"  >
+                            <div class="hollow-dots-spinner " :style="spinnerStyle" *ngIf="showConv">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                              </div>
+                        </div>
+                   
+                        <div class="box-chat"*ngFor="let conv of conversations.message ;let i = index">
                         
                         <div [ngClass]="{'box-message-sender mt-4 ': (onlineUser._id == conv.id ), 'box-message-receiver mt-4':(onlineUser._id != conv.id )}">
                             <p [ngClass]="{'text-message ': (onlineUser._id == conv.id ), 'text-message-receiver mt-4':(onlineUser._id != conv.id )}">{{conv.content}}</p>
@@ -23,17 +31,6 @@
                             <div class="time-message">
                                 <p class="time-text">2 jun 2020     7.51 PM</p>
                             </div>
-                        <!-- <div class="receiver-box">
-                            <div class="">
-                                <p class="text-message">{{conv.content}}</p>
-                                <div class="image-message ">
-                                    <img src="../../../assets/img/user.jpg" alt="image" id="img-message">
-                                </div>
-                            </div>
-                            <div class="time-message">
-                                <p class="time-text">2 jun 2020     7.51 PM</p>
-                            </div>
-                        </div>  -->
                     </div>
                     </div>
                 <div class="bg-light px-4">

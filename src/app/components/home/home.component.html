@@ -5,8 +5,8 @@
                 <p id="title-text">Start Your Own Socail Page <br>With Brandname</p>
                 <p class="text-sec">This theme was design for fast load and privacy protection</p>
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-4 text-center" >
-                <div class="text-field mb-4">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="text-field mb-4 text-center" >
                     <p id="SignIn">Sign In</p><br>
                     <p id="text-sec">Don’t have an a account?  <span id="text-purple">Sign Up</span></p>
                 </div>
@@ -14,14 +14,19 @@
                     <div class="form-group mt-4 ">
                         <label id="emailLabel">Email</label>
                         <input type="text" name="email" class="inputFiled" id="email" formControlName="email">
+                        <span *ngIf="errors?.email">{{errors.email}}</span>
                     </div>
                     <div class="form-group mt-4">
                         <label id="passwordLabel">Password</label>
                         <input type="password" name="password" class="inputFiled" id="password" formControlName="passowrd">
+                        <span *ngIf="errors?.password">{{errors.password}}</span>
                     </div>
-                    <button class="btn-purple mt-4">Sign In</button>
+                    <button class="btn-purple mt-4"  [disabled]="userForm.invalid"> Sign In</button>
                 </form><br>
-                <a id="agree-text" href="#">forgot my password ?</a>
+                <div class="text-center" >
+                    <a id="agree-text" href="#">forgot my password ?</a>
+                </div>
+             
             </div>
         </div>
     </div>
