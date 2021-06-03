@@ -1,13 +1,18 @@
 <section id="home-page">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-8 col-lg-8 border-right">
-                <p id="title-text">Start Your Own Socail Page <br>With Brandname</p>
-                <p class="text-sec">This theme was design for fast load and privacy protection</p>
+            <div class="col-sm-12 col-md-8 col-lg-8 border-right ">
+                <div>
+                    <img src="../../../assets/img/Sans-titre-1.png" id="logo">
+
+                    <p id="title-text">Rejoinez Réseau Social Académique <br><span id="title-text" style="color:#ad5af3;margin:0">UNINET</span></p>
+                    <p class="text-sec">Notre plateforme facilite votre vie universitaire ou scolaire et vous permet d'avoir un contact direct avec le milieu votre académique.</p>
+                </div>
+                
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="text-field mb-4 text-center" >
-                    <p id="SignIn">Sign In</p><br>
+            <div class="col-sm-12 col-md-4 col-lg-4 signup-container">
+                <div class="text-field my-4 text-center" >
+                    <p id="SignIn">se connecter</p><br>
                     <p id="text-sec">Don’t have an a account?  <span id="text-purple">Sign Up</span></p>
                 </div>
                 <form class="form" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
@@ -26,7 +31,7 @@
                 <div class="text-center" >
                     <a id="agree-text" href="#">forgot my password ?</a>
                 </div>
-             
+           
             </div>
         </div>
     </div>

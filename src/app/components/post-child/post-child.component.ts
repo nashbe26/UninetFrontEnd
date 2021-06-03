@@ -48,6 +48,8 @@ export class PostChildComponent implements OnInit {
     this.showSpinner =true
     setTimeout(() => {
       this.postsService.findAll().subscribe((data:any)=>{
+        console.log("dsdsdsdd",data);
+
         this.showSpinner =false
         this.allPost=data       
       })
@@ -62,13 +64,7 @@ export class PostChildComponent implements OnInit {
       this.images = file;
     }
   }
-
-
-
-  onSubmitOne(){
-
-  }
-   onSubmit1(){
+  onSubmit1(){
     if(this.postForm.value.userFile!=null){
       this.newFile = this.postForm.value.userFile.replace('C:\\fakepath\\','');
       const formData = new FormData();
@@ -77,15 +73,11 @@ export class PostChildComponent implements OnInit {
       this.httpClient.post<any>('http://localhost:3000/file', formData).subscribe(
         (res:any) => {
           console.log(res);
-          
           this.imagepath = res.path
           console.log(this.imagepath );
-          
         },
         (err:any) => console.log(err)
       );
- 
-  
     }
     this.postStruct = {
       content:this.postForm.value.userPost,
@@ -94,7 +86,6 @@ export class PostChildComponent implements OnInit {
       src:this.newFile
     }
      this.postsService.createPost(this.postStruct).subscribe((data:any)=>{
-       console.log(data);
         this.newPost=data
         this.allPost.unshift(data);
      })
@@ -108,7 +99,6 @@ export class PostChildComponent implements OnInit {
 
   
   onSend(id:any){
-  
     this.commentId = id;
     this.CommentsService.showComment(id).subscribe((comments:any)=>{
       this.allComments = comments

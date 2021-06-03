@@ -36,11 +36,18 @@ export class PopUpComponent implements OnInit {
           
           this.conversationServices.getOneConversation(x._id).subscribe(
             (response:any) =>{
-              if (response.users.includes(this.idReceiver)){
-                this.conversations = response;  
-            }
+              response.users.map((x:any)=>{
+                if (x._id ==this.idReceiver ){
+                  this.conversations = response;  
+
+                }
+              })
+         
+            console.log(response);
           })
         })
+        
+        
   }})
   
     this.messageForm = this.formBuilder.group({

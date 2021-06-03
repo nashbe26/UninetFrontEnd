@@ -1,0 +1,108 @@
+
+
+    <aside class="left-sidebar" data-sidebarbg="skin5">
+   <div class="scroll-sidebar">
+ 
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav" class="p-t-30">
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="fas fa-th-large fa-lg pe-2"></i><span class="hide-menu">Dashboard</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="fas  fa-users fa-lg pe-2"></i><span class="hide-menu">Users</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="fas fa-chalkboard-teacher fa-lg pe-2"></i><span class="hide-menu">Professeurs</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="fas fa-book fa-lg pe-2"></i><span class="hide-menu">Cours</span></a></li>
+            
+                </ul>
+            </nav>
+        </div>
+
+    </aside>
+ 
+    <div class="page-wrapper">
+ 
+         <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Dashboard</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid ">
+            <div class="row mt-2 mb-4">
+  
+                <div class="col-md-6 col-lg-3 col-xlg-3">
+                    <div class="card card-hover">
+                        <div class="box bg-cyan text-center">
+                            <h1 class="font-light text-white"><i class="fas fa-th-large"></i></h1>
+                            <h6 class="text-white">Dashboard</h6>
+                        </div>
+                    </div>
+                </div>
+           
+                <div class="col-md-6 col-lg-3 col-xlg-3">
+                    <div class="card card-hover">
+                        <div class="box bg-success text-center">
+                            <h1 class="font-light text-white"> <i class="fas fa-users"></i></h1>
+                            <h6 class="text-white">Users: 150</h6>
+                        </div>
+                    </div>
+                </div>
+              
+                <div class="col-md-6 col-lg-3 col-xlg-3">
+                    <div class="card card-hover">
+                        <div class="box bg-warning text-center">
+                            <h1 class="font-light text-white"><i class="fas fa-chalkboard-teacher"></i></h1>
+                            <h6 class="text-white">Professeurs: 32</h6>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-md-6 col-lg-3 col-xlg-3">
+                    <div class="card card-hover">
+                        <div class="box bg-danger text-center">
+                            <h1 class="font-light text-white"><i class="fas fa-book"></i></h1>
+                            <h6 class="text-white">Cours: 9</h6>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row my-3">
+                <div class="col-lg-12">
+                    <div class="card p-5">
+                        <table class="table table-s">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Id</th>
+                                  <th scope="col">Nom </th>
+                                  <th scope="col">Nom </th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Type</th>
+                                  <th scope="col">Type</th>
+                                  <th scope="col">status</th>
+                                  <th scope="col">status</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let user of usersSlice;let i = index">
+                                  <th scope="row">{{i}}</th>
+                                  <td>{{user.firstName}} </td>
+                                  <td>{{user.lastName}}</td>
+                                  <td>{{user.email}}</td>
+                                  <td>{{user.classRoom}}</td>
+                                  <td>{{user.accountStatus}}</td>
+                                  <td>@mdo</td>
+                                  <td><button class="btn btn-danger" (click)="check(user._id)">Approuver</button></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <mat-paginator showFirstLastButtons [length]="users?.length" [pageSize]="5" [pageSizeOptions]="[5,10,15]"(page)="onPagechange($event)"> </mat-paginator>
+                    </div>
+                </div>
+            </div>
+
+    
+     
+        </div>
+ 
+ 
+    </div>
+

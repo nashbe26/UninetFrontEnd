@@ -1,11 +1,29 @@
 #img-size{
+  
     height: 300px;
     width:100%;
     border-radius: 6px;
     background-size:contain;
 }
-.post-container{
-    margin-top:2rem;
+#userFile{
+  display: none;
+
+}
+#userPost{
+  background-color:#f0f2f5;
+  border-radius: 15px;
+}
+.btn-purplee{
+  padding: 5px 0;
+  border:none;
+  outline: none;
+  width: 20%;
+  color:#fff;
+  background: linear-gradient(99.93deg, #392DD1 -12.77%, rgba(255, 255, 255, 0) 150.57%), #8E2995;
+  border-radius: 60px;
+}
+#labelFile{
+  cursor: pointer;
 }
 #hours-spent{
     margin-top:10px;

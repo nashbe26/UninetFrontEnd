@@ -6,9 +6,13 @@ import { ActivatedRoute } from '@angular/router';
 import { FeedUserService } from 'src/services/feedUser/feed-user.service';
 import { CommentsService } from 'src/services/comments/comments.service';
 import { PostsService } from 'src/services/posts/posts.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UpvotesService } from 'src/services/upvotes-services/upvotes.service';
 import { UserService } from 'src/services/userService/user.service';
+import { NgwWowService } from 'ngx-wow';
+import { CoursServicesService } from 'src/services/coursServices/cours-services.service';
+
+
 
 @Component({
   selector: 'app-user',
@@ -34,6 +38,7 @@ export class UserComponent implements OnInit {
   allComments:any;
   comment:any;
   commentForm!:FormGroup;
+  coursForm!:FormGroup;
   commentId:any;
   postForm!:FormGroup;
   postStruct:any;
@@ -42,10 +47,11 @@ export class UserComponent implements OnInit {
   err:any;
   upvotes:any;
   profilOwner:any;
-  constructor(private websocket:WebsocketService,private route: ActivatedRoute,private linkServices:LinkBroadcastService,private userFeed:FeedUserService,private CommentsService:CommentsService,private userServices:UserService,private postsService:PostsService,private upvoteServices:UpvotesService) {
+  constructor(private frmbuilder:FormBuilder,private coursServices:CoursServicesService,private wowServices :NgwWowService,private websocket:WebsocketService,private route: ActivatedRoute,private linkServices:LinkBroadcastService,private userFeed:FeedUserService,private CommentsService:CommentsService,private userServices:UserService,private postsService:PostsService,private upvoteServices:UpvotesService) {
   }
 
   ngOnInit(): void {
+
     this.userToken = localStorage.getItem("token");
     this.onlineUser =JSON.parse(localStorage.getItem('user')!);
     this.id= this.route.snapshot.params.id;
@@ -75,8 +81,23 @@ export class UserComponent implements OnInit {
           
       }
   );
+  this.coursForm=this.frmbuilder.group({   
+    cours:['',[Validators.required,Validators.minLength(3)]], 
+    date:['',[Validators.required]], 
+    hours:['',[Validators.required]], 
+ 
+  }); 
+ 
+  // this.wowServices.init()
   }
-  
+  onSubmitCours(){
+    this.coursForm.value.userId =this.onlineUser._id;
+    this.coursServices.addCours(  this.coursForm.value).subscribe((data:any)=>{
+      console.log("cours aded",data);
+      
+    })
+    
+  }
    onSubmit1(){
     if(this.postForm.value.userFile!=null){
       this.newFile = this.postForm.value.userFile.replace('C:\\fakepath\\','');
@@ -88,11 +109,9 @@ export class UserComponent implements OnInit {
        src:this.newFile
      }
      this.postsService.createPost(this.postStruct).subscribe((data:any)=>{
-       console.log(data);
-       
+        console.log(data)
         this.newPost=data
         this.allPost.unshift(data);
-    
      })
    }
 

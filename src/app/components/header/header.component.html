@@ -1,7 +1,8 @@
-<nav class="navbar navbar-light border-bottom fixed-top">
+
+<nav class="navbar navbar-light border-bottom fixed-top" *ngIf="onlineUser?._id">
     <div class="container-fluid">
         <div class="logo-bar">
-            <a class="navbar-brand">BrandName Logo</a>
+            <a class="navbar-brand"><img src="../../../assets/img/Sans dddd.png" id="logo"></a>
         </div>
         <div class="icons-bar">
             <a (click)="showToggleSearch()"><i class="fas fa-search mx-4 pointer-curse"  ></i></a>
@@ -25,28 +26,39 @@
 
     </div>
 </div>  -->
-<div class="message-area" id="message-area sticky-top" *ngIf="showMessage">
-    <div class="text-left">
-        <i class="fas fa-arrow-left"></i>
-    </div>
-    <div class="notification-name">
-        <p id="notification-text">message</p>
-        <div *ngFor="let conv of messages"class="eeeeeeee">
-            <div *ngFor="let check of conv.message;let last = last" class="dsddsd">
-            <div class="notification-user" *ngIf="last == true">
-                <div class="user-notification" >
-                    <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
-                    <!-- <div *ngFor="let user of conv.users ">
-                        <p *ngIf="user._id != onlineUser._id" id="notification-id">{{user.firstName}}</p>
-                    </div> -->
-                    <p id="notification-style" *ngIf="last == true">{{check.content}}</p>
-                    
+<div class="hey">
+
+    <div class="message-area" id="message-area sticky-top" *ngIf="showMessage">
+        <div class="text-left">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="notification-name">
+            <p id="notification-text">message</p>
+            <div *ngFor="let conv of messages"class="eeeeeeee">
+                <div *ngFor="let check of conv.message;let last = last" class="dsddsd">
+                <div class="notification-user" *ngIf="last == true">
+                    <div class="user-notification" >
+                        <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
+                        <div *ngFor="let user of conv.users" class=" pe-2">
+                            
+                        <p id="notification-style" style="color: black;font-weight: 400;" *ngIf="onlineUser._id != user._id">{{user.firstName  }}</p>
+                        
+                        </div>
+                       
+                        <p id="notification-style" *ngIf="last == true">{{check.content}}</p>
+                        <p id="notification-time" >2021-05-13t00:30:09.248</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> 
+   
     </div> 
+    <div class="show-allmessage">
+        <a id="text-messages" [routerLink]="['/messenger',lastId]">Show all messages</a >
     </div>
-</div> 
+    </div>
+</div>
+
 <div class="notification-area" id="notification-area sticky-top" *ngIf="showNotification">
     <div class="text-left">
         <i class="fas fa-arrow-left"></i>
@@ -56,7 +68,7 @@
       
             <div  class="notification-user" *ngFor="let check of notifications">
                 <div class="user-notification" >
-                    <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
+                    <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size" class="me-2">
                     <p id="notification-style">{{check?.idUser.firstName}} {{check?.notification[0].context}}</p>
                     <p id="notification-style">{{check?.updatedAt}}</p>
             </div>

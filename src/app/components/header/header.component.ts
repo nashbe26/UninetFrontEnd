@@ -28,22 +28,28 @@ export class HeaderComponent implements OnInit {
   counter:any=0;
   searchs:any;
   checkSearch:boolean = false;
+  lastId:any;
+  getUser:any;
   constructor(private websocket:WebsocketService,private notification:NotificationsService,private conversationServices:ConversationService,private userServices:UserService,private router:Router) { 
   }
 
   ngOnInit(): void {
 
-
+    
+    
  
-    if(JSON.parse(localStorage.getItem('user')!)){
+    if(JSON.parse(localStorage.getItem('user')!)!= null){
       this.onlineUser =JSON.parse(localStorage.getItem('user')!);
-    }
-
+   
+    console.log( "dsdsd", this.onlineUser._id );
+    
     this.userServices.findOne(this.onlineUser._id).subscribe((data:any)=>{
       this.messages = data.conversation
+      console.log(this.messages );
       
-      this.messages.map((x:any)=>{
+      this.messages.map((x:any,index:any)=>{
        this.conv.push(x.message);
+       this.lastId= this.messages[index]._id
     })
   })
     this.websocket.getNotification().subscribe((notifcations:any)=>{
@@ -58,7 +64,7 @@ export class HeaderComponent implements OnInit {
         this.notifications = notification.slice(0,5)
         console.log("notficaiton",notification);
         
-      })
+      })}
   }
 
  showToggleNotification(){

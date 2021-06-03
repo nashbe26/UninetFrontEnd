@@ -17,8 +17,9 @@
     margin:0;
     }
     #notification-size{
-        width: 38px;
-        height: 38px;
+        width: 48px;
+        height: 48px;
+        margin-right:10px ;
         float: left;
         border-radius: 60%;
         background-size:contain;
@@ -49,12 +50,18 @@ color: #323232;
 }
 #notification-style{
 font-weight: 300;
-
+margin-bottom: 2px;
+font-size: 14px;
 line-height: 14px;
 text-transform: lowercase;
 color: #666666;
 }
-
+#notification-time{
+    font-weight: 300;
+margin-bottom: 2px;
+font-size: 12px;
+line-height: 14px;
+}
 /*user-container */
 #user-id{
     font-weight: 500;
@@ -161,4 +168,28 @@ i{
     background: #FFFFFF;
     border: 1px solid #EEEEEE;
   
+}
+.show-allmessage{
+    padding: 15px;
+    margin: 0 0 0 -15px;
+    border-top: 2px solid #c2c2c2;
+    text-align: center;
+}
+#text-messages{
+    padding: 10px 0;
+    color: black;
+    font-weight: 500;
+}
+.show-allmessage:hover{
+background-color: #f0f0f5;
+
+}
+#logo{
+    background-image:url("../../../assets/img/Sans-titre-1.png");
+    background-size: cover; 
+    width: 150px;height: 40px;
+    margin-left: 20px;
+    outline-style: none;
+    box-sizing: content-box;
+    border:0; 
 }

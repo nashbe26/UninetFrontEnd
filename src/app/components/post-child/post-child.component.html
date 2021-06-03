@@ -1,33 +1,88 @@
 <div class="mt-6">
-    <form (ngSubmit)="onSubmit1()" [formGroup]="postForm"  enctype="multipart/form-data">
-        <textarea type="text" class="form-control" id="userPost" formControlName="userPost" ></textarea>
-        <input type="file" class="form-control" id="userFile" formControlName="userFile"  name="userFile"  (change)="selectImage($event)" >
-        <button type="submit"class="btn btn-danger">Post</button>
-    </form>
+    <div class="post-container">
+        
+        <form (ngSubmit)="onSubmit1()" [formGroup]="postForm"  enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-1">
+                    <img src="../../../assets/img/user.jpg" alt="Image" id="user-size" style="float:left" class="mt-2">
+                </div>
+                <div class="col-11">
+                    <textarea type="text" class="form-control" id="userPost" formControlName="userPost" ></textarea>
+                    <div class="d-flex justify-content-end mt-2">
+                        <input type="file" class="form-control" id="userFile" formControlName="userFile"  name="userFile"  (change)="selectImage($event)" >
+                        <label id="labelFile" for ="userFile">
+                            <i class="fas fa-file-upload fa-2x mx-2 mt-1" style=" color: #392DD1"></i>
+                        </label>
+                        <button type="submit"class="btn btn-purplee">Partager</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="fulfilling-bouncing-circle-spinner" *ngIf="showSpinner">
     <div class="circle"></div>
     <div class="orbit"></div>
 </div>
+<div class="post-container">
+    <div class="d-flex ">
+       <img  src="../../../assets/img/user.png"  id="user-size"alt="Post name">
+        <div>
+            <p id="user-id">Ahmed toujeni</p>
+            <p id="hours-spent"></p>
+        </div>
+   
+    </div>
+ 
+    <div class="my-4">
+        <video  width="100%" height="300" controls="controls">
+            <source src="../../../assets/img/videoplayback.mp4"type="video/mp4">    
+        </video>
+    </div>
+    
+    <div class="d-flex reaction-container">
+        <div class="like-container mr-2">
+            <a  data-bs-toggle="modal" data-bs-target="#exampleModal1"  class="curser-pointer ancre-reaction">10</a><i class=" curser-pointer fas fa-check fa-lg  px-2" style="color:green"></i></div>
+        <div class="comments-container mx-2">
+            <a class="curser-pointer ancre-reaction" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">16<i class="far fa-comment-alt fa-sm  px-2"></i></a>
+        </div>
+        <div class="save-container">
+            <a class="curser-pointer ancre-reaction" ><i class="fas fa-share-alt fa-sm mx-2 px-2" ></i></a>
+        </div>
+        <div class="dots-container mx-2">
+            <i class="curser-pointer fas fa-trash-alt fa-sm" ></i>
+        </div>
+        
+    
+  
+</div>
+</div>
 <div *ngFor="let post of allPost; let i = index" >
 <div class="post-container">
-    <div class="d-flex mb-2">
+    <div class="d-flex ">
         <img src="http://localhost:3000/uploads/FunOfHeuristic_122458773_631826390823104_2423290600675311365_n.jpg" alt="Image" id="user-size">
-        <p id="user-id">{{post?.user.firstName}}</p>
+        <div>
+            <p id="user-id">{{post?.user.firstName}}</p>
+            <p id="hours-spent">{{post.date}}</p>
+        </div>
+   
     </div>
     <div class="image-container" *ngIf="post.src">
         
         <img  src="http://localhost:3000/uploads/FunOfHeuristic_{{post.src}}" src=""id="img-size"alt="Post name">
     </div>
+    <div class="my-4">
         <p id="user-posts">{{post.content}}</p>
-        <p id="hours-spent">{{post.date}}</p>
+    </div>
+    
+       
 
         <div class="d-flex reaction-container">
             <div class="like-container mr-2">
                 <a (click)="getLike(post._id)" data-bs-toggle="modal" data-bs-target="#exampleModal1"  class="curser-pointer ancre-reaction">{{post.upvotes.length}}</a><i class=" curser-pointer fas fa-check fa-lg  px-2" style="color:green" (click)="onUpvote(post._id)"></i>
             </div>
             <div class="comments-container mx-2">
-                <a class="curser-pointer ancre-reaction" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onSend(post._id)">{{allComments.length}}<i class="far fa-comment-alt fa-sm  px-2"></i></a>
+                <a class="curser-pointer ancre-reaction" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onSend(post._id)">{{post.comments.length}}<i class="far fa-comment-alt fa-sm  px-2"></i></a>
             </div>
             <div class="save-container">
                 <a class="curser-pointer ancre-reaction" (click)="getShare(post._id)"><i class="fas fa-share-alt fa-sm mx-2 px-2" ></i></a>

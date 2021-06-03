@@ -15,10 +15,25 @@
             <p id="user-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent convallis suscipit leo, non sodales sapien suscipit ornare.
                 Morbi hendrerit est sed nibh bibendum, eu bibendum nibh rhoncus. Integer a ex semper</p>
-                 <div class="text-center"><button (click)="goToStream()"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-                    Start live </button>
-                    <button (click)="createLive()" id="video-btn" class="btn btn-success my-2" > Create live </button>   
+                 <div class="text-center"><button (click)="goToStream()"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Start live </button>     
+                    <button (click)="createLive()" id="video-btn" class="btn btn-success my-2" > Create live </button>     </div>
+                    <div  class="wow fadeInDown" data-wow-delay="0.5s">
+                         <form (ngSubmit)="onSubmitCours()" [formGroup]="coursForm">
+                            <div class="form-group my-2">
+                                <label for="cours">Matiére</label>
+                                <input type="text" class="form-control" id="cours" formControlName="cours"  name="cours">
+                            </div>
+                            <div class="form-group my-2">
+                                <label for="date">Date</label>
+                                <input type="date" class="form-control" id="date" formControlName="date"  name="date">
+                            </div>
+                            <div class="form-group my-2">
+                                <label for="date">Heure</label>
+                                <input type="time" class="form-control" id="hours" formControlName="hours"  name="hours">
+                            </div>
+                                <button [disabled]="coursForm.invalid"type="submit"class="btn btn-danger my-2">Post</button>
+                        </form>
+             
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -42,26 +57,7 @@
                       </div>
                 </div>
                 </div>
-                <div class="saved-posts">
-                    <div class="d-flex">
-                        <div class="number-posts me-4">
-                            <p class="posts-text"><span>325</span>
-                            Posts</p>
-                        </div>
-                        <div class="number-posts mx-4">
-                            <p class="posts-text"><span>325</span>
-                            Photos</p>
-                        </div>
-                        <div class="number-posts mx-4">
-                            <p class="posts-text"><span>325</span>
-                            Videos</p>
-                        </div>
-                    </div>
-                </div>
-               
-   
-            
-                <div *ngFor="let userFeed of userFeeds; let i = index">
+            <div *ngFor="let userFeed of userFeeds; let i = index">
                  <div *ngFor="let post of userFeed.userFeed; let i = index">
 
                 <div class="post-container">
@@ -72,7 +68,6 @@
                     <div class="image-container" *ngIf="post.src != null">
                         <img src="http://localhost:3000/uploads/FunOfHeuristic_{{post.src}}" id="img-size"alt="Post name">
                     </div>
-                        
                         <p id="user-posts">{{post.content}}</p>
                         <p id="hours-spent">{{post.date}}</p>
                         <div class="d-flex reaction-container">

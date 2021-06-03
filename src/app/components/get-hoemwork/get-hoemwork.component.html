@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-3">
+        <app-shortcuts></app-shortcuts>
+    </div>
+    <div class="col-md-6 mt-6">
+        <div *ngFor="let homework of homeworks" class="">
+            <p>{{homework.userId.firstName}}</p>
+            <p>{{homework.createdAt}}</p>
+        </div>
+    </div>
+    <div class="col-md-3" >
+        <app-user-online></app-user-online>
+    </div>
+</div>
+
+
+

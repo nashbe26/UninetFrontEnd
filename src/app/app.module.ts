@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatIconModule } from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +30,17 @@ import { PostsGroupComponent } from './components/posts-group/posts-group.compon
 import { SignoutComponent } from './components/signout/signout.component';
 import { TokenInterceptor } from 'src/guards/token.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgwWowModule } from 'ngx-wow';
+import { HomeworkComponent } from './components/homework/homework.component';
+import { CreateHomeworkComponent } from './components/create-homework/create-homework.component';
+import { CKEditorModule } from 'ng2-ckeditor';
+import { NgxEditorModule } from 'ngx-editor';
+import { ReponseHomeworkComponent } from './components/reponse-homework/reponse-homework.component';
+import { GetHoemworkComponent } from './components/get-hoemwork/get-hoemwork.component';
+import { HomepageComponent } from './backoffice/homepage/homepage.component';
+import { UsersComponent } from './backoffice/users/users.component';
+import { CoursComponent } from './backoffice/cours/cours.component';
+
 
 
 @NgModule({
@@ -54,7 +65,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ViewerComponent,
     GroupComponent,
     PostsGroupComponent,
-    SignoutComponent
+    SignoutComponent,
+    HomeworkComponent,
+    CreateHomeworkComponent,
+    ReponseHomeworkComponent,
+    GetHoemworkComponent,
+    HomepageComponent,
+    UsersComponent,
+    CoursComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +81,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    
+    NgwWowModule,
+    CKEditorModule,
+    NgxEditorModule,
+    MatPaginatorModule,
+
   ],
   providers: [
     UserService,

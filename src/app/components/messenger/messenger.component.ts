@@ -23,20 +23,38 @@ export class MessengerComponent implements OnInit {
   newMessage:any=[];
   messages:any;
   conv:any;
+  currentUser:any;
   results:any=[];
-  constructor(private websocket:WebsocketService,private conversationServices:ConversationService,private userServices:UserService,private  activatedRoutes :ActivatedRoute,private formBuilder:FormBuilder) { }
+  constructor(private router:Router,private websocket:WebsocketService,private conversationServices:ConversationService,private userServices:UserService,private  activatedRoutes :ActivatedRoute,private formBuilder:FormBuilder) { }
   ngOnInit(): void {
     this.messageForm = this.formBuilder.group({
       message:['']
     })
-    this.id=this.activatedRoutes.snapshot.params['id']
     this.idOnline =JSON.parse(localStorage.getItem('user')!);
-
-    this.conversationServices.getOneConversation(this.id).subscribe( results =>{
-      this.newMessage= results;
-
-      console.log(results);
+    this.activatedRoutes.params.subscribe((params:any) => {
+      this.id = params.id;
+      this.conversationServices.getOneConversation(this.id).subscribe( (results:any) =>{
+        this.newMessage= results;
+        console.log(results);
+        
+        // results.users.map((x:any)=>{
+        //   if (x != this.idOnline){
+        //     this.userServices.findOne(x).subscribe((data:any)=>{
+        //       this.currentUser = data
+        //     })
+        //   }
+        // })
+      })
+    });
+    this.userServices.findOne(this.id).subscribe((data:any)=>{
+      console.log(data);
+      
     })
+    console.log("dsdsdsd",this.id);
+    
+    
+
+  
     this.websocket.event.on('MessageChanges',() => {      
       
       console.log("sqdsq",this.newMessage);
@@ -52,6 +70,9 @@ export class MessengerComponent implements OnInit {
   
     })
   
+  }
+  redirect(id:any){
+    this.router.navigate([`./messenger/${id}`]);
   }
   onSubmit(){
     this.conversationId = {

@@ -37,9 +37,9 @@
 }
 .Messages-box{
     position: relative;
-    height: 80vh;
+    height: 85vh;
     overflow-y: scroll;
-    padding: 0 4rem 20px 4rem;
+    padding: 0 2rem 20px 2rem;
 }
 .Messages-box::-webkit-scrollbar {
     width: 10px;
@@ -93,12 +93,17 @@
     height: 70vh;
 }
 .message-filed{
+
     position: absolute;
-    bottom: 0;
     overflow-y: hidden;
-    width: 50%; 
-    background:#EEEEEE;
+    width: 50%;
+    background: white;
     z-index: 1;
+    bottom: 0;
+    -webkit-box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.19); 
+    box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.19);
+    border: 1px solid rgb(184, 184, 184);
+    padding: 0 15px;
     
 }
 #notification-id{
@@ -144,4 +149,35 @@ font-size: 12px;
 line-height: 14px;
 text-transform: lowercase;
 color: #666666;
+}
+.post-containers{
+    background-color: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.19); 
+  box-shadow: 0px 0px 15px -6px rgba(0,0,0,0.19);;
+  }
+  .user-area{
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 20%;
+    padding-left: 0.5rem;
+    height: 60vh;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+  
+}
+#user-size{
+    margin:15px 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 60%;
+    background-size:contain;
+}
+ul{
+    margin-top: 3rem;
+    list-style: none;
+}
+li{
+    padding: 5px 0;
 }

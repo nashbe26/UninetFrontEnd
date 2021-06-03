@@ -1,23 +1,27 @@
 <div class="row  mt-6">
     <div class="col-md-3 border-right">
         <div class="Messages mx-4">
-            <p class="message-intro">Messages</p>
-                <div *ngFor="let conv of results">
+            <p class="message-intro">Messages</p><br>
+                <div *ngFor="let conv of results" (click)="redirect(conv._id)">
                     <div *ngFor="let check of conv.message;let last = last">
                     <div class="notification-user">
                         <div class="user-notification" *ngIf="last === true">
                             <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
-                            <p id="notification-id">{{check._id}}</p>
-                   
+                            <div *ngFor="let user of conv.users">
+                                <div *ngIf="user._id != idOnline._id">
+                                    <p id="notification-id">{{user.firstName}}</p>
+                                </div>
+                            </div>
                             <p id="notification-style" *ngIf="last === true">{{check.content}}</p>
-                            
                         </div>
                     </div>
-                </div>
+                </div><br>
             </div> 
             </div>
         </div>
-    <div class="col-md-6 mt-5 px-0">
+        
+    <div class="col-md-6 px-0">
+    <div class="post-containers">
         <div class="Messages-box" >
             <div class="sender-box" *ngFor="let message of newMessage.message">
                       
@@ -32,18 +36,40 @@
                     <p class="time-text">2 jun 2020 7.51 PM</p>
                 </div>
             </div>
-        
-           
         </div>
-    </div>
-    <div class="col-md-3"></div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-md-6">
         <div class="message-filed ">
-            <input [(ngModel)]="message" class="inputFiled my-3" id="send" type="text"/>
-            <button (click)="onSubmit()"class="btn-purple">Send </button>
+            <input [(ngModel)]="message" class="inputFiled my-3 px-4" id="send" type="text" (keydown.enter)="onSubmit()"/>
         </div>
     </div>
-   
+    </div>
+    <div class="col-md-3">
+        <div class="user-area" >
+            <div class="user-name" *ngFor="let message of newMessage.users">
+                <div *ngIf="message._id != idOnline._id">
+                    <div class="text-center">
+                        <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
+                        <p id="user-name">{{message.firstName}} {{message.lastName}}</p>
+                        <p id="text-follower">Status Online or Offline</p>
+                    </div>
+                    <div class="soical-links">
+                        <ul>                      
+                      
+                            <li><a href=""style="color:rgb(71, 70, 70)"><i class="fab fa-facebook pe-3"></i>https://www.facebook.com/{{message.firstName}}{{message.lastName}}</a></li>
+                            <li><a href=""style="color:rgb(71, 70, 70)"><i class="fab fa-linkedin pe-3"></i>https://www.instagram.com/{{message.firstName}}{{message.lastName}}</a></li>
+                            <li><a href=""style="color:rgb(71, 70, 70)"><i class="fab fa-github-square pe-3"></i>https://www.github.com/{{message.firstName}}{{message.lastName}}</a></li>
+                            <li><a href=""style="color:rgb(71, 70, 70)"><i class="fab fa-behance-square pe-3"></i>https://www.behance.com/{{message.firstName}}{{message.lastName}}</a></li>
+               
+                        </ul>
+                        
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center">
+                <a href="" style="color:rgb(255, 80, 80); text-decoration: none;" ><i class="fas fa-trash-alt fa-lg"></i> Suprrimer la conversation</a>
+            </div>
+
+        </div> 
+    </div>
 </div>

@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-3">
+        <app-shortcuts></app-shortcuts>
+    </div>
+    <div class="col-md-7">
+        
+        <div class="homework-box mt-6">
+            <div class="post-container">
+                <div class="title-box">
+                    <p id="homework-title">Home Work Name : Exercice pyhton</p>
+                    <p id="homework-matiere">Matiére : {{homework?.NameHomework}}</p>
+                </div>
+                <div class="project description">
+                    <p id="homework-matiere">Description du projet :{{homework?.matiere}}</p>
+                    <p [innerHTML]="homework?.description">
+                    </p>
+                </div>
+            </div>
+        
+
+            <div class="submit-project row my-2" *ngIf="waitResponse">
+                <div class="col-lg-6" *ngIf="checkUser">
+             <p> <i class="fas fa-check-circle mx-2" style="color: #44c968;"></i>Already submitteed</p>
+                </div>
+                <div class="col-lg-12" *ngIf="!checkUser">
+                    <div class="post-container">
+                        <p id="homework-matiere">Envoyer votre réponse</p>
+                        <form (ngSubmit)="onSubmit1()" [formGroup]="postForm"  enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="url">Lien : </label>
+                                        <input  type="text" class="form-control" id="urlPost" name="urlPost" formControlName="urlPost"> 
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="url">Description :  </label>
+                                <textarea name="userPost" id="userPost" cols="30" rows="10" class="form-control" formControlName="userPost"></textarea>
+                            </div>
+                           </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="file">Fichier : </label>
+                                <input type="file" class="form-control" id="userFile" formControlName="userFile"  name="userFile"  (change)="selectImage($event)" >
+                            </div>
+                         </div>
+                          
+                            <button type="submit"class=" btn-purplee mt-3 float-end">Envoyer Homework</button>
+                            <br><br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+

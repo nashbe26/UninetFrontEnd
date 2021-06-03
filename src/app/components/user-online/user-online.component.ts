@@ -26,6 +26,7 @@ export class UserOnlineComponent implements OnInit {
     allConversation:any;
     popUser:any=[];
     oneId:any;
+    newUser:any=[];
     constructor(private websocket:WebsocketService,private formBuilder:FormBuilder,private conversationServices:ConversationService,private userServices:UserService,private publicEntities:PublicEntitiesService) { 
     }
 
@@ -36,11 +37,32 @@ export class UserOnlineComponent implements OnInit {
       this.onlineUser = JSON.parse(localStorage.getItem('user')!)
   
         this.websocket.getOnlineUser().subscribe((data:any) =>{
-          this.users= data;
+          this.users= data;          
           this.users.map((x:any,index:any)=>{
-            if (x == this.onlineUser._id ){
-              this.users.splice(index, 1); 
+            if (x != this.onlineUser._id ){
+              this.users.map((x:any,index:any)=>{
+                if (x == this.onlineUser._id ){
+                  this.users.splice(index, 1); 
+                }
+              })
+
+              this.userServices.findOne(x).subscribe((oneuser:any)=>{
+                let check = this.newUser.find((x:any) =>x._id = oneuser._id)
+                console.log(check);
+                
+                  if(check){
+                    console.log("ahla");
+                    
+                    
+
+                  }else{
+                    this.newUser.push(oneuser)
+                    
+                  }
+              }) 
             }
+            console.log("sagxi ",this.newUser);
+            
           })
         })
 

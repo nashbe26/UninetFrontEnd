@@ -6,11 +6,11 @@
         </div>
             <div *ngIf="users">
                 <div class="online-user" >
-                    <div *ngFor="let onlineUsers of users ;let i = index" class="notification-user" >
+                    <div *ngFor="let users of newUser ;let i = index" class="notification-user" >
                          <div class="onlineUser" (click)="startPopUp(i)"> 
-                            <img src="../../../assets/img/user.jpg" alt="Image" id="user-size" >
+                            <img src="../../../assets/img/user.png" alt="Image" id="user-size" >
                             <div class="mx-5">
-                            <p id="user-id">{{onlineUsers}}</p>
+                            <p id="user-id">{{users.firstName}}{{users.lastName}}</p>
                             <p id="user-style">Online status</p>
                         </div>
                     </div>
@@ -24,7 +24,10 @@
     <div class="fixed-bottom">
         <div class="row">
             <div class="col-md-3 notification-user" *ngFor="let onlineUsers of users ;let i = index">
-                <app-pop-up *ngIf='showTab == i' [showPopUp]="showPopUp" [idReceiver]= "onlineUsers"></app-pop-up>
+    
+                    <app-pop-up *ngIf='showTab == i' [showPopUp]="showPopUp" [idReceiver]= "onlineUsers"></app-pop-up>
+            
+         
             </div>
         </div>
     </div>

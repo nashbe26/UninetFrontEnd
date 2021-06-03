@@ -28,9 +28,8 @@ body,html {
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
-    line-height: 16px;
-    text-transform: capitalize;
     color: #323232;
+    width: 80%;
 }
 #SignIn{
     font-size: 42px;
@@ -119,5 +118,5 @@ body,html {
     text-transform: capitalize;
 }
 .mt-6{
-    margin-top: 6rem;
+    margin-top: 6.5rem;
 }
