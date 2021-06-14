@@ -17,4 +17,10 @@ export class GroupService {
   deleteGroup(id:any){
     return this.httpClient.delete(`${this.url}deleteGroup/${id}`)
   }
+  createGroup(id:any){
+    return this.httpClient.post(`${this.url}addgroup`,id)
+  }
+  addGroup(id:any){
+    return this.httpClient.post(`${this.url}addStudent`,id)
+  }
 }

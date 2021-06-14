@@ -11,6 +11,7 @@ import { UpvotesService } from 'src/services/upvotes-services/upvotes.service';
 import { UserService } from 'src/services/userService/user.service';
 import { NgwWowService } from 'ngx-wow';
 import { CoursServicesService } from 'src/services/coursServices/cours-services.service';
+import { GroupService } from 'src/services/group/group.service';
 
 
 
@@ -39,6 +40,7 @@ export class UserComponent implements OnInit {
   comment:any;
   commentForm!:FormGroup;
   coursForm!:FormGroup;
+  addForm!:FormGroup;
   commentId:any;
   postForm!:FormGroup;
   postStruct:any;
@@ -47,7 +49,8 @@ export class UserComponent implements OnInit {
   err:any;
   upvotes:any;
   profilOwner:any;
-  constructor(private frmbuilder:FormBuilder,private coursServices:CoursServicesService,private wowServices :NgwWowService,private websocket:WebsocketService,private route: ActivatedRoute,private linkServices:LinkBroadcastService,private userFeed:FeedUserService,private CommentsService:CommentsService,private userServices:UserService,private postsService:PostsService,private upvoteServices:UpvotesService) {
+  newdata:any;
+  constructor(private groupService:GroupService,private frmbuilder:FormBuilder,private coursServices:CoursServicesService,private wowServices :NgwWowService,private websocket:WebsocketService,private route: ActivatedRoute,private linkServices:LinkBroadcastService,private userFeed:FeedUserService,private CommentsService:CommentsService,private userServices:UserService,private postsService:PostsService,private upvoteServices:UpvotesService) {
   }
 
   ngOnInit(): void {
@@ -81,10 +84,9 @@ export class UserComponent implements OnInit {
           
       }
   );
-  this.coursForm=this.frmbuilder.group({   
-    cours:['',[Validators.required,Validators.minLength(3)]], 
-    date:['',[Validators.required]], 
-    hours:['',[Validators.required]], 
+  this.addForm=this.frmbuilder.group({   
+    nomGroup:['',[Validators.required,Validators.minLength(3)]], 
+    
  
   }); 
  
@@ -216,6 +218,14 @@ export class UserComponent implements OnInit {
     this.userFeed.getAllUserFeed(id).subscribe((data:any)=>{
       this.userFeeds = data
       console.log(data);
+      
+    })
+  }
+  onSubmit2(){
+    this.addForm.value.admin = this.onlineUser._id;
+    this.addForm.value.createdDate = Date.now;
+    this.groupService.createGroup(this.addForm.value).subscribe((data:any)=>{
+      this.newdata = data
       
     })
   }

@@ -75,11 +75,10 @@
         <p id="user-posts">{{post.content}}</p>
     </div>
     
-       
 
         <div class="d-flex reaction-container">
             <div class="like-container mr-2">
-                <a (click)="getLike(post._id)" data-bs-toggle="modal" data-bs-target="#exampleModal1"  class="curser-pointer ancre-reaction">{{post.upvotes.length}}</a><i class=" curser-pointer fas fa-check fa-lg  px-2" style="color:green" (click)="onUpvote(post._id)"></i>
+                <a (click)="getLike(post._id)"   class="curser-pointer ancre-reaction">{{post.upvotes.length}}</a><i class=" curser-pointer fas fa-check fa-lg  px-2" style="color:green" (click)="onUpvote(post._id,post.user._id)"></i>
             </div>
             <div class="comments-container mx-2">
                 <a class="curser-pointer ancre-reaction" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onSend(post._id)">{{post.comments.length}}<i class="far fa-comment-alt fa-sm  px-2"></i></a>
@@ -92,7 +91,7 @@
             </div>
         </div>
 </div>
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -112,7 +111,7 @@
         </div>
     </div>
   </div>
-</div>  
+</div>   -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -151,7 +150,7 @@
                   </div>
             </div>
        
-            <form (ngSubmit)="onSubmit(post._id)" [formGroup]="commentForm">
+            <form (ngSubmit)="onSubmit(post._id,post.user._id)" [formGroup]="commentForm">
                 <textarea type="text" class="form-control" id="commentPost" formControlName="commentUser"  ></textarea>
                 <button type="submit"class="btn btn-danger">Post</button>
             </form>

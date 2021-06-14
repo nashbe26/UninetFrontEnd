@@ -10,6 +10,7 @@ import { CreateHomeworkComponent } from './components/create-homework/create-hom
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { GetHoemworkComponent } from './components/get-hoemwork/get-hoemwork.component';
+import { GroupListComponent } from './components/group-list/group-list.component';
 import { GroupComponent } from './components/group/group.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeworkComponent } from './components/homework/homework.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path:'forbidden',component:ForbiddenComponent},
   { path:'logout',component:SignoutComponent},
   { path:'group/:id',component:GroupComponent,canActivate: [AuthGuardsGuard]},
+  { path:'groupList/:id',component:GroupListComponent,canActivate: [AuthGuardsGuard]},
   { path:'homeworkList/:id',component:GetHoemworkComponent,canActivate: [AuthGuardsGuard]},
   { path:'backoffice',component:HomepageComponent,canActivate: [AuthGuardsGuard]},
   { path:'backoffice/cours',component:CoursComponent,canActivate: [AuthGuardsGuard]},

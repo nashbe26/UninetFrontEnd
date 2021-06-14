@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BackofficeService } from 'src/services/backoffice/backoffice.service';
 import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import { EmailService } from 'src/services/email/email.service';
 
 @Component({
   selector: 'app-homepage',
@@ -11,7 +12,7 @@ export class HomepageComponent implements OnInit {
   users:any;
   usersSlice:any;
   @ViewChild(MatPaginator) paginator! : MatPaginator
-  constructor(private backoffice:BackofficeService) { }
+  constructor(private backoffice:BackofficeService,private emailSend:EmailService) { }
 
   ngOnInit(): void {
     this.backoffice.findAll().subscribe((data:any)=>{
@@ -24,6 +25,11 @@ export class HomepageComponent implements OnInit {
     console.log(id);    
     this.backoffice.approuveUser(id).subscribe((data:any)=>{
       console.log(data);
+      this.emailSend.sendEmail(data).subscribe((dats:any)=>{
+        console.log(dats);
+        
+      })
+
     })
   }
   onPagechange(event:PageEvent){

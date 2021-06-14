@@ -40,6 +40,9 @@ import { GetHoemworkComponent } from './components/get-hoemwork/get-hoemwork.com
 import { HomepageComponent } from './backoffice/homepage/homepage.component';
 import { UsersComponent } from './backoffice/users/users.component';
 import { CoursComponent } from './backoffice/cours/cours.component';
+import { GroupListComponent } from './components/group-list/group-list.component';
+import { NotifiListComponent } from './components/notifi-list/notifi-list.component';
+import { CoursListComponent } from './components/cours-list/cours-list.component';
 
 
 
@@ -72,7 +75,10 @@ import { CoursComponent } from './backoffice/cours/cours.component';
     GetHoemworkComponent,
     HomepageComponent,
     UsersComponent,
-    CoursComponent
+    CoursComponent,
+    GroupListComponent,
+    NotifiListComponent,
+    CoursListComponent
   ],
   imports: [
     BrowserModule,

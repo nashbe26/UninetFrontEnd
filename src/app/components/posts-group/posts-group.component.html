@@ -1,8 +1,126 @@
-<div class="mt-6">
-    <form (ngSubmit)="onSubmit1()" [formGroup]="postForm">
-        <textarea type="text" class="form-control" id="userPost" formControlName="userPost"  ></textarea>
-        <input type="file" class="form-control" id="userFile" formControlName="userFile" >
-        <button type="submit"class="btn btn-danger">Post</button>
+    <div class="d-flex justify-content-between post-container mt-5">
+    <div class="">
+        <h3>Groupe Name</h3>
+        <p>Nombre du Groupe</p>
+    </div>
+    <div class="d-flex" >
+        <button  style="color: rgb(43, 41, 41);" type="button" class="btn btn-warning align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-plus"></i> Invit</button>
+               
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form  (ngSubmit)="onSubmit2()" [formGroup]="addForm">
+                 
+                        <div class="form-group">
+                            <label for="niveau">Choisir Niveau:</label>
+                            <select  class="form-select"  formControlName='niveau'  >
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>                         
+                         </div>
+                          <div class="form-group">
+                            <label for="filiere">Choisir Filière:</label>
+                            <select name="filiere" formControlName='filiere'  class="form-select" aria-label="Default select example">
+                                <option value="im">IM</option>
+                                <option value="cm">CM</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-purplee">Submit</button>
+                      </form>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+    </div>
+    
+</div>
+<div class="post-container my-2">
+    <div class="text-center"><button (click)="goToStream()"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3"> Afficher les sessions live </button>     
+     </div>
+        <div  class="wow fadeInDown" data-wow-delay="0.5s">
+             <form (ngSubmit)="onSubmitCours()" [formGroup]="coursForm">
+                <div class="form-group my-2">
+                    <label for="cours">Matiére</label>
+                    <input type="text" class="form-control" id="cours" formControlName="cours"  name="cours">
+                </div>
+                <div class="form-group my-2">
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" id="date" formControlName="date"  name="date">
+                </div>
+                <div class="form-group my-2">
+                    <label for="date">Heure</label>
+                    <input type="time" class="form-control" id="hours" formControlName="hours"  name="hours">
+                </div>
+                <div class="form-group mt-2">
+                    <p  id="agree-text" class="m-0 my-2">Account Type</p>
+                    <div class="d-flex">
+                        <div class=" me-3 my-2">
+                        <input type="radio" id="huey" name="sessionStatus" value="presentielle" checked formControlName='sessionStatus'>
+                        <label for="huey" id="agree-text">Présentielle</label>
+                      </div>
+                      
+                      <div class=" me-3 my-2">
+                        <input type="radio" id="dewey" name="sessionStatus" value="enligne"  formControlName='sessionStatus'>
+                        <label for="dewey" id="agree-text">En ligne</label>
+                      </div>
+                      </div>
+                </div>
+                    <button [disabled]="coursForm.invalid"type="submit"class="btn btn-danger my-2">Post</button>
+            </form>
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <div *ngFor='let link of cours'>
+                                <a (click)="joinLive()">{{link.cours}} -- {{link.userId.firstName}} {{link.userId.lastName}} -- {{link.date}} {{link.hours}}  -- {{link.etat}}  -- {{link.sessionStatus}}  <i  [ngClass]=" 'link.etat === pending' ? 'fas fa-times-circle float-end' : 'fas fa-times-check float-end' "></i></a>
+                              </div>
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+  
+    </div> 
+</div>
+                
+<div class="post-container">
+        
+    <form (ngSubmit)="onSubmit1()" [formGroup]="postForm"  enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-1">
+                <img src="../../../assets/img/user.jpg" alt="Image" id="user-size" style="float:left" class="mt-2">
+            </div>
+            <div class="col-11">
+                <textarea type="text" class="form-control" id="userPost" formControlName="userPost" ></textarea>
+                <div class="d-flex justify-content-end mt-2">
+                    <input type="file" class="form-control" id="userFile" formControlName="userFile"  name="userFile"  (change)="selectImage($event)" >
+                    <label id="labelFile" for ="userFile">
+                        <i class="fas fa-file-upload fa-2x mx-2 mt-1" style=" color: #392DD1"></i>
+                    </label>
+                    <button type="submit"class="btn btn-purplee">Partager</button>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 
@@ -10,10 +128,10 @@
 <div class="post-container">
     <div class="d-flex mb-2">
         <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
-        <p id="user-id">{{post.user}}</p>
+        <p id="user-id">{{post.user?.firstName}} {{post.user?.lastName}}</p>
     </div>
     <div class="image-container">
-        <img src="../../../assets/img/image.jpg" id="img-size"alt="Post name">
+        <img src="http://localhost:3000/uploads/FunOfHeuristic_{{post.src}}" id="img-size"alt="Post name" *ngIf="post.src">
     </div>
         <p id="hours-spent">{{post.date}}</p>
         <p id="user-posts">{{post.content}}</p>

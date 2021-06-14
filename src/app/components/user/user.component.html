@@ -8,54 +8,41 @@
     <div class="text-center my-5">
         <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
         <p id="user-name">{{profilOwner?.firstName}} {{profilOwner?.lastName}}</p>
-        <p id="text-follower">Professeur & matiére ou Etudiant & class</p>
+        <p id="text-follower" class="my-2">Professeur & matiére ou Etudiant & class</p>
     </div>
     <div class="my-5">
         <div class="text-description">
-            <p id="user-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent convallis suscipit leo, non sodales sapien suscipit ornare.
-                Morbi hendrerit est sed nibh bibendum, eu bibendum nibh rhoncus. Integer a ex semper</p>
-                 <div class="text-center"><button (click)="goToStream()"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Start live </button>     
-                    <button (click)="createLive()" id="video-btn" class="btn btn-success my-2" > Create live </button>     </div>
-                    <div  class="wow fadeInDown" data-wow-delay="0.5s">
-                         <form (ngSubmit)="onSubmitCours()" [formGroup]="coursForm">
-                            <div class="form-group my-2">
-                                <label for="cours">Matiére</label>
-                                <input type="text" class="form-control" id="cours" formControlName="cours"  name="cours">
-                            </div>
-                            <div class="form-group my-2">
-                                <label for="date">Date</label>
-                                <input type="date" class="form-control" id="date" formControlName="date"  name="date">
-                            </div>
-                            <div class="form-group my-2">
-                                <label for="date">Heure</label>
-                                <input type="time" class="form-control" id="hours" formControlName="hours"  name="hours">
-                            </div>
-                                <button [disabled]="coursForm.invalid"type="submit"class="btn btn-danger my-2">Post</button>
-                        </form>
-             
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                              <button class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <div *ngFor='let link of links'>
-                                  <a href={{link.url}} (click)="joinLive(link.gid)">{{link.id}}</a>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button  class="btn btn-primary">Save changes</button>
-                            </div>
-                          </div>
+     
+            
+                <button type="button" class="btn btn-secondary my-2 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    créer groupe
+                  </button>
+                  <br>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Créer un nouveau Groupe :</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <div class="modal-body">
+                            <form  (ngSubmit)="onSubmit2()" [formGroup]="addForm">
+                                <div class="form-group">
+                                    <label for="niveau">Choisir un nom:</label>
+                                    <input formControlName='nomGroup' class="form-control" id="nomGroup">                
+                                 </div>
+                                 <div class="d-flex">
+                                     
+                                     <button type="submit" class="btn btn-purplee my-2">Submit</button>
+                                     <p class="text text-success align-self-center ms-0" *ngIf="newdata">Groupe creé avec succées ! </p>
+                                 </div>
+                              </form>
+                        </div>
+                     
                       </div>
-                </div>
+                    </div>
+                  </div>
+
                 </div>
             <div *ngFor="let userFeed of userFeeds; let i = index">
                  <div *ngFor="let post of userFeed.userFeed; let i = index">

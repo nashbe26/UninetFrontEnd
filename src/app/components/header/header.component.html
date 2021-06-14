@@ -6,10 +6,11 @@
         </div>
         <div class="icons-bar">
             <a (click)="showToggleSearch()"><i class="fas fa-search mx-4 pointer-curse"  ></i></a>
-            <a [routerLink]="['accueil']" ><i class="fas fa-home mx-4 pointer-curse"></i></a>
+            <a href="/accueil" ><i class="fas fa-home mx-4 pointer-curse"></i></a>
             <a><i class="fas fa-plus-circle mx-4 pointer-curse"></i></a>
-            <a><i class="far fa-envelope mx-4 pointer-curse" (click)="showToggleMessage()"></i></a>
-            <a (click)="showToggleNotification()" ><i class="far fa-bell mx-4 pointer-curse"    matBadge={{counter}} matBadgeColor="warn"></i></a>
+            <a><i class="far fa-envelope mx-4 pointer-curse"  matBadge={{CounterMessage}} matBadgeColor="warn" 
+                (click)="showToggleMessage()" matBadgeSize="small"></i></a>
+            <a (click)="showToggleNotification()" ><i class="far fa-bell mx-4 pointer-curse"    matBadge={{counter}} matBadgeColor="warn" matBadgeSize="small"></i></a>
 
             <a  (click)="showToggleUser()"> <i class="fas fa-bars mx-4 pointer-curse"></i></a>
         </div>
@@ -40,13 +41,12 @@
                     <div class="user-notification" >
                         <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size">
                         <div *ngFor="let user of conv.users" class=" pe-2">
-                            
                         <p id="notification-style" style="color: black;font-weight: 400;" *ngIf="onlineUser._id != user._id">{{user.firstName  }}</p>
-                        
                         </div>
-                       
                         <p id="notification-style" *ngIf="last == true">{{check.content}}</p>
                         <p id="notification-time" >2021-05-13t00:30:09.248</p>
+                        <span matBadge={{CounterNotifi}} matBadgeOverlap="false"></span>
+
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
             <div  class="notification-user" *ngFor="let check of notifications">
                 <div class="user-notification" >
                     <img src="../../../assets/img/user.jpg" alt="Image" id="notification-size" class="me-2">
-                    <p id="notification-style">{{check?.idUser.firstName}} {{check?.notification[0].context}}</p>
+                    <p id="notification-style">{{check?.idUser.firstName}} {{check?.idUser.lastName}} {{check?.notification[0].context}}</p>
                     <p id="notification-style">{{check?.updatedAt}}</p>
             </div>
         </div> 

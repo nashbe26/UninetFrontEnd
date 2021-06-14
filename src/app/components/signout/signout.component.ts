@@ -11,6 +11,7 @@ export class SignoutComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.router.navigate(['./']);

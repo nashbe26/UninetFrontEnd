@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Event, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { ConversationService } from 'src/services/conversation/conversation.service';
 import { NotificationsService } from 'src/services/notifications/notifications.service';
 import { UserService } from 'src/services/userService/user.service';
@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   showUser : boolean =false;
   showSearch : boolean =false;
   notifications:any =[];
+  messagesNot:any =[];
   onlineUser:any;
   conversation:any;
   oneUser:any;
@@ -30,19 +31,33 @@ export class HeaderComponent implements OnInit {
   checkSearch:boolean = false;
   lastId:any;
   getUser:any;
-  constructor(private websocket:WebsocketService,private notification:NotificationsService,private conversationServices:ConversationService,private userServices:UserService,private router:Router) { 
+  CounterMessage:any=0;
+  CounterNotifi:any=0;
+  constructor(private websocket:WebsocketService,private notification:NotificationsService,private conversationServices:ConversationService,private userServices:UserService,private router:Router,private activatedRoutes:ActivatedRoute) { 
   }
 
   ngOnInit(): void {
 
     
-    
- 
-    if(JSON.parse(localStorage.getItem('user')!)!= null){
-      this.onlineUser =JSON.parse(localStorage.getItem('user')!);
-   
-    console.log( "dsdsd", this.onlineUser._id );
-    
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        if(event.url == "/"){
+            this.onlineUser =""
+            this.showSearch = false
+            this.showUser = false;
+            this.showNotification = false;
+            this.showMessage = false;
+          };    
+      }else{
+        if(JSON.parse(localStorage.getItem('user')!)!= null){
+          this.onlineUser =JSON.parse(localStorage.getItem('user')!);
+        }
+      }
+  });
+
+  if(JSON.parse(localStorage.getItem('user')!)!= null){
+    this.onlineUser =JSON.parse(localStorage.getItem('user')!);
+      
     this.userServices.findOne(this.onlineUser._id).subscribe((data:any)=>{
       this.messages = data.conversation
       console.log(this.messages );
@@ -53,10 +68,31 @@ export class HeaderComponent implements OnInit {
     })
   })
     this.websocket.getNotification().subscribe((notifcations:any)=>{
-        this.counter++;
-        console.log(notifcations,"notifcationsnotifcationsnotifcationsnotifcations");
+console.log(notifcations.notification.context );
         
-        this.notifications.unshift(notifcations)
+        if(notifcations.notification.context == "sent a message"){
+          if(this.messagesNot.length==0){
+            this.CounterMessage++;
+            this.messagesNot.unshift(notifcations)
+          }
+           this.messagesNot.map((x:any)=>{
+             console.log(x.idUser == notifcations.idUser);
+             if (x.idUser == notifcations.idUser){
+              this.CounterNotifi++;
+
+             }else{
+              this.CounterMessage++;
+             }
+           })
+          
+        }else{
+          this.counter++;
+          this.notifications.unshift(notifcations)
+        }
+        if(this.notifications.length>5){
+          this.notifications =        this.notifications.slice(0,5)
+
+        }
     })
       
     this.notification.findAllByUser(this.onlineUser._id).subscribe(
@@ -65,13 +101,14 @@ export class HeaderComponent implements OnInit {
         console.log("notficaiton",notification);
         
       })}
-  }
-
+  
+}
  showToggleNotification(){
     this.showNotification = !this.showNotification
     this.showUser = false;
     this.showSearch = false;
     this.showMessage = false;
+    this.counter = 0;
     }
     showToggleSearch(){
       this.showSearch = !this.showSearch
@@ -105,7 +142,6 @@ export class HeaderComponent implements OnInit {
             this.searchs =[];
         
           }
-       
         }
 
 }

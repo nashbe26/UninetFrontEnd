@@ -21,9 +21,12 @@ export class CoursComponent implements OnInit {
   }
   check(id:any){
     console.log(id);    
-    this.backoffice.approuveUser(id).subscribe((data:any)=>{
-      console.log(data);
-    })
+    this.backoffice.approuveCours(id).subscribe((data:any)=>{
+      this.backoffice.getAllCours().subscribe((data:any)=>{
+        console.log(data);
+        this.cours = data
+ 
+      })    })
   }
   onPagechange(event:PageEvent){
     console.log(event);

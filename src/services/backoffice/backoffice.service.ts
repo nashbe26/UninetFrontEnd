@@ -25,7 +25,7 @@ export class BackofficeService {
   }
   approuveCours(userId:any){
     console.log(userId);
-    return this.httpClient.get(`${this.url}/approuveUser/${userId}`);
+    return this.httpClient.get(`${this.url}/approuveCours/${userId}`);
   }
   getAllCours(){
         return this.httpClient.get(`${this.url}/getAllCours`);

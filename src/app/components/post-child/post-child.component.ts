@@ -106,19 +106,20 @@ export class PostChildComponent implements OnInit {
       
     })
   }
-  onUpvote(id:any){
+  onUpvote(id:any,usersId:any){
     this.upvotes={
+      owner:usersId,
       userId:this.onlineUser._id,
       postId:id,
       createdAt:Date()
     }
     this.upvoteServices.sendUpvote(this.upvotes).subscribe((fdata:any)=>{
       this.check = fdata.value;
-      this.getPostsIntervall()
     })
   }
-  onSubmit(idPost:any){
+  onSubmit(idPost:any,usersId:any){
     this.comment ={
+      owner:usersId,
       postId:this.commentId ,
       userId:this.onlineUser._id,
       commentContent:this.commentForm.value.commentUser,

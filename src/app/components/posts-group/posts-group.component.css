@@ -4,9 +4,7 @@
     border-radius: 6px;
     background-size:contain;
 }
-.post-container{
-    margin-top:5rem;
-}
+
 #hours-spent{
     margin-top:10px;
     font-style: normal;
@@ -15,6 +13,10 @@
     line-height: 12px;
     color: #666666;
 }
+#userFile{
+    display: none;
+  
+  }
 #user-posts{
     font-style: normal;
     font-weight: 400;

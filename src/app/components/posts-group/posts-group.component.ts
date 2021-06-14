@@ -1,10 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentsService } from 'src/services/comments/comments.service';
 import { GroupService } from 'src/services/group/group.service';
 import { PostsGroupService } from 'src/services/group/posts-group.service';
+import { LinkBroadcastService } from 'src/services/link/link-broadcast.service';
 import { PostsService } from 'src/services/posts/posts.service';
+import { UpvotesService } from 'src/services/upvotes-services/upvotes.service';
+import { WebsocketService } from 'src/services/websocket.service';
+import { Guid } from 'guid-typescript';
+import { CoursServicesService } from 'src/services/coursServices/cours-services.service';
 
 @Component({
   selector: 'app-posts-group',
@@ -24,54 +30,106 @@ export class PostsGroupComponent implements OnInit {
   commentForm!:FormGroup;
   commentId:any;
   postForm!:FormGroup;
+  addForm!:FormGroup;
   postStruct:any;
   newPost:any;
   newFile:any = null;
-  constructor(private  activatedRoutes :ActivatedRoute,private groupeServices:GroupService,private postsService:PostsGroupService,private CommentsService:CommentsService) { }
+  images:any;
+  imagepath:any;
+  idBroadcast:any;
+  userToken:any
+  liveSession:any;
+  gid: any;
+  coursForm!:FormGroup;
+
+  links:any;
+  param1:any;
+
+  userFeeds:any;
+  
+  cours:any
+  err:any;
+  upvotes:any;
+  profilOwner:any;
+  newdata:any;
+  constructor( private router: Router,private coursServices:CoursServicesService,private frmbuilder:FormBuilder,private  activatedRoutes :ActivatedRoute,private groupeServices:GroupService,private postsService:PostsGroupService,private CommentsService:CommentsService,private httpClient:HttpClient,private upvoteServices:UpvotesService,private linkServices: LinkBroadcastService,private websocket :WebsocketService) { }
 
   ngOnInit(): void {
-    this.id=this.activatedRoutes.snapshot.params['id']
-    console.log(this.id);
+   
     this.onlineUser =JSON.parse(localStorage.getItem('user')!);
-
-    this.groupeServices.getGroup(this.id).subscribe((groups:any)=>{
-      this.group = groups
-     this.allPost = this.group.posts;
-     
-      
+    this.activatedRoutes.params.subscribe((params:any) => {
+      this.id = params.id;
+      this.groupeServices.getGroup(this.id).subscribe((groups:any)=>{
+        this.group = groups
+       this.allPost = this.group.posts;
+       
+        
+      })
+      this.coursServices.getCoursById(this.onlineUser._id).subscribe((cour:any)=>{
+        this.cours = cour
+       console.log(cour);
+       
+        
+      })
     })
+
     this.postForm = new FormGroup({
       userPost :new FormControl(),
       userFile :new FormControl()
     })
+    this.coursForm = new FormGroup({
+      cours :new FormControl(),
+      date :new FormControl(),
+      hours :new FormControl(),
+      sessionStatus :new FormControl(),
+    })
     this.commentForm = new FormGroup({
       commentUser : new FormControl()
     })
+  
+    this.addForm=this.frmbuilder.group({   
+      filiere:['----------------------------------------',[Validators.required]], 
+      niveau:['----------------------------------------',[Validators.required]], 
+    }); 
    
   }
  
+  selectImage(event:any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.images = file;
+    }
+  }
   onSubmit1(){
     if(this.postForm.value.userFile!=null){
       this.newFile = this.postForm.value.userFile.replace('C:\\fakepath\\','');
+      const formData = new FormData();
+      formData.append('file', this.images);
+  
+      this.httpClient.post<any>('http://localhost:3000/file', formData).subscribe(
+        (res:any) => {
+          console.log(res);
+          this.imagepath = res.path
+          console.log(this.imagepath );
+        },
+        (err:any) => console.log(err)
+      );
     }
-     this.postStruct = {
-       groupId:this.id,
-       content:this.postForm.value.userPost,
-       date:new Date(),
-       user:this.onlineUser._id,
-       src:this.newFile
-     }
+    this.postStruct = {
+      content:this.postForm.value.userPost,
+      date:new Date(),
+      user:this.onlineUser._id,
+      src:this.newFile,
+      groupId:this.id 
+    }
      this.postsService.createPost(this.postStruct).subscribe((data:any)=>{
         this.newPost=data
-        console.log("this",this.newPost);
+        this.allPost.unshift(data);
+        console.log(data);
         
-      this.postsService.findOne(this.newPost._id).subscribe((datas:any)=>{
-        console.log("this.newPost",datas);
-        
-        this.allPost.unshift(datas);
-      })
      })
    }
+
   getPostsIntervall(){
     setInterval(()=>{
       this.postsService.findAll().subscribe((data:any)=>{
@@ -85,6 +143,13 @@ export class PostsGroupComponent implements OnInit {
     this.CommentsService.showComment(id).subscribe((comments:any)=>{
       this.allComments = comments
     })
+  }
+  onSubmit2(){
+    this.addForm.value.group =  this.id 
+    this.groupeServices.addGroup(this.addForm.value).subscribe((data:any)=>{
+      console.log(data);
+      
+    })    
   }
   onSubmit(idPost:any){
     this.comment ={
@@ -100,8 +165,6 @@ export class PostsGroupComponent implements OnInit {
       
     })
   }
-
-
   deletePost(id:any){
     this.postsService.deletePost(id).subscribe((posts:any)=>{
       this.allPost.map((x:any,index:any)=>{
@@ -110,6 +173,15 @@ export class PostsGroupComponent implements OnInit {
         };
       })
     })
+  }
+  
+  onSubmitCours(){
+    this.coursForm.value.userId =this.onlineUser._id;
+    this.coursServices.addCours(  this.coursForm.value).subscribe((data:any)=>{
+      console.log("cours aded",data);
+      
+    })
+    
   }
   onDelete(commentId:any){
     console.log(commentId);
@@ -132,4 +204,50 @@ export class PostsGroupComponent implements OnInit {
       
     })
   }
+  
+ 
+
+  onUpvote(id:any){
+    this.upvotes={
+      userId:this.onlineUser._id,
+      postId:id,
+      createdAt:Date()
+    }
+    this.upvoteServices.sendUpvote(this.upvotes).subscribe((fdata:any)=>{
+      this.upvoteServices.showUpvote(id).subscribe((data:any)=>{
+        this.upvotes = data
+      })
+      console.log(this.upvotes);
+      
+    })
+  }
+ 
+
+ 
+
+  getLike(id:any){
+    this.upvoteServices.showUpvote(id).subscribe((data:any)=>{
+      this.upvotes = data
+    })
+  }
+ 
+
+  goToStream(){
+
+    this.linkServices.showLinks(this.onlineUser._id).subscribe((results:any)=>{
+      this.links=results
+      console.log(results);
+      
+    })
+  }
+
+  joinLive(){
+    this.gid = Guid.create();
+    console.log(this.gid);
+    
+    this.router.navigate(["./broadcast/", this.gid.value]);
+  }
+
 }
+
+

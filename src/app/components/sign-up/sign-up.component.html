@@ -53,29 +53,36 @@
                         <p  id="agree-text" class="m-0 my-2">Account Type</p>
                         <div class="d-flex">
                             <div class=" me-3 my-2">
-                            <input type="radio" id="huey" name="accountStatus" value="huey" checked formControlName='accountStatus'>
+                            <input type="radio" name="accountStatus" value="student" checked formControlName='accountStatus'>
                             <label for="huey" id="agree-text">Student</label>
                           </div>
                           
                           <div class=" me-3 my-2">
-                            <input type="radio" id="dewey" name="accountStatus" value="dewey"  formControlName='accountStatus'>
+                            <input type="radio" name="accountStatus" value="teacher"  formControlName='accountStatus'>
                             <label for="dewey" id="agree-text">Teacher</label>
                           </div>
                           </div>
                     </div>
                     <div class="form-group mt-2">
-                    <label for="pet-select" id="agree-text">Choose Your class:</label>
-                        <select name="pets" formControlName='classRoom' id="classRoom" class="form-control" >
+                    <label for="pet-select" id="agree-text">Niveau:</label>
+                        <select name="niveau" formControlName='niveau' id="niveau" class="form-control" >
                             <option value="">--Please choose an option--</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                            <option value="hamster">Hamster</option>
-                            <option value="parrot">Parrot</option>
-                            <option value="spider">Spider</option>
-                            <option value="goldfish">Goldfish</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                           
                         </select>
                         <span *ngIf="f.classRoom.touched && f.classRoom.errors?.required">Please chose your class Room</span>
                     </div>
+                    <div class="form-group mt-2">
+                        <label for="pet-select" id="agree-text">Classe:</label>
+                            <select name="pets" formControlName='classRoom' id="classRoom" class="form-control" >
+                                <option value="">--Please choose an option--</option>
+                                <option value="IM">IM</option>
+                                <option value="CM">CM</option>
+                               
+                            </select>
+                            <span *ngIf="f.classRoom.touched && f.classRoom.errors?.required">Please chose your class Room</span>
+                        </div>
                     <div class="form-group mt-4">
                         <label id="passwordLabel">Phone Number</label>
                         <input type="text" name="phoneNumber" class="inputFiled" id="phoneNumber" formControlName='phoneNumber'>
