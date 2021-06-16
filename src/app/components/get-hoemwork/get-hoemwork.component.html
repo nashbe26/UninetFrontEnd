@@ -1,0 +1,41 @@
+
+    <div class="row">
+        <div class="col-md-3">
+            <app-shortcuts></app-shortcuts>
+        </div>
+        <div class="col-md-6">
+            <div class="container mt-6">
+                <div *ngIf="homeworks != 0">
+                    <div *ngFor="let gID of homeworks">
+                        <div class="row my-2 d-flex post-container ">
+                            <div class="col-2 align-self-center text-center">
+                                <i class="fas fa-users fa-lg" style="color:#8E2995;border-radius:50% ;border: 1px solid #8E2995; padding: 15px;"></i>
+                            </div>
+                            <div class="col-9 align-self-center">
+                                <a  [routerLink]="['/homework', gID._id]">Nom du Homework: {{gID.NameHomework}} </a>
+                                <p>Group : {{gID.classRoom}} {{gID.niveau}}   </p>
+                                <p style="font-size: 14px;color: #9286a0;">Date : {{gID.createdAt | date:'MM-dd-yyyy HH:mm:ss'}}</p>
+                            </div>
+                                <div class="col-1">
+                                    <i class="fas fa-trash curser-pointer"  (click)=deletePost(gID._id)></i>
+
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div *ngIf="homeworks.length == 0"class="mt-6">
+                        <div class="dataNot">
+                            <img src="../../../assets/img/nodata.jpg" alt="no data" id="notfound"> 
+
+                        </div>
+                    </div> 
+                </div>
+             
+                </div>
+        </div>
+        <div class="col-md-3" >
+            <app-user-online ></app-user-online>
+        </div>
+</div>
+
+ 

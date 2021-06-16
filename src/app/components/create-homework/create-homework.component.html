@@ -6,18 +6,46 @@
      
         <div class="post-container">
             <div class="title-box my-2">
-                <p id="homework-title">Remplir la formulaire homework pour génerer un homework : </p>
+                <p id="homework-title">Homework formulaire  : </p>
             </div>
             <form (ngSubmit)="onSubmit1()" [formGroup]="postForm" >
       
                 <div class="form-group">
-                    <label for="url">Nom du test : </label>
+                    <label for="url" id="agree-text">Nom du test : </label>
                     <input  type="text" class="form-control"  formControlName="NameHomework" id="NameHomework"> 
                 </div>
                 <div class="form-group mb-2">
-                    <label for="url">Matiére :</label>
+                    <label for="url" id="agree-text">Matiére :</label>
                     <input  type="text" id="file"class="form-control" formControlName="matiere" id="matiere"> 
                 </div>
+                <div class="form-group mt-2">
+                    <label for="pet-select" id="agree-text">Niveau:</label>
+                        <select name="niveau" formControlName='niveau' id="niveau" class="form-control" >
+                            <option value="">--Please choose an option--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="pet-select" id="agree-text">Classe:</label>
+                            <select name="pets" formControlName='classRoom' id="classRoom" class="form-control" >
+                                <option value="">--Please choose an option--</option>
+                                <option value="IM">IM</option>
+                                <option value="CM">CM</option>
+                               
+                            </select>
+                        </div>
+                        <div class="d-flex">
+                            <div class="form-group my-2 me-2">
+                                <label for="date" id="agree-text">Date Deadline:</label>
+                                <input type="date" class="form-control" id="date" formControlName="date"  name="date">
+                            </div>
+                            <div class="form-group my-2">
+                                <label for="date" id="agree-text">Heure Deadline:</label>
+                                <input type="time" class="form-control" id="hours" formControlName="hours"  name="hours">
+                            </div>
+                        </div>
+                   
                 <div class="NgxEditor__Wrapper">
                     <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
                     <ngx-editor height="1000px" minHeight="50px"

@@ -115,6 +115,7 @@ export class PostsGroupComponent implements OnInit {
         (err:any) => console.log(err)
       );
     }
+
     this.postStruct = {
       content:this.postForm.value.userPost,
       date:new Date(),
@@ -145,6 +146,7 @@ export class PostsGroupComponent implements OnInit {
     })
   }
   onSubmit2(){
+    this
     this.addForm.value.group =  this.id 
     this.groupeServices.addGroup(this.addForm.value).subscribe((data:any)=>{
       console.log(data);
@@ -174,14 +176,20 @@ export class PostsGroupComponent implements OnInit {
       })
     })
   }
-  
   onSubmitCours(){
-    this.coursForm.value.userId =this.onlineUser._id;
-    this.coursServices.addCours(  this.coursForm.value).subscribe((data:any)=>{
-      console.log("cours aded",data);
+    console.log(this.id);
+    
+    this.groupeServices.getGroup(this.id).subscribe((data:any)=>{
+      console.log(data);
+      
+      this.coursForm.value.userId =this.onlineUser._id;
+      this.coursForm.value.student = data.userId;
+      this.coursServices.addCours(  this.coursForm.value).subscribe((data:any)=>{
+        console.log("cours aded",data);
+      })
       
     })
-    
+   
   }
   onDelete(commentId:any){
     console.log(commentId);

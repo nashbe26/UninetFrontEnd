@@ -18,11 +18,10 @@ export class GroupListComponent implements OnInit {
   ngOnInit(): void {
     this.onlineUser =JSON.parse(localStorage.getItem('user')!);
     console.log(this.onlineUser);
-    
     this.id= this.route.snapshot.params.id;
     this.groupServices.getGroupById(this.id).subscribe((data:any)=>{
       this.groupUser = data
-      console.log( this.groupUser);
+      console.log( "sdsdsd",this.groupUser);
     })
   }
   

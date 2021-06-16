@@ -12,11 +12,14 @@ export class HomeworkService {
     return this.httpClient.post(`${this.url}addhomework/`,id)
   }
   getHomeworkByUserId(id:any){
-    return this.httpClient.get(`${this.url}showhomeworkById/${id}`)
-  }
-  gethomeworkById(id:any){
     console.log(id);
     
+    return this.httpClient.get(`${this.url}showhomeworkById/${id}`)
+  }
+  getHomeworkByAdminId(id:any){
+    return this.httpClient.get(`${this.url}showOneHomeworkAdmin/${id}`)
+  }
+  gethomeworkById(id:any){    
     return this.httpClient.get(`${this.url}showhomework/${id}`);
   }
   deleteHomework(id:any){

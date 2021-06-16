@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-3">
+        <app-shortcuts></app-shortcuts>
+    </div>
+    <div class="col-md-6">
+        
+        <div class="homework-box mt-6">
+            <div class="post-container">
+                <div class="title-box my-2">
+                    <p id="homework-title">Home Work Name :{{homework?.NameHomework}}</p>
+                    <p id="homework-matiere">Matiére:{{homework?.matiere}}</p>
+                    <p id="homework-matiere">Classe : {{homework?.niveau}}  --  {{homework?.classRoom}}</p>
+                    <p id="homework-matiere">Deadline : {{homework?.date}}  --  {{homework?.hours}}</p>
+                   
+                </div>
+                <div class="project description my-2">
+            
+                   
+                </div><br>
+                <div class="my-2">
+                    <p [innerHTML]="homework?.description">
+                    </p>
+                </div>
+            </div>
+        
+            
+        </div>
+    </div>
+
+    <div class="col-md-3 mt-6">
+        <div class="online-user" *ngIf="allUser">
+            <div *ngFor="let studentz of allUser " class="notification-user my-4" >
+                <div *ngFor="let students of student " class="notification-user my-4" >
+                    <img src="../../../assets/img/user.png" alt="Image" id="user-size" >
+                    <div class="mx-5 d-flex">
+                    <p id="user-id">{{studentz.firstName}} {{studentz.lastName}}</p>
+                    {{students._id == studentz._id }}{{studentz}}
+                    <i *ngIf="students._id == studentz._id"class="fas fa-check" style="color: green;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+

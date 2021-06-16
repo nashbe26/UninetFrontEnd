@@ -24,55 +24,34 @@
     <div class="circle"></div>
     <div class="orbit"></div>
 </div>
-<div class="post-container">
-    <div class="d-flex ">
-       <img  src="../../../assets/img/user.png"  id="user-size"alt="Post name">
-        <div>
-            <p id="user-id">Ahmed toujeni</p>
-            <p id="hours-spent"></p>
-        </div>
-   
-    </div>
- 
-    <div class="my-4">
-        <video  width="100%" height="300" controls="controls">
-            <source src="../../../assets/img/videoplayback.mp4"type="video/mp4">    
-        </video>
-    </div>
-    
-    <div class="d-flex reaction-container">
-        <div class="like-container mr-2">
-            <a  data-bs-toggle="modal" data-bs-target="#exampleModal1"  class="curser-pointer ancre-reaction">10</a><i class=" curser-pointer fas fa-check fa-lg  px-2" style="color:green"></i></div>
-        <div class="comments-container mx-2">
-            <a class="curser-pointer ancre-reaction" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">16<i class="far fa-comment-alt fa-sm  px-2"></i></a>
-        </div>
-        <div class="save-container">
-            <a class="curser-pointer ancre-reaction" ><i class="fas fa-share-alt fa-sm mx-2 px-2" ></i></a>
-        </div>
-        <div class="dots-container mx-2">
-            <i class="curser-pointer fas fa-trash-alt fa-sm" ></i>
-        </div>
-        
-    
-  
-</div>
-</div>
+
 <div *ngFor="let post of allPost; let i = index" >
 <div class="post-container">
     <div class="d-flex ">
         <img src="http://localhost:3000/uploads/FunOfHeuristic_122458773_631826390823104_2423290600675311365_n.jpg" alt="Image" id="user-size">
-        <div>
+        <div class="mx-2">
             <p id="user-id">{{post?.user.firstName}}</p>
-            <p id="hours-spent">{{post.date}}</p>
+            <p id="hours-spent">{{post.date | date:'MM-dd-yyyy HH:mm:ss'}}</p>
         </div>
    
     </div>
     <div class="image-container" *ngIf="post.src">
-        
-        <img  src="http://localhost:3000/uploads/FunOfHeuristic_{{post.src}}" src=""id="img-size"alt="Post name">
+        <div *ngIf="post?.type == 'image'" >
+            <img  src="http://localhost:3000/uploads/FunOfHeuristic_{{post.src}}" id="img-size"alt="Post name">
+
+        </div>
+        <div  *ngIf="post?.type == 'video'" > 
+            <video  width="100%" height="300" controls="controls">
+                <source src="http://localhost:3000/uploads/FunOfHeuristic_{{post.src}}" type="video/mp4">    
+            </video>
+          
+            
+        </div>
+  
     </div>
     <div class="my-4">
         <p id="user-posts">{{post.content}}</p>
+        <p id="user-posts">{{post.src}}</p>
     </div>
     
 

@@ -6,6 +6,7 @@ import { CommentsService } from 'src/services/comments/comments.service';
 import { FeedUserService } from 'src/services/feedUser/feed-user.service';
 import { PostsService } from 'src/services/posts/posts.service';
 import { UpvotesService } from 'src/services/upvotes-services/upvotes.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post-child',
@@ -35,7 +36,9 @@ export class PostChildComponent implements OnInit {
   showSpinner:any;
   images:any;
   imagepath:any;
-  constructor(private postsService:PostsService,private CommentsService:CommentsService,private upvoteServices:UpvotesService,private userFeed:FeedUserService,private httpClient:HttpClient) { }
+  type:any;
+  fileType:any;
+  constructor(private dom:DomSanitizer,private postsService:PostsService,private CommentsService:CommentsService,private upvoteServices:UpvotesService,private userFeed:FeedUserService,private httpClient:HttpClient) { }
   ngOnInit(): void {
     this.onlineUser = JSON.parse(localStorage.getItem('user')!)
     this.commentForm = new FormGroup({
@@ -62,6 +65,9 @@ export class PostChildComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.images = file;
+      this.type = file.type;
+      console.log(this.type);
+      
     }
   }
   onSubmit1(){
@@ -69,7 +75,8 @@ export class PostChildComponent implements OnInit {
       this.newFile = this.postForm.value.userFile.replace('C:\\fakepath\\','');
       const formData = new FormData();
       formData.append('file', this.images);
-  
+      console.log(this.images);
+      console.log(this.type);
       this.httpClient.post<any>('http://localhost:3000/file', formData).subscribe(
         (res:any) => {
           console.log(res);
@@ -79,11 +86,21 @@ export class PostChildComponent implements OnInit {
         (err:any) => console.log(err)
       );
     }
+    if(this.type == "image/png"){
+      this.fileType = "image"
+    }
+    if(this.type == "video/mp4"){
+      this.fileType = "video"
+    }
+    if(this.type.includes ("application/")){
+      this.fileType = "file"
+    }
     this.postStruct = {
       content:this.postForm.value.userPost,
       date:new Date(),
       user:this.onlineUser._id,
-      src:this.newFile
+      src:this.newFile,
+      type:this.fileType
     }
      this.postsService.createPost(this.postStruct).subscribe((data:any)=>{
         this.newPost=data

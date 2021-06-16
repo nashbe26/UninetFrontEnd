@@ -5,22 +5,30 @@
         </div>
         <div class="col-md-6">
             <div class="container mt-6">
-                <div *ngFor="let gID of groupUser.groupId">
-                    <div class="row my-2 d-flex post-container ">
-                        <div class="col-2 align-self-center text-center">
-                            <i class="fas fa-users fa-lg" style="color:#8E2995;border-radius:50% ;border: 1px solid #8E2995; padding: 15px;"></i>
-                        </div>
-                        <div class="col-9 align-self-center">
-                            <a  [routerLink]="['/group', gID._id]">Nom du groupe: {{gID.nomGroup}}</a>
-                            <p>Admin du groupe: {{gID.admin?.firstName}} {{gID.admin?.lastName}}  </p>
-                            <p style="font-size: 14px;color: #9286a0;">Date : {{gID.createdAt}}</p>
-                        </div>
-                        <div class="col-1 align-self-center" *ngIf="gID.admin?._id == onlineUser._id">
-                            <i class="fas fa-trash curser-pointer"  (click)=deletePost(gID._id)></i>
+                <div *ngIf="groupUser?.length != 0">
+                    <div *ngFor="let gID of groupUser?.groupId">
+                        <div class="row my-2 d-flex post-container ">
+                            <div class="col-2 align-self-center text-center">
+                                <i class="fas fa-users fa-lg" style="color:#8E2995;border-radius:50% ;border: 1px solid #8E2995; padding: 15px;"></i>
+                            </div>
+                            <div class="col-9 align-self-center">
+                                <a  [routerLink]="['/group', gID._id]">Nom du groupe: {{gID.nomGroup}}</a>
+                                <p>Admin du groupe: {{gID.admin?.firstName}} {{gID.admin?.lastName}}  </p>
+                                <p style="font-size: 14px;color: #9286a0;">Date : {{gID.createdAt}}</p>
+                            </div>
+                            <div class="col-1 align-self-center" *ngIf="gID.admin?._id == onlineUser._id">
+                                <i class="fas fa-trash curser-pointer"  (click)=deletePost(gID._id)></i>
+                            </div>
                         </div>
                     </div>
-                    
+                    <!-- <div *ngIf="groupUser.groupId.length == 0" class="mt-6">
+                        <div class="dataNot">
+                            <img src="../../../assets/img/nodata.jpg" alt="no data" id="notfound"> 
+
+                        </div>
+                    </div>  -->
                 </div>
+             
                 </div>
         </div>
         <div class="col-md-3" >

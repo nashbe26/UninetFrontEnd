@@ -43,6 +43,9 @@ import { CoursComponent } from './backoffice/cours/cours.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { NotifiListComponent } from './components/notifi-list/notifi-list.component';
 import { CoursListComponent } from './components/cours-list/cours-list.component';
+import { HomeworkListComponent } from './components/homework-list/homework-list.component';
+import { OnehomeworkComponent } from './components/onehomework/onehomework.component';
+import { SafePipe } from './pipe-name.pipe';
 
 
 
@@ -78,7 +81,10 @@ import { CoursListComponent } from './components/cours-list/cours-list.component
     CoursComponent,
     GroupListComponent,
     NotifiListComponent,
-    CoursListComponent
+    CoursListComponent,
+    HomeworkListComponent,
+    OnehomeworkComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,11 @@
 @import "~animate.css/animate.css";
 
 html, body { height: 100%;
-background-color: #f0f2f5; }
+background-color: #f0f2f5;
+position: relative;
+}
+
+
 .post-container{
   background-color: white;
   padding: 15px;
@@ -34,7 +38,17 @@ p{
     margin: 15px auto;
     
   }
+  #notfound{
+    width: 450px;
+    height: auto;    
+    align-self: center;
+  }
+  .dataNot{
+    display: flex;
+    justify-content: center;
+    border-radius:50% ;
 
+  }
   .hollow-dots-spinner .dot {
     width: 15px;
     height: 15px;

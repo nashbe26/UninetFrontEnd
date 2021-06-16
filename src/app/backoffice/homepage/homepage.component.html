@@ -75,10 +75,11 @@
                                   <th scope="col">Nom </th>
                                   <th scope="col">Nom </th>
                                   <th scope="col">Email</th>
+                                  <th scope="col">Classe</th>
+                                  <th scope="col">Niveau</th>
                                   <th scope="col">Type</th>
-                                  <th scope="col">Type</th>
-                                  <th scope="col">status</th>
-                                  <th scope="col">status</th>
+                                  <th scope="col">Status</th>
+                                  <th scope="col">valider</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -88,8 +89,10 @@
                                   <td>{{user.lastName}}</td>
                                   <td>{{user.email}}</td>
                                   <td>{{user.classRoom}}</td>
+                                  <td>{{user.niveau}}</td>
                                   <td>{{user.accountStatus}}</td>
-                                  <td>@mdo</td>
+                                  <td *ngIf="user.verify == 'pending'" style="color: rgb(238, 96, 96);">{{user.verify}}</td>
+                                  <td *ngIf="user.verify == 'valid'" style="color:rgb(100, 236, 100)">{{user.verify}}</td>
                                   <td><button class="btn btn-danger" (click)="check(user._id)">Approuver</button></td>
                                 </tr>
                               </tbody>

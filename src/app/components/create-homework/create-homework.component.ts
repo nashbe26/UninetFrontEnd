@@ -17,15 +17,21 @@ export class CreateHomeworkComponent implements OnInit {
     this.postForm=this.frmbuilder.group({   
       description:['',[Validators.required,Validators.minLength(3)]], 
       NameHomework:['',[Validators.required,Validators.minLength(3)]], 
-      matiere:['',[Validators.required,Validators.email]], })
+      matiere:['',[Validators.required,Validators.email]],
+      niveau:['',[Validators.required]],
+      classRoom:['',[Validators.required]],
+      date:['',[Validators.required]],
+      hours:['',[Validators.required]],
+      })
     }
   ngOnInit(): void {
     this.onlineUser = JSON.parse(localStorage.getItem('user')!)
     this.editor = new Editor();
   }
   onSubmit1(){
-    this.postForm.value.Student = this.onlineUser._id
+  
     this.postForm.value.userId = this.onlineUser._id
+    this.postForm.value.da = this.onlineUser._id
     console.log(this.postForm.value);
       this.homeWorkServices.addhomework( this.postForm.value).subscribe((data:any)=>{
         console.log(data);

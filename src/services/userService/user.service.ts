@@ -36,4 +36,8 @@ export class UserService {
   fidnOneSerach(userId:any){
     return this.httpClient.get(`${this.url}/searchbyname/${userId}`);
   }
+  getUserByclass(userId:any){
+    
+    return this.httpClient.post(`${this.url}/classRoom`,userId);
+  }
 }

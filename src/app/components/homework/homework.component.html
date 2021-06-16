@@ -6,23 +6,32 @@
         
         <div class="homework-box mt-6">
             <div class="post-container">
-                <div class="title-box">
-                    <p id="homework-title">Home Work Name : Exercice pyhton</p>
-                    <p id="homework-matiere">Matiére : {{homework?.NameHomework}}</p>
+                <div class="title-box my-2">
+                    <p id="homework-title">Home Work Name :{{homework?.NameHomework}}</p>
+                    <p id="homework-matiere">Matiére:{{homework?.matiere}}</p>
+                    <p id="homework-matiere">Classe : {{homework?.niveau}}  --  {{homework?.classRoom}}</p>
+                    <p id="homework-matiere">Deadline : {{homework?.date}}  --  {{homework?.hours}}</p>
+                   
                 </div>
-                <div class="project description">
-                    <p id="homework-matiere">Description du projet :{{homework?.matiere}}</p>
+                <div class="project description my-2">
+            
+                   
+                </div><br>
+                <div class="my-2">
                     <p [innerHTML]="homework?.description">
                     </p>
                 </div>
             </div>
         
-
+            <div class="col-lg-6 post-container w-100" *ngIf="checkdate">
+                <p> <i class=" far fa-calendar-times mx-2" style="color: rgb(248, 142, 142);"></i>Date pour l'envoie du Homework est dépassé</p>
+            </div>
+            <div class="col-lg-6 post-container w-100" *ngIf="checkUser">
+                <p> <i class="fas fa-check-circle mx-2" style="color: #44c968;"></i>Homework déja envoyé.</p>
+                   </div>
             <div class="submit-project row my-2" *ngIf="waitResponse">
-                <div class="col-lg-6" *ngIf="checkUser">
-             <p> <i class="fas fa-check-circle mx-2" style="color: #44c968;"></i>Already submitteed</p>
-                </div>
-                <div class="col-lg-12" *ngIf="!checkUser">
+                
+                <div class="col-lg-12" *ngIf="!checkUser && !checkdate">
                     <div class="post-container">
                         <p id="homework-matiere">Envoyer votre réponse</p>
                         <form (ngSubmit)="onSubmit1()" [formGroup]="postForm"  enctype="multipart/form-data">

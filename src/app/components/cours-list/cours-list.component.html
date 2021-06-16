@@ -1,1 +1,39 @@
-<p>cours-list works!</p>
+
+    <div class="row">
+        <div class="col-md-3">
+            <app-shortcuts></app-shortcuts>
+        </div>
+        <div class="col-md-6">
+            <div class="container mt-6">
+                <div  *ngIf="users">
+                    
+                    <div *ngFor="let gID of users">
+                        <div class="row my-2 d-flex post-container " *ngIf="gID.etat != 'pending'">
+                            <div class="col-2 align-self-center text-center">
+                                <i class="fas fa-users fa-lg" style="color:#8E2995;border-radius:50% ;border: 1px solid #8E2995; padding: 15px;"></i>
+                            </div>
+                            <div class="col-9 align-self-center">
+                                <a  [routerLink]="['/group', gID._id]">Nom du groupe: {{gID.cours}}</a>
+                                <p>Admin du groupe: {{gID.userId?.firstName}} {{gID.userId?.lastName}}  </p>
+                                <p>Nombre etudiant: {{gID.student.length}}  </p>
+                                <p style="font-size: 14px;color: #9286a0;">Date : {{gID.createdAt}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div  class="mt-6">
+                        <div class="dataNot">
+                            <img src="../../../assets/img/nodata.jpg" alt="no data" id="notfound"> 
+
+                        </div>
+                    </div> 
+               
+             
+                </div>
+        </div>
+        <div class="col-md-3" >
+            <app-user-online [users]="users"></app-user-online>
+        </div>
+</div>
+
+ 

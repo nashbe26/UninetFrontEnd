@@ -48,6 +48,9 @@
                         <span *ngIf="f.confirmPassword.errors?.required && f.confirmPassword.touched" >Password name is required</span>
                         <span *ngIf="f.confirmPassword.errors?.pattern && f.confirmPassword.touched" >Password must have only letter</span> 
                         <span *ngIf="f.confirmPassword.errors?.length && f.confirmPassword.touched" >Password must be greater then 6</span> 
+                        <div *ngIf="f.confirmPassword.valid && f.confirmPassword.value != f.password.value" class="text-danger">
+                            The passwords entered do not match
+                        </div>
                     </div>
                     <div class="form-group mt-2">
                         <p  id="agree-text" class="m-0 my-2">Account Type</p>

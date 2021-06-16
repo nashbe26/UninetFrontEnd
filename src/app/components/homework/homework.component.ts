@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HomeworkResponseService } from 'src/services/homework/homework-response.service';
 import { HomeworkService } from 'src/services/homework/homework.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-homework',
@@ -22,6 +23,7 @@ export class HomeworkComponent implements OnInit {
   postForm!:FormGroup;
   onlineUser:any;
   checkUser:boolean = false;
+  checkdate:boolean = false;
   waitResponse: boolean = false;
   myParam:any
   ngOnInit(): void {
@@ -31,21 +33,33 @@ export class HomeworkComponent implements OnInit {
       userFile :new FormControl(),
       urlPost :new FormControl(),
     })
+    let newdate =  new Date()
+    let formattedDate = (moment(newdate)).format('L')
+
+    console.log(formattedDate,"newdate");
     
     this.onlineUser = JSON.parse(localStorage.getItem('user')!)
     this.id= this.route.snapshot.params.id;
-    this.route.params.subscribe((params: Params) => this.myParam = params['id']);
+    this.route.params.subscribe((params: Params) => {
+        this.id = params.id;
+        this.homeworkServices.gethomeworkById(this.id).subscribe((user:any)=>{          
+         if((moment(user.date)).format('L') ==  formattedDate){
+          this.checkdate = true;
+         }
+          this.homework  = user
+        })
+    });
 
     this.homeworkServices.checkUser(this.onlineUser._id,this.id).subscribe((user:any)=>{
-      console.log(user,"dsffdfdfd");
-      if (user.length   >0)   this.checkUser = true;
+
+      
       this.waitResponse = true;
+      if (user.length   >0)   this.checkUser = true;
+
     })
     console.log(this.myParam);
     
-    this.homeworkServices.gethomeworkById(this.myParam).subscribe((data:any)=>{
-      this.homework  = data
-    })
+ 
  
   }
   

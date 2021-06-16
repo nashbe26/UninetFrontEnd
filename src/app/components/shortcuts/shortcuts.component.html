@@ -3,31 +3,28 @@
         <div class="shortcuts-box row p-0">
             <div class="text-center">
                 <img src="../../../assets/img/user.jpg" alt="Image" id="user-size"><br>
-                         <a id="notification-id" [routerLink]="['/user', onlineUser._id]">{{onlineUser.firstName}} {{onlineUser.lastName}}</a>
-
+                <a id="notification-id" [routerLink]="['/user', onlineUser._id]">{{onlineUser.firstName}} {{onlineUser.lastName}}</a>
             </div>
             <a class="text-shortcuts" [routerLink]="['/groupList', onlineUser._id]"><i class="fas fa-users p-2"></i> Groupes</a>
-            <a class="text-shortcuts" [routerLink]="['/createHomework']"><i class="fas fa-book p-2"></i> Cours</a>
-        <a class="text-shortcuts"><i class="fas fa-calendar-week p-2"></i>Homework</a>
+                <a class="text-shortcuts" [routerLink]="['/createHomework']"  *ngIf="onlineUser.accountStatus =='teacher'" ><i class="fas fa-book p-2"></i> Créer Homework</a>
+                <a class="text-shortcuts" [routerLink]="['/cours', onlineUser._id]"  *ngIf="onlineUser.accountStatus =='student'" ><i class="fas fa-chalkboard-teacher p-2"></i>Cours</a>
+
+    
   
- 
-</div>
+            <a class="text-shortcuts" [routerLink]="['/homeworkList']"><i class="fas fa-book p-2"></i>Homework </a>
+    </div>
         <div class="user-area" >
         <div class="user-name" >
-         
-                <div class="soical-links pt-3">
-                    <div class="text-center mt-3">
-                        <p id="text-sec" style="font-size: 18px;font-weight: 500;color:#8E2995">soical Network links</p>
-                    </div>
+            <div class="soical-links pt-3">
+                <div class="text-center mt-3">
+                    <p id="text-sec" style="font-size: 18px;font-weight: 500;color:#8E2995">soical Network links</p>
+                </div>
                     <ul>                      
-                      
                         <li><a href=""style="color:rgb(71, 70, 70)"><i class="fab fa-facebook pe-3"></i>https://www.facebook.com/{{onlineUser.firstName}}{{onlineUser.lastName}}</a></li>
                         <li><a href=""style="color:rgb(71, 70, 70)"><i class="fab fa-linkedin pe-3"></i>https://www.instagram.com/{{onlineUser.firstName}}{{onlineUser.lastName}}</a></li>
                         <li><a href=""style="color:rgb(71, 70, 70)"><i class="fab fa-github-square pe-3"></i>https://www.github.com/{{onlineUser.firstName}}{{onlineUser.lastName}}</a></li>
                         <li><a href=""style="color:rgb(71, 70, 70)"><i class="fab fa-behance-square pe-3"></i>https://www.behance.com/{{onlineUser.firstName}}{{onlineUser.lastName}}</a></li>
-           
                     </ul>
-                    
                 </div>
             </div>
 </div>
