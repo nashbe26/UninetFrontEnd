@@ -5,13 +5,13 @@
                 <img src="../../../assets/img/user.jpg" alt="Image" id="user-size"><br>
                 <a id="notification-id" [routerLink]="['/user', onlineUser._id]">{{onlineUser.firstName}} {{onlineUser.lastName}}</a>
             </div>
-            <a class="text-shortcuts" [routerLink]="['/groupList', onlineUser._id]"><i class="fas fa-users p-2"></i> Groupes</a>
+            <a class="text-shortcuts" href="./groupList/{{onlineUser._id}}"><i class="fas fa-users p-2"></i> Groupes</a>
                 <a class="text-shortcuts" [routerLink]="['/createHomework']"  *ngIf="onlineUser.accountStatus =='teacher'" ><i class="fas fa-book p-2"></i> Créer Homework</a>
-                <a class="text-shortcuts" [routerLink]="['/cours', onlineUser._id]"  *ngIf="onlineUser.accountStatus =='student'" ><i class="fas fa-chalkboard-teacher p-2"></i>Cours</a>
+                <a class="text-shortcuts" href="/cours/{{onlineUser._id}}"  *ngIf="onlineUser.accountStatus =='student'" ><i class="fas fa-chalkboard-teacher p-2"></i>Cours</a>
 
     
   
-            <a class="text-shortcuts" [routerLink]="['/homeworkList']"><i class="fas fa-book p-2"></i>Homework </a>
+            <a class="text-shortcuts" href="/homeworkList"><i class="fas fa-book p-2"></i>Homework </a>
     </div>
         <div class="user-area" >
         <div class="user-name" >

@@ -5,8 +5,8 @@
       
             <nav class="sidebar-nav">
                 <ul id="sidebarnav" class="p-t-30">
-                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="fas fa-th-large fa-lg pe-2"></i><span class="hide-menu">Dashboard</span></a></li>
-                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./backoffice/cours" aria-expanded="false"><i class="fas  fa-users fa-lg pe-2"></i><span class="hide-menu">Users</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"  href="./backoffice"  aria-expanded="false"><i class="fas fa-th-large fa-lg pe-2"></i><span class="hide-menu">Dashboard</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./backoffice" aria-expanded="false"><i class="fas  fa-users fa-lg pe-2"></i><span class="hide-menu">Users</span></a></li>
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./backoffice/professeur" aria-expanded="false"><i class="fas fa-chalkboard-teacher fa-lg pe-2"></i><span class="hide-menu">Professeurs</span></a></li>
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./backoffice/cours" aria-expanded="false"><i class="fas fa-book fa-lg pe-2"></i><span class="hide-menu">Cours</span></a></li>
             
@@ -72,12 +72,12 @@
                                  <thead>
                                      <tr>
                                        <th scope="col">Id</th>
-                                       <th scope="col">Nom </th>
-                                       <th scope="col">Nom </th>
-                                       <th scope="col">Email</th>
+                                       <th scope="col">Nom Cours </th>
+                                       <th scope="col">Date </th>
+                                       <th scope="col">Heure</th>
                                        <th scope="col">etat</th>
-                                       <th scope="col">Type</th>
-                                       <th scope="col">status</th>
+                                       <th scope="col">Professeur</th>
+                                       <th scope="col">valider</th>
                                      
                                      </tr>
                                    </thead>
@@ -87,7 +87,9 @@
                                        <td>{{user.cours}} </td>
                                        <td>{{user.date}}</td>
                                        <td>{{user.hours}}</td>
-                                       <td>{{user.etat}}</td>
+                                       <td *ngIf="user.etat == 'pending'" style="color: rgb(196, 192, 192);">{{user.etat}}</td>
+                                       <td *ngIf="user.etat == 'rejeté'" style="color: rgb(238, 96, 96);">{{user.etat}}</td>
+                                       <td *ngIf="user.etat == 'valid'" style="color:rgb(100, 236, 100)">{{user.etat}}</td>
                                        <td>{{user.userId.firstName}} {{user.userId.lastName}}</td>
                                        <td><button class="btn btn-danger" (click)="check(user._id)">Approuver</button></td>
                                      </tr>

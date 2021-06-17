@@ -102,5 +102,7 @@ export class HomeworkComponent implements OnInit {
       console.log(data);
       
      })
+     window.location.reload();
+
    }
   }

@@ -30,6 +30,7 @@ export class HomepageComponent implements OnInit {
       })
       this.emailSend.sendEmail(data).subscribe((dats:any)=>{        
       })
+      window.location.reload();
 
     })
   }

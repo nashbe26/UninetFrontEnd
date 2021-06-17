@@ -48,10 +48,10 @@
             
         </div>
   
+
     </div>
     <div class="my-4">
         <p id="user-posts">{{post.content}}</p>
-        <p id="user-posts">{{post.src}}</p>
     </div>
     
 
@@ -102,19 +102,19 @@
    
             <div class="row" *ngFor='let comment of allComments'>
                
-                    <div class="col-2">
+                    <div class="col-1">
                        
                         <img src="../../../assets/img/user.jpg" alt="Image" id="user-comment">
                        
                     </div>
-                    <div class="col-10">
+                    <div class="col-11">
                         <div class="d-flex justify-content-between">
                             <div class="comments">
-                                <p>{{comment.userId.email}}</p>
+                                <p>{{comment.userId.firstName}} {{comment.userId.lastName}}</p>
                                 <p id="user-posts">{{comment.commentContent}}</p>
                                 <p id="hours-spent">{{comment.dateComment}}</p>
                             </div>
-                            <div class="deletePost">
+                            <div class="deletePost ps-5">
                                 <i class="fas fa-trash-alt" (click)="onDelete(comment._id)"></i>
                             </div>
                         </div>
@@ -128,11 +128,13 @@
                     <div class="dot"></div>
                   </div>
             </div>
-       
-            <form (ngSubmit)="onSubmit(post._id,post.user._id)" [formGroup]="commentForm">
-                <textarea type="text" class="form-control" id="commentPost" formControlName="commentUser"  ></textarea>
-                <button type="submit"class="btn btn-danger">Post</button>
-            </form>
+       <div class="">
+        <form (ngSubmit)="onSubmit(post._id,post.user._id)" [formGroup]="commentForm" >
+            <textarea type="text" class="form-control" id="commentPost" formControlName="commentUser"  ></textarea>
+            <button type="submit"class="btn btn-warning my-2">Post</button>
+        </form>
+       </div>
+     
         </div>
     </div>
   </div>

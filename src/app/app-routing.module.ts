@@ -6,6 +6,7 @@ import { AuthentifactionSuccessGuard } from 'src/guards/authentifaction-success.
 import { CoursServicesService } from 'src/services/coursServices/cours-services.service';
 import { CoursComponent } from './backoffice/cours/cours.component';
 import { HomepageComponent } from './backoffice/homepage/homepage.component';
+import { UsersComponent } from './backoffice/users/users.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { BroadcastComponent } from './components/broadcast/broadcast.component';
 import { CoursListComponent } from './components/cours-list/cours-list.component';
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path:'homeworkList',component:HomeworkListComponent,canActivate: [AuthGuardsGuard]},
   { path:'backoffice',component:HomepageComponent,canActivate: [AdminguardGuard]},
   { path:'backoffice/cours',component:CoursComponent,canActivate: [AdminguardGuard]},
+  { path:'backoffice/professeur',component:UsersComponent,canActivate: [AdminguardGuard]},
   { path:'**',component:ForbiddenComponent},
 ];
 

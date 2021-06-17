@@ -5,7 +5,7 @@
         </div>
         <div class="col-sm-12 col-lg-6 mb-4">
     <div class="profile-area">
-    <div class="text-center my-5">
+    <div class="text-center mb-2 mt-6">
         <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
         <p id="user-name">{{profilOwner?.firstName}} {{profilOwner?.lastName}}</p>
         <p id="text-follower" class="my-2">Role : {{profilOwner?.accountStatus}} </p>
@@ -49,21 +49,28 @@
                  <div *ngFor="let post of userFeed.userFeed; let i = index">
 
                 <div class="post-container">
-                    <div class="d-flex mb-2">
+                    <div class="d-flex">
                         <img src="../../../assets/img/user.jpg" alt="Image" id="user-size">
-                        <a id="user-id" href="user/{{post.user._id}}">{{post.user.firstName}} {{post.user.lastName}}</a>
+                        <div class="ms-2">
+                            <a id="user-id" href="user/{{post.user._id}}">{{post.user.firstName}} {{post.user.lastName}}</a>
+                            <p id="hours-spent">{{post.date | date:'MM-dd-yyyy HH:mm:ss'}}</p>
+                        </div>
+                    
+
                     </div>
                     <div class="image-container" *ngIf="post.src != null">
                         <img src="http://localhost:3000/uploads/FunOfHeuristic_{{post.src}}" id="img-size"alt="Post name">
                     </div>
+                    <div class="my-4">
                         <p id="user-posts">{{post.content}}</p>
-                        <p id="hours-spent">{{post.date}}</p>
+
+                    </div>
                         <div class="d-flex reaction-container">
                             <div class="like-container mr-2">
                                 <a (click)="getLike(post._id)" data-bs-toggle="modal" data-bs-target="#exampleModal1"  class="curser-pointer">{{post.upvotes.length}}</a><i class=" curser-pointer fas fa-check" style="color:green" (click)="onUpvote(post._id)"></i>
                             </div>
                             <div class="comments-container mx-2">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onSend(post._id)">{{allComments.length}}<i class="far fa-comment-alt"></i></a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onSend(post._id)">{{allComments?.length}}<i class="far fa-comment-alt"></i></a>
                             </div>
                             <div class="save-container">
                                 <p>3<i class="fas fa-share-alt mx-2"></i></p>

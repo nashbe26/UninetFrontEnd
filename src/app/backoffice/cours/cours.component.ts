@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { BackofficeService } from 'src/services/backoffice/backoffice.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { BackofficeService } from 'src/services/backoffice/backoffice.service';
 export class CoursComponent implements OnInit {
   cours:any;
   coursSlice:any;
-  constructor(private backoffice:BackofficeService) { }
+  constructor(private backoffice:BackofficeService,private router:Router) { }
 
   ngOnInit(): void {
     this.backoffice.getAllCours().subscribe((data:any)=>{
@@ -25,8 +26,10 @@ export class CoursComponent implements OnInit {
       this.backoffice.getAllCours().subscribe((data:any)=>{
         console.log(data);
         this.cours = data
- 
-      })    })
+
+      })   
+      window.location.reload();
+    })
   }
   onPagechange(event:PageEvent){
     console.log(event);

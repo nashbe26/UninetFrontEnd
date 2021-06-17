@@ -18,7 +18,8 @@ export class HomeworkListComponent implements OnInit {
     this.onlineUser =JSON.parse(localStorage.getItem('user')!);
     this.homeworkService.getHomeworkByUserId(this.onlineUser._id).subscribe((data:any)=>{
       this.homework = data
-    
+      console.log(data.length);
+      
     })
     this.userServices.findOne(this.onlineUser._id).subscribe((data:any)=>{
       console.log(data);

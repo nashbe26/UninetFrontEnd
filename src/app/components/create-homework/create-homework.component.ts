@@ -34,7 +34,8 @@ export class CreateHomeworkComponent implements OnInit {
     this.postForm.value.da = this.onlineUser._id
     console.log(this.postForm.value);
       this.homeWorkServices.addhomework( this.postForm.value).subscribe((data:any)=>{
-        console.log(data);
+        window.location.reload();
+
       })
   }
 }

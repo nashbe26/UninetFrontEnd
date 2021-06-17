@@ -6,7 +6,9 @@
                   
                     
                         <div class="my-2">
-                            <a class="userConv"*ngIf="conversations._id" [routerLink]="['/messenger', conversations._id]">{{onlineUser.firstName}} {{onlineUser.lastName}}</a>
+                                <a class="userConv"*ngIf="conversations._id " [routerLink]="['/messenger', conversations._id]">{{onlineUser.firstName}} {{onlineUser.lastName}}</a>
+
+                            
                         </div>
                         <i class="far fa-times-circle curser-pointer" (click)="exitPopUp()"></i>
                     </div>

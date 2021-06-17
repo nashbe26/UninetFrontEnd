@@ -49,20 +49,14 @@ export class UserOnlineComponent implements OnInit {
               this.userServices.findOne(x).subscribe((oneuser:any)=>{
                 let check = this.newUser.find((x:any) =>x._id = oneuser._id)
                 console.log(check);
-                
                   if(check){
                     console.log("ahla");
-                    
-                    
-
                   }else{
                     this.newUser.push(oneuser)
-                    
                   }
               }) 
             }
-            console.log("sagxi ",this.newUser);
-            
+  
           })
         })
 

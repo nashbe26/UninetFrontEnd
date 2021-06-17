@@ -20,17 +20,9 @@ export class AuthGuardsGuard implements CanActivate {
       this.usersservices.findOne(this.id).subscribe((data:any)=>{
        this.users = data
       })
-      
-      if(token){
-        if( user.verify === 'valid'){
-          return true;
-  
-        }else{
-          return false
-        }
+      if(token || this.users?.verify == 'valid' ||  this.users?.accountStatus == 'admin'){
+        return true;
       }else{
-  
-  
         this.router.navigate(['/forbidden'])
         return false
       }

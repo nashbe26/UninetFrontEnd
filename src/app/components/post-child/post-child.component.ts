@@ -105,6 +105,8 @@ export class PostChildComponent implements OnInit {
      this.postsService.createPost(this.postStruct).subscribe((data:any)=>{
         this.newPost=data
         this.allPost.unshift(data);
+        console.log(data);
+        
      })
    }
   getPostsIntervall(){

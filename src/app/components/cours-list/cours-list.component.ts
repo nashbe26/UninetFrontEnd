@@ -12,14 +12,15 @@ export class CoursListComponent implements OnInit {
 
   constructor(private coursService:CoursServicesService,private route:ActivatedRoute,private user:UserService) { }
   onlineUser:any;
-  users:any;
+  users:any = [];
   id:any;
   ngOnInit(): void {
     this.onlineUser = JSON.parse(localStorage.getItem('user')!)
     this.id= this.route.snapshot.params.id;
     this.user.findOne(this.id).subscribe((data:any)=>{
      this.users = data.cours      
+     console.log(this.users.length);
+     
     })
   }
-
 }

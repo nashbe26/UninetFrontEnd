@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
    userForm!:FormGroup;
    user:any ={};
    errors:any;
+   check:any;
   constructor(private formBuilder:FormBuilder, private userService:UserService,private websockets:WebsocketService,private router:Router) { }
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
@@ -23,10 +24,17 @@ export class HomeComponent implements OnInit {
   onFormSubmit(){
       this.userService.loginUser(this.userForm.value).subscribe(
         (data:any)=> {
+          console.log(data);
+          
+this.check =   data.user?.verify        
+          if(this.check == "valid"){
             localStorage.setItem('token',data.jwtToken);
             localStorage.setItem('user',JSON.stringify(data.user));
             this.websockets.connect(data.jwtToken);
+          }
+           
             this.router.navigate(['./accueil']);
+        
              
         },
         (error:any) =>{
